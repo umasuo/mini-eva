@@ -1,0 +1,4 @@
+jar {
+    baseName = 'mini-eva'
+    version = '0.1'
+}

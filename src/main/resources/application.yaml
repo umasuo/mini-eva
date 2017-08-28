@@ -12,20 +12,33 @@ security:
     password: secret
     roles: SUPERUSER
 
-zuul:
-  routes:
-    data-center:
-      path: /v1/data/**
-      url: http://localhost:8801/v1/data
-    device-center:
-      path: /v1/devices/**
-      url: http://localhost:8806/v1/devices
-    file:
-      path: /v1/files/**
-      url: http://localhost:8807/v1/files
-    user:
-      path: /v1/users/**
-      url: http://localhost:8809/v1/users
-    feedback:
-      path: /v1/feedback/**
-      url: http://localhost:8811/v1/feedback
+
+
+spring:
+  application:
+    name: developer
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mini_eva
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: cn.eva.mini.infra.db.dialect.JSONBPostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  redis:
+    host: localhost
+    port: 6379
+  mail:
+    protocol: smtp
+    host: smtp.gmail.com
+    port: 587
+    username: email
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

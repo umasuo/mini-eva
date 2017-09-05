@@ -64,6 +64,5 @@ public class Content {
   /**
    * Default constructor.
    */
-  public Content() {
-  }
+  public Content(){}
 }

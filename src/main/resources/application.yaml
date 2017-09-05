@@ -6,17 +6,8 @@ logging:
     com.netflix.discovery: 'OFF'
     org.springframework.cloud: 'DEBUG'
 
-security:
-  user:
-    name: admin
-    password: secret
-    roles: SUPERUSER
-
-
 
 spring:
-  application:
-    name: developer
   datasource:
     url: jdbc:postgresql://localhost:5432/mini_eva
     username: postgres
@@ -24,7 +15,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: cn.eva.mini.infra.db.postgres.dialect.JSONBPostgreSQLDialect
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
   redis:

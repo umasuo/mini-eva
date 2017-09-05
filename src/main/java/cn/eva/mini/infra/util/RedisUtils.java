@@ -20,4 +20,17 @@ public final class RedisUtils {
    */
   public static final String DEVICE_DEFINITION_FORMAT = "data:definition:%s:%s";
 
+
+
+
+  /**
+   * 缓存ProductType使用的key。
+   */
+  public static final String PRODUCT_TYPE_KEY = "product:producttype";
+
+  /**
+   * 缓存Product使用的key。
+   */
+  public static final String PRODUCT_KEY_FORMAT = "product:%s";
+
 }

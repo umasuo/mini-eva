@@ -100,4 +100,15 @@ public class Router {
    */
   public static final String DEVICE_COUNT = "/v1/admin/devices/count";
 
+
+  /******************FEEDBACK********************/
+  /**
+   * report root.
+   */
+  public static final String FEEDBACK_ROOT = "/v1/feedbacks";
+
+  /**
+   * The constant FEEDBACK_WITH_ID.
+   */
+  public static final String FEEDBACK_WITH_ID = FEEDBACK_ROOT + "/{id}";
 }

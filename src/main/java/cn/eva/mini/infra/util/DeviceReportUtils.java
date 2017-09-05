@@ -48,14 +48,14 @@ public final class DeviceReportUtils {
    * @param map
    */
   private static void handleRegisterReport(List<DeviceReportView> result, Map map) {
-    Consumer<DeviceReportView> consumer = deviceReportView -> {
-      if (deviceReportView.getDeveloperId().equals(map.get("developerId").toString()) &&
-        deviceReportView.getDeviceDefinitionId().equals(map.get("productId").toString())) {
-        deviceReportView.setRegisterNumber(Integer.valueOf(map.get("registerCount").toString()));
-      }
-    };
-
-    result.stream().forEach(consumer);
+//    Consumer<DeviceReportView> consumer = deviceReportView -> {
+//      if (deviceReportView.getDeveloperId().equals(map.get("developerId").toString()) &&
+//        deviceReportView.getDeviceDefinitionId().equals(map.get("productId").toString())) {
+//        deviceReportView.setRegisterNumber(Integer.valueOf(map.get("registerCount").toString()));
+//      }
+//    };
+//
+//    result.stream().forEach(consumer);
   }
 
   /**
@@ -67,12 +67,12 @@ public final class DeviceReportUtils {
   private static void handleTotalReport(List<DeviceReportView> result, Map map) {
     DeviceReportView reportView = new DeviceReportView();
 
-    reportView.setDeveloperId(map.get("developerId").toString());
-    reportView.setDeviceDefinitionId(map.get("productId").toString());
-    reportView.setTotalNumber((Long) map.get("totalCount"));
-
-    // TODO: 17/6/16 
-    reportView.setOnlineNumber(0);
+//    reportView.setDeveloperId(map.get("developerId").toString());
+//    reportView.setDeviceDefinitionId(map.get("productId").toString());
+//    reportView.setTotalNumber((Long) map.get("totalCount"));
+//
+//    // TODO: 17/6/16
+//    reportView.setOnlineNumber(0);
 
     result.add(reportView);
   }

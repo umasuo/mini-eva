@@ -3,10 +3,10 @@ package cn.eva.mini.application.dto;
 import lombok.Data;
 
 /**
- * Device report view.
+ * Device report data view.
  */
 @Data
-public class DeviceReportView {
+public class DeviceReportDataView {
   /**
    * The Device definition id.
    */

@@ -42,3 +42,10 @@ spring:
           auth: true
           starttls:
             enable: true
+
+message:
+  broker:
+    host: 127.0.0.1
+    port: 1883
+    username: umasuo
+    password: password

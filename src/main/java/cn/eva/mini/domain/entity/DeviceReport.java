@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Device report datas.
+ * Device report data.
  */
 @Data
 @Entity

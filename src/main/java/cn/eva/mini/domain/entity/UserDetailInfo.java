@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * User detail info..
+ * User detail info.
  */
 @Entity
 @Table(name = "user_detail_info")

@@ -25,7 +25,7 @@ dependencies {
     // Lombok
     compile('org.projectlombok:lombok:1.16.12')
 
-
+    compile(group: "com.github.java-json-tools", name: "json-schema-validator", version: "2.2.8");
     // EMQTT client
     compile('org.fusesource.mqtt-client:mqtt-client:1.14')
 }

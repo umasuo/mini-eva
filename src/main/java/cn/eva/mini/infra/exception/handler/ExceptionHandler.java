@@ -5,15 +5,20 @@ import cn.eva.mini.infra.exception.AuthFailedException;
 import cn.eva.mini.infra.exception.AuthInfoMissingException;
 import cn.eva.mini.infra.exception.ConflictException;
 import cn.eva.mini.infra.exception.CreateResourceFailed;
+import cn.eva.mini.infra.exception.ExceptionBody;
 import cn.eva.mini.infra.exception.ImmutableException;
 import cn.eva.mini.infra.exception.NotExistException;
 import cn.eva.mini.infra.exception.ParametersException;
 import cn.eva.mini.infra.exception.PasswordErrorException;
+import cn.eva.mini.infra.util.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ExceptionHandler {
+public class ExceptionHandler implements HandlerExceptionResolver {
 
   /**
    * logger.
@@ -50,16 +55,33 @@ public class ExceptionHandler {
    * exception that do not log.
    */
   List<Class<?>> OMITTED_EXCEPTIONS = Arrays.asList(
-      AlreadyExistException.class,
-      AuthFailedException.class,
-      AuthInfoMissingException.class,
-      ConflictException.class,
-      CreateResourceFailed.class,
-      ImmutableException.class,
-      NotExistException.class,
-      ParametersException.class,
-      PasswordErrorException.class
+    AlreadyExistException.class,
+    AuthFailedException.class,
+    AuthInfoMissingException.class,
+    ConflictException.class,
+    CreateResourceFailed.class,
+    ImmutableException.class,
+    NotExistException.class,
+    ParametersException.class,
+    PasswordErrorException.class
   );
+
+  /**
+   * Resolve exception.
+   *
+   * @param request
+   * @param response
+   * @param handler
+   * @param ex
+   * @return
+   */
+  @Override
+  public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
+                                       Object handler, Exception ex) {
+    setResponse(request, response, handler, ex);
+    addExceptionBody(response, ex);
+    return new ModelAndView();
+  }
 
 
   /**
@@ -72,8 +94,8 @@ public class ExceptionHandler {
    * @return the input exception
    */
   public Exception setResponse(HttpServletRequest request, HttpServletResponse response,
-                                Object obj,
-                                Exception ex) {
+                               Object obj,
+                               Exception ex) {
     // get the status
     HttpStatus status = EXCEPTION_MAP.get(ex.getClass());
     if (status == null) {
@@ -96,11 +118,41 @@ public class ExceptionHandler {
    * @param ex exception
    */
   public void logException(HttpServletRequest request, HttpServletResponse response,
-                            Object obj, HttpStatus status, Exception ex) {
+                           Object obj, HttpStatus status, Exception ex) {
     boolean shouldLog = !OMITTED_EXCEPTIONS.contains(ex.getClass());
     if (shouldLog) {
       // only log those ones that are real failures
       LOG.error("request {}, response {}, obj {}, status {}", request, response, obj, status, ex);
     }
+  }
+
+
+  /**
+   * add customized message body to the response.
+   *
+   * @param response
+   * @param ex
+   */
+  private void addExceptionBody(HttpServletResponse response, Exception ex) {
+    try {
+      ExceptionBody body = getBody(ex);
+      if (body != null) {
+        response.getWriter().print(JsonUtils.serialize(body));
+      }
+    } catch (IOException e) {
+      LOG.error("failed to write response JSON", e);
+      throw new IllegalStateException(e);
+    }
+  }
+
+  /**
+   * Get customized message body by exception type.
+   *
+   * @param ex exception.
+   * @return exception body.
+   */
+  private ExceptionBody getBody(Exception ex) {
+    assert ex != null;
+    return null;
   }
 }

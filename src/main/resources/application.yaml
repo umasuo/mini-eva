@@ -26,7 +26,7 @@ spring:
     database-platform: cn.eva.mini.infra.db.dialect.JSONBPostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: updater
   redis:
     host: localhost
     port: 6379

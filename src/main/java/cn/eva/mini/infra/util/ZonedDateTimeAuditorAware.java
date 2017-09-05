@@ -3,7 +3,7 @@ package cn.eva.mini.infra.util;
 import org.springframework.data.domain.AuditorAware;
 
 /**
- * Created by umasuo on 17/6/1.
+ * Zoned date time.
  */
 public class ZonedDateTimeAuditorAware implements AuditorAware<String> {
 

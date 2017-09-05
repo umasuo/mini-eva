@@ -43,7 +43,7 @@ jacocoTestReport {
                     '**/enums/**',
                     '**/exception/**',
                     '**/repository/**',
-                    '**/update/**',
+                    '**/updater/**',
                     '**/controller/**',
                     '**/util/**',
             ])

@@ -25,40 +25,93 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Json user type.
+ */
 public class JSONBUserType implements ParameterizedType, UserType {
 
-  private static final ObjectMapper objectMapper = new ObjectMapper();
-  private static final ClassLoaderService classLoaderService = new ClassLoaderServiceImpl();
+  /**
+   * Object mapper.
+   */
+  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
+  /**
+   * Class loader service.
+   */
+  private static final ClassLoaderService CLASS_LOADER_SERVICE = new ClassLoaderServiceImpl();
+
+  /**
+   * Json type.
+   */
   public static final String JSONB_TYPE = "jsonb";
+
+  /**
+   * Class name.
+   */
   public static final String CLASS = "CLASS";
 
-  private Class jsonClassType;
+  /**
+   * Json class type.
+   */
+  private transient Class jsonClassType;
 
+  /**
+   * returned class.
+   *
+   * @return Class<Object>
+   */
   @Override
   public Class<Object> returnedClass() {
     return Object.class;
   }
 
+  /**
+   * Sql types.
+   *
+   * @return int []
+   */
   @Override
   public int[] sqlTypes() {
-    return new int[]{Types.JAVA_OBJECT};
+    return new int[] {Types.JAVA_OBJECT};
   }
 
+  /**
+   * Null safe get.
+   *
+   * @param resultSet
+   * @param names
+   * @param session
+   * @param owner
+   * @return
+   * @throws HibernateException
+   * @throws SQLException
+   */
   @Override
-  public Object nullSafeGet(ResultSet resultSet, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException {
+  public Object nullSafeGet(ResultSet resultSet, String[] names, SessionImplementor session,
+                            Object owner) throws HibernateException, SQLException {
     try {
       final String json = resultSet.getString(names[0]);
-      return json == null ? null : objectMapper.readValue(json, jsonClassType);
+      return json == null ? null : OBJECT_MAPPER.readValue(json, jsonClassType);
     } catch (IOException e) {
       throw new HibernateException(e);
     }
   }
 
+  /**
+   * Null safe set.
+   *
+   * @param st
+   * @param value
+   * @param index
+   * @param session
+   * @throws HibernateException
+   * @throws SQLException
+   */
   @Override
-  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
+  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor
+      session) throws HibernateException, SQLException {
     try {
-      final String json = value == null ? null : objectMapper.writeValueAsString(value);
+      final String json = value == null ? null : OBJECT_MAPPER.writeValueAsString(value);
       PGobject pgo = new PGobject();
       pgo.setType(JSONB_TYPE);
       pgo.setValue(json);
@@ -68,15 +121,27 @@ public class JSONBUserType implements ParameterizedType, UserType {
     }
   }
 
+  /**
+   * Set value.
+   *
+   * @param parameters
+   */
   @Override
   public void setParameterValues(Properties parameters) {
     final String clazz = (String) parameters.get(CLASS);
-    jsonClassType = classLoaderService.classForName(clazz);
+    jsonClassType = CLASS_LOADER_SERVICE.classForName(clazz);
   }
 
+  /**
+   * Deep copy.
+   *
+   * @param value
+   * @return
+   * @throws HibernateException
+   */
   @SuppressWarnings("unchecked")
   @Override
-  public Object deepCopy(Object value) throws HibernateException {
+  public Object deepCopy(Object value) {
 
     if (!(value instanceof Collection)) {
       return value;
@@ -90,9 +155,27 @@ public class JSONBUserType implements ParameterizedType, UserType {
     return collectionClone;
   }
 
-  static final class CollectionFactory {
+  /**
+   * Collection factory.
+   */
+  private static final class CollectionFactory {
+
+    /**
+     * Default private constructor.
+     */
+    private CollectionFactory() {
+    }
+
+    /**
+     * create new instance.
+     *
+     * @param collectionClass
+     * @param <E>
+     * @param <T>
+     * @return
+     */
     @SuppressWarnings("unchecked")
-    static <E, T extends Collection<E>> T newInstance(Class<T> collectionClass) {
+    public static <E, T extends Collection<E>> T newInstance(Class<T> collectionClass) {
       if (List.class.isAssignableFrom(collectionClass)) {
         return (T) new ArrayList<E>();
       } else if (Set.class.isAssignableFrom(collectionClass)) {
@@ -103,37 +186,66 @@ public class JSONBUserType implements ParameterizedType, UserType {
     }
   }
 
+  /**
+   * Is mutable.
+   *
+   * @return
+   */
   @Override
   public boolean isMutable() {
     return true;
   }
 
+  /**
+   * Equals.
+   *
+   * @param x
+   * @param y
+   * @return
+   * @throws HibernateException
+   */
   @Override
-  public boolean equals(Object x, Object y) throws HibernateException {
-    if (x == y) {
-      return true;
-    }
-
-    if ((x == null) || (y == null)) {
+  public boolean equals(Object x, Object y) {
+    if (x == null || y == null) {
       return false;
     }
 
     return x.equals(y);
   }
 
+  /**
+   * Hash code.
+   *
+   * @param x
+   * @return
+   */
   @Override
-  public int hashCode(Object x) throws HibernateException {
-    assert (x != null);
+  public int hashCode(Object x) {
+    assert x != null;
     return x.hashCode();
   }
 
+  /**
+   * Assemble.
+   *
+   * @param cached
+   * @param owner
+   * @return
+   */
   @Override
-  public Object assemble(Serializable cached, Object owner) throws HibernateException {
+  public Object assemble(Serializable cached, Object owner) {
     return deepCopy(cached);
   }
 
+  /**
+   * Disassemble.
+   *
+   * @param value
+   * @return
+   * @throws HibernateException
+   */
   @Override
-  public Serializable disassemble(Object value) throws HibernateException {
+  public Serializable disassemble(Object value) {
     Object deepCopy = deepCopy(value);
 
     if (!(deepCopy instanceof Serializable)) {
@@ -143,6 +255,15 @@ public class JSONBUserType implements ParameterizedType, UserType {
     return (Serializable) deepCopy;
   }
 
+  /**
+   * Replace.
+   *
+   * @param original
+   * @param target
+   * @param owner
+   * @return
+   * @throws HibernateException
+   */
   @Override
   public Object replace(Object original, Object target, Object owner) throws HibernateException {
     return deepCopy(original);

@@ -22,7 +22,7 @@ import javax.persistence.Version;
  * TODO should we give a numerical id?
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class User {

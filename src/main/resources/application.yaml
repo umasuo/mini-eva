@@ -1,5 +1,5 @@
 server:
-  port: 8890
+  port: 80
 
 logging:
   level:
@@ -23,10 +23,10 @@ spring:
     password: root
     driver-class-name: org.postgresql.Driver
   jpa:
-    database-platform: cn.eva.mini.infra.db.dialect.JSONBPostgreSQLDialect
+    database-platform: cn.eva.mini.infra.db.postgres.dialect.JSONBPostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: updater
+      ddl-auto: update
   redis:
     host: localhost
     port: 6379
@@ -42,10 +42,3 @@ spring:
           auth: true
           starttls:
             enable: true
-
-message:
-  broker:
-    host: 127.0.0.1
-    port: 1883
-    username: umasuo
-    password: password

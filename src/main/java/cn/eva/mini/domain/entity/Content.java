@@ -60,4 +60,10 @@ public class Content {
     this.content = content;
     this.ownerId = ownerId;
   }
+
+  /**
+   * Default constructor.
+   */
+  public Content() {
+  }
 }

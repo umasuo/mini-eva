@@ -93,7 +93,7 @@ public class DataDefinitionApplication {
 //
 //    DefinitionValidator.validateDeveloper(developerId, definition.getDeveloperId(), id);
 //
-////    VersionValidator.checkVersion(version, definition.getVersion());
+////    VersionValidator.validate(version, definition.getVersion());
 //
 //    actions.stream().forEach(action -> updaterService.handle(definition, action));
 //

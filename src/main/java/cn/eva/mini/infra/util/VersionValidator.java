@@ -26,7 +26,7 @@ public final class VersionValidator {
    * @param inputVersion Integer
    * @param existVersion Integer
    */
-  public static void checkVersion(Integer inputVersion, Integer existVersion) {
+  public static void validate(Integer inputVersion, Integer existVersion) {
     if (!inputVersion.equals(existVersion)) {
       LOGGER.debug("DeviceDataDefinition version is not correct.");
       throw new ConflictException("DeviceDataDefinition version is not correct.");

@@ -113,7 +113,7 @@ public class SignInApplication {
    * @param user the user entity.
    * @return SignInResult
    */
-  private SignInResult signIn(User user) {
+  public SignInResult signIn(User user) {
     LOGGER.debug("Enter. User: {}.", user);
 
     UserView userView = UserMapper.toView(user);

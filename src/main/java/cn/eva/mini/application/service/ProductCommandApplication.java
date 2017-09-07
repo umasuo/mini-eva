@@ -143,6 +143,6 @@ public class ProductCommandApplication {
 //
 //    ProductValidator.checkStatus(product);
 //
-//    VersionValidator.checkVersion(version, product.getVersion());
+//    VersionValidator.validate(version, product.getVersion());
 //  }
 }

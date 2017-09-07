@@ -69,7 +69,7 @@ public class DataCreateApplication {
 //      throw new ParametersException("Data is not in correct format.");
 //    }
 //
-//    DeviceData data = DeviceDataMapper.toModel(dataDraft, developerId, userId);
+//    DeviceData data = DeviceDataMapper.toView(dataDraft, developerId, userId);
 //    DeviceData dataSaved = deviceDataService.create(data);
 //
 //    //todo 原始数据已经完成存储，发出相关消息，然后开始进行数据的处理

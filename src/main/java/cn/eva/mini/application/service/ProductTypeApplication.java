@@ -1,6 +1,5 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.CommonDataView;
 import cn.eva.mini.application.dto.ProductTypeDraft;
 import cn.eva.mini.application.dto.ProductTypeView;
 import cn.eva.mini.application.dto.mapper.ProductTypeMapper;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * ProductType application.
@@ -74,7 +72,7 @@ public class ProductTypeApplication {
 
     ProductType productType = productTypeService.getById(id);
 
-    VersionValidator.checkVersion(version, productType.getVersion());
+    VersionValidator.validate(version, productType.getVersion());
 
     productTypeService.delete(id);
 
@@ -98,7 +96,7 @@ public class ProductTypeApplication {
 //
 //    ProductType valueInDb = productTypeService.getById(id);
 //
-//    VersionValidator.checkVersion(version, valueInDb.getVersion());
+//    VersionValidator.validate(version, valueInDb.getVersion());
 //
 //    actions.stream().forEach(action -> updaterService.handle(valueInDb, action));
 //

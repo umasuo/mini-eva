@@ -1,7 +1,9 @@
 package cn.eva.mini.application.dto.mapper;
 
+import cn.eva.mini.application.dto.UserRegisterInfo;
 import cn.eva.mini.application.dto.UserView;
 import cn.eva.mini.domain.entity.User;
+import cn.eva.mini.infra.util.PasswordUtil;
 
 /**
  * User view mapper.
@@ -39,5 +41,20 @@ public final class UserMapper {
       }
     }
     return view;
+  }
+
+  /**
+   * Create user from register info.
+   *
+   * @param register
+   * @return
+   */
+  public static User toModel(UserRegisterInfo register) {
+    User user = new User();
+    user.setDeveloperId(register.getDeveloperId());
+    user.setPhone(register.getPhone());
+    user.setPassword(PasswordUtil.hashPassword(register.getPassword()));
+
+    return user;
   }
 }

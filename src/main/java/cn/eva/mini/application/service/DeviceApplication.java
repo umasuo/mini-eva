@@ -74,7 +74,7 @@ public class DeviceApplication {
     Device device = deviceService.findByUserAndUnionId(userId, draft.getUnionId());
     if (device == null) {
       device = DeviceMapper.toModel(draft, userId, null);
-//      device = DeviceMapper.toModel(draft, userId, developerId);
+//      device = DeviceMapper.toView(draft, userId, developerId);
     }
 
     // 5. 修改设备状态为 绑定
@@ -206,7 +206,7 @@ public class DeviceApplication {
 //
 //    List<Device> devices = deviceService.getByDeveloper(developerId);
 //
-//    List<DeviceData> deviceData = DeviceDataMapper.toModel(devices);
+//    List<DeviceData> deviceData = DeviceDataMapper.toView(devices);
 //    // TODO: 17/7/13 获取用户手机和产品名称
 //
 //    LOGGER.debug("Exit. deviceData size: {}.", deviceData.size());

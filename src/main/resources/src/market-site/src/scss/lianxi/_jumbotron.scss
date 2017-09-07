@@ -1,0 +1,64 @@
+.lianxi-jumbotron {
+  background: no-repeat center/cover url('/market-site/static/img/lianxiwomen/imge2.jpg');
+  height: 520px;
+  color: #fff;
+  text-align: center;
+  padding-top: 190px;
+  margin-bottom: 321px;
+
+  h1 {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
+    font-size: 40px;
+    font-weight: 100;
+  }
+
+  &__intro {
+    height: 437px;
+    width: 1080px;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    margin-top: 170px;
+
+    img {
+      height: 437px;
+      width: 587px;
+      margin-right: 36px;
+      float: left;
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #26a6ff;
+      margin: 72px 36px 30px 36px;
+    }
+
+    p {
+      color: #000;
+      margin: 36px;
+      font-size: 18px;
+      overflow: hidden;
+      max-height: 258px;
+    }
+  }
+}
+
+.lianxi-tags {
+  background: repeat-x bottom/cover url('/market-site/static/img/lianxiwomen/bj1.png');
+  margin-top: 200px;
+  height: 274px;
+
+  &__tag {
+    font-size: 36px;
+    text-align: center;
+    background: no-repeat center/cover url('/market-site/static/img/lianxiwomen/qipao_icon.png');
+    width: 276px;
+    height: 126px;
+    color: #fff;
+    position: absolute;
+    line-height: 100px;
+  }
+}

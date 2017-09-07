@@ -1,0 +1,36 @@
+.topbar {
+  font-size: 16px;
+  border-radius: 0;
+  border-width: 0;
+  border-top: solid 18px $gray-dark;
+  margin-bottom: 0;
+
+  .navbar-brand {
+    width: 150px;
+    padding: 0;
+    margin-right: 79px;
+  }
+
+  .navbar-nav > li > a {
+    padding: {
+      top: 23px;
+      bottom: 23px;
+    }
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  &__login-btn {
+    padding: 8px 20px;
+  }
+
+  &__register-btn {
+    color: $brand-primary;
+    border: solid 1px $brand-primary;
+    padding: 8px 10px;
+    width: 96px;
+    margin: 13px 0;
+  }
+}

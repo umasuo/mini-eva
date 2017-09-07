@@ -1,0 +1,26 @@
+.chanpin-yunying {
+  padding-bottom: 120px;
+  background-color: #f8f8f8;
+
+  &__pills {
+    margin: 130px 120px 0 70px;
+    width: 204px;
+  }
+
+  &__pill {
+    height: 80px;
+    color: $brand-primary;
+    border: solid 2px $brand-primary;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-size: 26px;
+    text-align: center;
+    line-height: 80px;
+  }
+
+  img {
+    float: right;
+    width: 772px;
+    height: 600px;
+  }
+}

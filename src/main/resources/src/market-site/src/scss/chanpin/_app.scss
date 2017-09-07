@@ -1,0 +1,68 @@
+.chanpin-app {
+  padding-bottom: 144px;
+
+  &__cell {
+    background-color: #26a6ff;
+    text-align: center;
+    height: 452px;
+    color: #fff;
+
+    &--middle {
+      background-color: #4fb7ff;
+    }
+
+    img {
+      width: 90px;
+      height: 90px;
+      margin: 60px 0 25px 0;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 26px;
+    }
+
+    a,
+    a:visited,
+    a:active,
+    a:hover,
+    a:focus {
+      display: block;
+      font-size: 14px;
+      color: #c0e5ff;
+      height: 16px;
+      margin-bottom: 14px;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      color: #fff;
+    }
+  }
+
+  &__half {
+    width: 50%;
+    float: left;
+
+    &:first-of-type > a {
+      text-align: right;
+      padding-right: 19px;
+      position: relative;
+
+      &:after {
+        content: "|";
+        display: block;
+        position: absolute;
+        color: #c0e5ff;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    &:last-of-type > a {
+      margin-left: 16px;
+      text-align: left;
+    }
+  }
+}

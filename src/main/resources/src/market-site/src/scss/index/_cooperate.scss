@@ -1,0 +1,57 @@
+.index-cooperate {
+  @include clearfix;
+
+  &__cell {
+    width: 130px;
+    text-align: center;
+    margin-right: 28px;
+    position: relative;
+    float: left;
+    height: 400px;
+    margin-bottom: 100px;
+    font-size: 18px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    h5 {
+      margin: 26px 0 32px 0;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      color: #474747;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 42px;
+      right: -19px;
+      width: 15px;
+      height: 15px;
+      border: {
+        top: solid 3px #f1f1f1;
+        right: solid 3px #f1f1f1;
+      };
+      transform: rotate(45deg);
+    }
+
+    &:last-child {
+      margin: 0;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

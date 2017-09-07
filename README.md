@@ -1,6 +1,12 @@
 # mini-eva
 a mini eva for in single deploy.
+系统中总攻包含三种用户：系统管理员，开发者，普通用户。其中管理员与开发者可以是同一个人员。
 
-The system admin can create, develop, sell products, and can see all data and data analysis reports.
+- 系统管理员：负责维护系统的正常运行，查看系统的使用情况、数据等
+- 开发者：负责定义、开发产品，负责产品的销售、售后运维
+- 普通用户：普通用户购买、使用产品，并能够查看自己的数据、数据分析报表等其他服务
 
-The user can buy, use products, and also can see their own reports.
+
+
+
+

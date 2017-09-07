@@ -1,0 +1,39 @@
+@import 'bootstrap-custom';
+
+body {
+  min-width: 1080px;
+}
+
+// disable bootstrap responsive
+.container {
+  width: 1080px !important;
+}
+
+@import 'common/topbar';
+@import 'common/footer';
+@import 'common/jumbotron';
+@import 'common/partial';
+@import 'helper';
+
+// index
+@import 'index/jumbotron';
+@import 'index/product-and-services';
+@import 'index/feature';
+@import 'index/stratage';
+@import 'index/cooperate';
+@import 'index/cooperate2';
+
+// chanpin
+@import 'chanpin/app';
+@import 'chanpin/yunying';
+
+// zizhu
+@import 'yunwei/shuju';
+@import 'yunwei/jiagou';
+
+// lianxiwomen
+@import 'lianxi/jumbotron';
+@import 'lianxi/address';
+
+// fangan
+@import 'fangan/fangan'

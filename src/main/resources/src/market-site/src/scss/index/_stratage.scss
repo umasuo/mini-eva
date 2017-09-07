@@ -1,0 +1,45 @@
+.index-stratage {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding-bottom: 166px;
+
+  &__photo {
+    width: 600px;
+    height: 500px;
+    margin-bottom: 30px;
+  }
+
+  &__table {
+    background-color: #fff;
+    width: 1080px;
+    margin: 0 auto;
+    box-shadow: 0 0 50px darken(#f8f8f8, 3%);
+
+    td {
+      border-top: 1px solid darken(#f8f8f8, 3%);
+      border-right: 1px solid darken(#f8f8f8, 3%);
+      height: 190px;
+
+      img {
+        width: 46px;
+        height: 46px;
+        margin-top: 20px;
+        margin-bottom: 26px;
+      }
+
+      h4 {
+        font-size: 20px;
+        font-weight: 300px;
+        margin: 0;
+      }
+    }
+
+    tr:first-child > td {
+      border-top: 0;
+    }
+
+    td:last-child {
+      border-right: 0;
+    }
+  }
+}

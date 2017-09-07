@@ -1,0 +1,25 @@
+.partial-title {
+  font-size: 32px;
+  padding-top: 90px;
+  padding-bottom: 22px;
+  margin-top: 0;
+  margin-bottom: 60px;
+  color: #010101;
+  text-align: center;
+
+  &--reverse {
+    color: #fff;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: relative;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background-color: $brand-primary;
+  }
+}

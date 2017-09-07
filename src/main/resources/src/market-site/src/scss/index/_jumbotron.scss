@@ -1,0 +1,25 @@
+.site-jumbotron {
+  text-align: center;
+  height: 640px;
+  background: no-repeat center/cover url("/market-site/static/img/index/imge1.png");
+
+  h1 {
+    color: #fff;
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: 300;
+    padding-top: 230px;
+    margin: {
+      top: 0;
+      bottom: 56px;
+    };
+  }
+
+  .btn {
+    width: 242px;
+    height: 70px;
+    line-height: 30px;
+    font-size: 22px;
+    padding: 20px;
+  }
+}

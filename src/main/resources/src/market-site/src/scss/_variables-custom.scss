@@ -1,0 +1,27 @@
+// Copy variables from bs source, and change them.
+
+// color
+
+$brand-primary:         #26a6ff; // #337ab7
+// $brand-success:         #5cb85c !default;
+// $brand-info:            #5bc0de !default;
+// $brand-warning:         #f0ad4e !default;
+// $brand-danger:          #d9534f !default;
+
+// button
+
+$btn-primary-bg:                 $brand-primary;
+$btn-primary-border:             transparent;
+
+// navbar
+
+$navbar-height: 66px;
+
+$navbar-default-color: $gray-darker;
+$navbar-default-bg: #fff;
+$navbar-default-border: transparent;
+
+$navbar-default-link-color: $gray-darker;
+$navbar-default-link-hover-color: #000;
+$navbar-default-link-active-color: $brand-primary;
+$navbar-default-link-active-bg: transparent;

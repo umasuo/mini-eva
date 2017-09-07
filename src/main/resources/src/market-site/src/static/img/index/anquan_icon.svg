@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="47.75" height="58.625" viewBox="0 0 47.75 58.625">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        filter: url(#gradient-overlay-1);
+        fill-rule: evenodd;
+      }
+    </style>
+
+    <filter id="gradient-overlay-1" filterUnits="userSpaceOnUse">
+      <feImage x="0" y="0" width="47.75" height="58.625" preserveAspectRatio="none" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDcuNzUiIGhlaWdodD0iNTguNjI1Ij48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTYuNTc2IiB5MT0iNTMuMTg4IiB4Mj0iMzEuMTc0IiB5Mj0iNS40MzgiPgogIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIvPgogIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg2YzJlYyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PC9zdmc+"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+      <feBlend in2="SourceGraphic" result="gradientFill"/>
+    </filter>
+  </defs>
+  <path d="M23.796,3.664 C23.796,3.664 28.973,8.807 34.051,10.055 C37.160,10.818 40.343,10.960 42.268,10.960 C43.391,10.960 44.086,10.912 44.086,10.912 C44.086,10.912 44.086,12.079 44.086,20.091 C44.086,51.349 23.796,54.955 23.796,54.955 C23.796,54.955 3.669,51.349 3.669,20.091 C3.669,12.079 3.669,10.912 3.669,10.912 C3.669,10.912 4.362,10.960 5.486,10.960 C7.412,10.960 10.651,10.818 13.756,10.055 C18.839,8.807 23.796,3.664 23.796,3.664 M23.796,-0.007 C23.086,-0.007 22.374,0.199 21.758,0.609 C21.609,0.710 17.197,5.430 12.881,6.489 C10.056,7.185 7.014,7.289 5.486,7.289 C4.563,7.289 3.973,7.253 3.916,7.249 C3.835,7.244 3.755,7.240 3.674,7.240 C2.746,7.240 1.846,7.593 1.163,8.232 C0.421,8.925 -0.003,9.895 -0.003,10.912 L-0.003,20.091 C-0.003,54.028 22.204,58.399 23.147,58.569 C23.362,58.606 23.579,58.626 23.796,58.626 C24.013,58.626 24.231,58.606 24.445,58.569 C25.388,58.399 47.757,54.028 47.757,20.091 L47.757,10.912 C47.757,9.894 47.334,8.922 46.590,8.228 C45.909,7.592 45.013,7.240 44.086,7.240 C44.002,7.240 43.918,7.244 43.833,7.249 C43.781,7.253 43.192,7.289 42.268,7.289 C40.739,7.289 37.755,7.185 34.928,6.489 C31.276,5.593 27.062,1.433 25.836,0.611 C25.219,0.199 24.508,-0.007 23.796,-0.007 L23.796,-0.007 Z" class="cls-1"/>
+</svg>

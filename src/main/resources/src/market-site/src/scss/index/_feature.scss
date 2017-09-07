@@ -1,0 +1,42 @@
+.index-feature {
+  background: no-repeat center/cover url("/market-site/static/img/index/imge2.png");
+  height: 640px;
+}
+
+.feature-card {
+  background-color: $brand-primary;
+  text-align: center;
+  height: 330px;
+  padding: 42px 24px;
+  color: #fff;
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 28px;
+  }
+
+  h3 {
+    font-size: 24px;
+    padding-bottom: 28px;
+    margin: 0 0 28px 0;
+
+    &:after {
+      content: '';
+      display: block;
+      position: relative;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #136fb1;
+      width: 50px;
+      height: 3px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    color: #b4e1ff;
+    text-align: left;
+  }
+}

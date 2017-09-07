@@ -1,0 +1,62 @@
+.site-footer {
+  padding-top: 39px;
+  background-color: #38414d;
+  font-size: 16px;
+  height: 442px;
+
+  &__brand {
+    width: 150px;
+    display: block;
+    margin-bottom: 22px;
+    margin-left: -10px;
+  }
+
+  &__phone {
+    color: #26a6ff;
+    font-size: 38px;
+    line-height: 1;
+    display: block;
+    padding-bottom: 44px;
+    border-bottom: solid 1px #4c586a;
+    margin-bottom: 32px;
+  }
+
+  &__nav {
+    float: right;
+
+    > ul {
+      @include clearfix;
+
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      > li {
+        float: left;
+
+        > a {
+          color: #fff;
+          padding: 19px 15px;
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__info-line,
+  &__copy {
+    color: #c0c2c6;
+    font-weight: 300;
+  }
+
+  &__info-line {
+    font-size: 18px;
+    line-height: 29px;
+  }
+
+  &__copy {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 50px;
+  }
+}

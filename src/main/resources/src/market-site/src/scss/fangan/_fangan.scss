@@ -1,0 +1,143 @@
+.fangan-viewer {
+  background-color: #fafafa;
+
+  &__wrapper {
+    border: solid #f4f4f4 1px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 26px;
+    margin-bottom: 130px;
+    overflow: hidden;
+    position: relative;
+    min-height: 606px;
+  }
+
+  &__categories {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 202px;
+    margin: 0;
+    padding: 0;
+    background-color: #26a6ff;
+    list-style: none;
+
+    li {
+      color: #c1e6ff;
+      height: 62px;
+      line-height: 62px;
+      font-size: 18px;
+      text-align: center;
+      width: 146;
+      margin: 0 28px;
+      border-bottom: solid 1px #339ae2;
+      cursor: pointer;
+
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+
+  &__products {
+    position: absolute;
+    left: 202px;
+    top: 0;
+    bottom: 0;
+    width: 112px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #f7f7f7;
+
+    li {
+      text-align: center;
+      color: #707070;
+      height: 56px;
+      line-height: 56px;
+      font-size: 16px;
+      cursor: pointer;
+
+      &.active {
+        color: #74bfff;
+        background-color: #fff;
+      }
+    }
+  }
+
+  &__detail {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 314px;
+    padding: 28px 16px;
+  }
+
+  &__title {
+    color: #26a6ff;
+    font-size: 22px;
+    margin: 0;
+    padding-left: 12px;
+
+    &:before {
+      top: 2px !important;
+    }
+  }
+
+  &__pic {
+    width: 300px;
+    height: 190px;
+    margin: 50px 20px;
+  }
+
+  &__desc {
+    padding-left: 12px;
+    width: 320px;
+    font-size: 16px;
+  }
+
+  &__title,
+  &__desc {
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 20px;
+      background-color: #f4f4f4;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__swiper {
+    position: absolute;
+    right: 30px;
+    top: 56px;
+    height: 392px;
+    width: 275px;
+    text-align: right;
+  }
+
+  &__screen {
+    width: 192px;
+    height: 392px;
+  }
+
+  &__left,
+  &__right {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  &__left {
+    margin-right: 15px;
+  }
+  &__right {
+    margin-left: 15px;
+  }
+}

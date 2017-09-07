@@ -1,0 +1,118 @@
+doctype html
+html(lang="zh")
+  - var current = '/solution.html'
+
+  include partials/common/head.pug
+  body
+    include partials/common/topbar.pug
+
+    .fangan-viewer
+      .container
+        .fangan-viewer__wrapper
+          ul.fangan-viewer__categories
+            li(
+              v-for='(value, key) in categories',
+              @click='selectedCategory = key',
+              :class='{ active: selectedCategory === key }'
+            ) {{key}}
+
+          ul.fangan-viewer__products
+            li(
+              v-for='(value, key) in categories[selectedCategory]',
+              @click='selectedProduct = key',
+              :class='{ active: selectedProduct === key }'
+            ) {{key}}
+
+          .fangan-viewer__detail
+            h3.fangan-viewer__title {{ selectedProduct }}
+
+            img.fangan-viewer__pic(:src="product.pic")
+
+            p.fangan-viewer__desc {{ product.desc }}
+
+            .fangan-viewer__swiper
+              img.fangan-viewer__left(
+                src='/market-site/static/img/fangan/left_icon.svg',
+                @click='previousScreen'
+              )
+              img.fangan-viewer__screen(:src="product.screens[screenIndex]")
+              img.fangan-viewer__right(
+                src='/market-site/static/img/fangan/right_icon.svg',
+                @click='nextScreen'
+              )
+
+    include partials/common/footer.pug
+
+    script(src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js")
+    script(src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js")
+
+    script.
+      var viewer = new Vue({
+        el: '.fangan-viewer',
+        data: {
+          categories: {
+            '智能网关': {
+              '冰箱': {
+                pic: 'https://fakeimg.pl/300x190',
+                screens: [
+                  'https://fakeimg.pl/192x392/?text=pic1',
+                  'https://fakeimg.pl/192x392/?text=pic2',
+                  'https://fakeimg.pl/192x392/?text=pic3'
+                ],
+                desc: '手机 APP 智能操作，随时随地随心享美食。智能控制操作，从此告别菜鸟模式'
+              },
+              '微波炉': {
+                pic: 'https://fakeimg.pl/300x190',
+                screens: ['https://fakeimg.pl/192x392'],
+                desc: '手机 APP 智能操作，随时随地随心享美食。智能控制操作，从此告别菜鸟模式'
+              },
+              '消毒柜': {
+                pic: 'https://fakeimg.pl/300x190',
+                screens: ['https://fakeimg.pl/192x392'],
+                desc: '手机 APP 智能操作，随时随地随心享美食。智能控制操作，从此告别菜鸟模式'
+              }
+            },
+            '环境净化': {
+              '冰箱': {
+                pic: 'https://fakeimg.pl/300x190',
+                screens: ['https://fakeimg.pl/192x392'],
+                desc: '手机 APP 智能操作，随时随地随心享美食。智能控制操作，从此告别菜鸟模式'
+              }
+            }
+          },
+
+          selectedCategory: '智能网关',
+          selectedProduct: '冰箱',
+          screenIndex: 0
+        },
+
+        computed: {
+          product: function () {
+            return this.categories[this.selectedCategory][this.selectedProduct]
+          }
+        },
+
+        methods: {
+          nextScreen: function () {
+            var screenLength = this.product.screens.length
+            var targetIndex = this.screenIndex + 1
+            this.screenIndex = targetIndex >= screenLength ? screenLength - 1 : targetIndex
+          },
+
+          previousScreen: function () {
+            var screenLength = this.product.screens.length
+            var targetIndex = this.screenIndex - 1
+            this.screenIndex = targetIndex <= 0 ? 0 : targetIndex
+          }
+        },
+
+        watch: {
+          selectedCategory: function () {
+            this.screenIndex = 0
+          },
+
+          selectedProduct: function () {
+            this.screenIndex = 0
+          }
+        }
+      });

@@ -1,6 +1,6 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.ProductFunctionView;
+import cn.eva.mini.application.dto.product.ProductFunctionView;
 import cn.eva.mini.domain.entity.CommonFunction;
 import cn.eva.mini.domain.entity.ProductFunction;
 import com.google.common.collect.Lists;

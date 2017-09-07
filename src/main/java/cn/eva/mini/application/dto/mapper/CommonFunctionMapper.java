@@ -1,6 +1,6 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.CommonFunctionView;
+import cn.eva.mini.application.dto.product.CommonFunctionView;
 import cn.eva.mini.domain.entity.CommonFunction;
 import com.google.common.collect.Lists;
 import org.springframework.util.CollectionUtils;

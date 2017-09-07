@@ -1,6 +1,6 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.DeveloperView;
+import cn.eva.mini.application.dto.developer.DeveloperView;
 import cn.eva.mini.domain.entity.Developer;
 import com.google.api.client.util.Lists;
 

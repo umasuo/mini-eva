@@ -1,8 +1,8 @@
 package cn.eva.mini.application.dto.mapper;
 
 
-import cn.eva.mini.application.dto.ProductDraft;
-import cn.eva.mini.application.dto.ProductView;
+import cn.eva.mini.application.dto.product.ProductDraft;
+import cn.eva.mini.application.dto.product.ProductView;
 import cn.eva.mini.domain.entity.Product;
 import cn.eva.mini.infra.enums.ProductStatus;
 

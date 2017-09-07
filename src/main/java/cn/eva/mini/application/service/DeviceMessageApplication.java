@@ -1,6 +1,6 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.DeviceMessage;
+import cn.eva.mini.application.dto.device.DeviceMessage;
 import cn.eva.mini.infra.config.AppConfig;
 import cn.eva.mini.infra.exception.SubDeviceTopicException;
 import cn.eva.mini.infra.util.DevicePasswordUtils;

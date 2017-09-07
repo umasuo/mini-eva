@@ -1,6 +1,6 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.DeveloperView;
+import cn.eva.mini.application.dto.developer.DeveloperView;
 import cn.eva.mini.application.dto.mapper.DeveloperMapper;
 import cn.eva.mini.domain.entity.Developer;
 import cn.eva.mini.domain.service.DeveloperService;

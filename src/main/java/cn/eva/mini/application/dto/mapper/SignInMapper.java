@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
 
-import cn.eva.mini.application.dto.QuickSignIn;
+import cn.eva.mini.application.dto.user.UserQuickSignIn;
 import cn.eva.mini.domain.entity.User;
 
 /**
@@ -21,7 +21,7 @@ public final class SignInMapper {
    * @param signIn the sign in
    * @return the platform user
    */
-  public static User toModel(QuickSignIn signIn) {
+  public static User toModel(UserQuickSignIn signIn) {
     User user = null;
     if (signIn != null) {
       user = new User();

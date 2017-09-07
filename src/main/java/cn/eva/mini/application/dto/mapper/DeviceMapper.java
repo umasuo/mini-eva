@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.DeviceDraft;
-import cn.eva.mini.application.dto.DeviceView;
+import cn.eva.mini.application.dto.device.DeviceDraft;
+import cn.eva.mini.application.dto.device.DeviceView;
 import cn.eva.mini.domain.entity.Device;
 import org.apache.commons.lang3.RandomStringUtils;
 

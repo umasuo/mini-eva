@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.DeviceReportDraft;
-import cn.eva.mini.application.dto.DeviceReportView;
+import cn.eva.mini.application.dto.report.DeviceReportDraft;
+import cn.eva.mini.application.dto.report.DeviceReportView;
 import cn.eva.mini.domain.entity.DeviceReport;
 import com.google.common.collect.Lists;
 

@@ -1,6 +1,6 @@
 package cn.eva.mini.infra.util;
 
-import cn.eva.mini.application.dto.DeviceReportView;
+import cn.eva.mini.application.dto.report.DeviceReportView;
 import com.google.common.collect.Lists;
 
 import java.util.HashMap;

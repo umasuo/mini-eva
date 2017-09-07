@@ -1,7 +1,7 @@
 package cn.eva.mini.application.rest;
 
-import cn.eva.mini.application.dto.ProductDraft;
-import cn.eva.mini.application.dto.ProductView;
+import cn.eva.mini.application.dto.product.ProductDraft;
+import cn.eva.mini.application.dto.product.ProductView;
 import cn.eva.mini.application.service.ProductCommandApplication;
 import cn.eva.mini.application.service.ProductQueryApplication;
 import cn.eva.mini.infra.router.Router;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;

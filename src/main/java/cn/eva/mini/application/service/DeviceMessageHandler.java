@@ -1,7 +1,7 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.DeviceMessage;
-import cn.eva.mini.application.dto.DeviceSession;
+import cn.eva.mini.application.dto.device.DeviceMessage;
+import cn.eva.mini.application.dto.device.DeviceSession;
 import cn.eva.mini.infra.util.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

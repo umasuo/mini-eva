@@ -1,8 +1,8 @@
 package cn.eva.mini.application.rest;
 
-import cn.eva.mini.application.dto.DeviceActivateResult;
-import cn.eva.mini.application.dto.DeviceDraft;
-import cn.eva.mini.application.dto.DeviceView;
+import cn.eva.mini.application.dto.device.DeviceActivateResult;
+import cn.eva.mini.application.dto.device.DeviceDraft;
+import cn.eva.mini.application.dto.device.DeviceView;
 import cn.eva.mini.application.service.DeviceApplication;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;

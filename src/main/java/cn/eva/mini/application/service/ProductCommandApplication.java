@@ -1,19 +1,16 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.ProductDraft;
-import cn.eva.mini.application.dto.ProductView;
+import cn.eva.mini.application.dto.product.ProductDraft;
+import cn.eva.mini.application.dto.product.ProductView;
 import cn.eva.mini.application.dto.mapper.ProductMapper;
 import cn.eva.mini.domain.entity.Product;
 import cn.eva.mini.domain.service.ProductService;
 import cn.eva.mini.domain.service.ProductTypeService;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * 用于增删改Product.
@@ -40,7 +37,7 @@ public class ProductCommandApplication {
   private transient ProductTypeService productTypeService;
 
   /**
-   * CacheApplication.
+   * DataCacheApplication.
    */
   @Autowired
   private transient ProductCacheApplication cacheApplication;

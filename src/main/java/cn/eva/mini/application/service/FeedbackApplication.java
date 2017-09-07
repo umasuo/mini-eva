@@ -1,6 +1,6 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.FeedbackView;
+import cn.eva.mini.application.dto.feedback.FeedbackView;
 import cn.eva.mini.application.dto.mapper.FeedbackMapper;
 import cn.eva.mini.domain.entity.Content;
 import cn.eva.mini.domain.entity.Feedback;

@@ -1,12 +1,10 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.DeviceActivateResult;
-import cn.eva.mini.application.dto.DeviceDraft;
-import cn.eva.mini.application.dto.DeviceView;
-import cn.eva.mini.application.dto.mapper.DeviceDataMapper;
+import cn.eva.mini.application.dto.device.DeviceActivateResult;
+import cn.eva.mini.application.dto.device.DeviceDraft;
+import cn.eva.mini.application.dto.device.DeviceView;
 import cn.eva.mini.application.dto.mapper.DeviceMapper;
 import cn.eva.mini.domain.entity.Device;
-import cn.eva.mini.domain.entity.DeviceData;
 import cn.eva.mini.domain.service.DeviceService;
 import cn.eva.mini.infra.enums.DeviceStatus;
 import cn.eva.mini.infra.exception.AlreadyBoundException;

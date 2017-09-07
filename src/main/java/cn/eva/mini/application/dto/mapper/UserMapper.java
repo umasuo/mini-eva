@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.UserRegisterInfo;
-import cn.eva.mini.application.dto.UserView;
+import cn.eva.mini.application.dto.user.UserRegisterInfo;
+import cn.eva.mini.application.dto.user.UserView;
 import cn.eva.mini.domain.entity.User;
 import cn.eva.mini.infra.util.PasswordUtil;
 

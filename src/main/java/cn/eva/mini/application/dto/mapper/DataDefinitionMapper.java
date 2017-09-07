@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.DataDefinitionDraft;
-import cn.eva.mini.application.dto.DataDefinitionView;
+import cn.eva.mini.application.dto.data.DataDefinitionDraft;
+import cn.eva.mini.application.dto.data.DataDefinitionView;
 import cn.eva.mini.domain.entity.DeviceDataDefinition;
 import com.google.common.collect.Lists;
 

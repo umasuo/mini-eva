@@ -1,7 +1,7 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.ProductDataView;
-import cn.eva.mini.application.dto.ProductView;
+import cn.eva.mini.application.dto.product.ProductDataView;
+import cn.eva.mini.application.dto.product.ProductView;
 import cn.eva.mini.application.dto.mapper.ProductMapper;
 import cn.eva.mini.domain.entity.Product;
 import cn.eva.mini.domain.service.ProductService;
@@ -35,7 +35,7 @@ public class ProductQueryApplication {
   private transient ProductService productService;
 
   /**
-   * CacheApplication.
+   * DataCacheApplication.
    */
   @Autowired
   private transient ProductCacheApplication cacheApplication;

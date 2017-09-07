@@ -1,6 +1,6 @@
 package cn.eva.mini.application.rest;
 
-import cn.eva.mini.application.dto.DeveloperView;
+import cn.eva.mini.application.dto.developer.DeveloperView;
 import cn.eva.mini.application.service.DeveloperApplication;
 import cn.eva.mini.domain.entity.Developer;
 import cn.eva.mini.domain.service.DeveloperService;

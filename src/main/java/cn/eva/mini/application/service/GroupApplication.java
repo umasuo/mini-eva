@@ -1,7 +1,7 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.GroupDraft;
-import cn.eva.mini.application.dto.GroupView;
+import cn.eva.mini.application.dto.user.GroupDraft;
+import cn.eva.mini.application.dto.user.GroupView;
 import cn.eva.mini.application.dto.mapper.GroupMapper;
 import cn.eva.mini.domain.entity.Group;
 import cn.eva.mini.domain.service.GroupService;

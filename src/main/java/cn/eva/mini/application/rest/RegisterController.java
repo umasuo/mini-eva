@@ -1,7 +1,7 @@
 package cn.eva.mini.application.rest;
 
-import cn.eva.mini.application.dto.SignInResult;
-import cn.eva.mini.application.dto.UserRegisterInfo;
+import cn.eva.mini.application.dto.user.UserSignInResult;
+import cn.eva.mini.application.dto.user.UserRegisterInfo;
 import cn.eva.mini.application.service.RegisterApplication;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;
@@ -37,10 +37,10 @@ public class RegisterController {
    * @return sign in result
    */
   @PostMapping(value = Router.USER_REGISTER)
-  public SignInResult register(@RequestBody @Valid UserRegisterInfo register) {
+  public UserSignInResult register(@RequestBody @Valid UserRegisterInfo register) {
     LOGGER.info("Enter. register: {}", register);
 
-    SignInResult signInResult = registerApplication.register(register);
+    UserSignInResult signInResult = registerApplication.register(register);
 
     LOGGER.info("Exit. signInResult: {}", signInResult);
     return signInResult;

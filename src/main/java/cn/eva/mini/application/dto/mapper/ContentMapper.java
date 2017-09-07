@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
 
-import cn.eva.mini.application.dto.ContentView;
+import cn.eva.mini.application.dto.feedback.ContentView;
 import cn.eva.mini.domain.entity.Content;
 
 import java.util.ArrayList;

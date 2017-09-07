@@ -1,7 +1,7 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.DataDefinitionDraft;
-import cn.eva.mini.application.dto.DataDefinitionView;
+import cn.eva.mini.application.dto.data.DataDefinitionDraft;
+import cn.eva.mini.application.dto.data.DataDefinitionView;
 import cn.eva.mini.application.dto.mapper.DataDefinitionMapper;
 import cn.eva.mini.domain.entity.DeviceDataDefinition;
 import cn.eva.mini.domain.service.DataDefinitionService;
@@ -39,7 +39,7 @@ public class DataDefinitionApplication {
    * Cache application service.
    */
   @Autowired
-  private transient CacheApplication cacheApplication;
+  private transient DataCacheApplication cacheApplication;
 
   /**
    * The UpdateService.

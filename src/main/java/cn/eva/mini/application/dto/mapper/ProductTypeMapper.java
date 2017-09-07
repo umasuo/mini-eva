@@ -1,8 +1,8 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.CommonDataView;
-import cn.eva.mini.application.dto.ProductTypeDraft;
-import cn.eva.mini.application.dto.ProductTypeView;
+import cn.eva.mini.application.dto.product.CommonDataView;
+import cn.eva.mini.application.dto.product.ProductTypeDraft;
+import cn.eva.mini.application.dto.product.ProductTypeView;
 import cn.eva.mini.domain.entity.ProductType;
 import com.google.common.collect.Lists;
 import org.springframework.util.CollectionUtils;

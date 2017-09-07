@@ -1,8 +1,8 @@
 package cn.eva.mini.application.rest;
 
-import cn.eva.mini.application.dto.QuickSignIn;
-import cn.eva.mini.application.dto.SignInResult;
-import cn.eva.mini.application.dto.UserSignIn;
+import cn.eva.mini.application.dto.user.UserQuickSignIn;
+import cn.eva.mini.application.dto.user.UserSignInResult;
+import cn.eva.mini.application.dto.user.UserSignIn;
 import cn.eva.mini.application.service.SignInApplication;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;
@@ -38,10 +38,10 @@ public class SignInController {
    * @return sign in result
    */
   @PostMapping(value = Router.USER_SIGN_IN)
-  public SignInResult quickSignIn(@RequestBody @Valid QuickSignIn signIn) {
+  public UserSignInResult quickSignIn(@RequestBody @Valid UserQuickSignIn signIn) {
     LOGGER.info("Enter. quickSignIn: {}", signIn);
 
-    SignInResult signInResult = signInService.quickSignIn(signIn);
+    UserSignInResult signInResult = signInService.quickSignIn(signIn);
 
     LOGGER.info("Exit. signInResult: {}", signInResult);
     return signInResult;
@@ -55,10 +55,10 @@ public class SignInController {
    * @return sign in result
    */
   @PostMapping(value = Router.USER_SIGN_IN_PWD)
-  public SignInResult signin(@RequestBody @Valid UserSignIn signIn) {
+  public UserSignInResult signin(@RequestBody @Valid UserSignIn signIn) {
     LOGGER.info("Enter. quickSignIn: {}", signIn);
 
-    SignInResult signInResult = signInService.signIn(signIn);
+    UserSignInResult signInResult = signInService.signIn(signIn);
 
     LOGGER.info("Exit. signInResult: {}", signInResult);
     return signInResult;

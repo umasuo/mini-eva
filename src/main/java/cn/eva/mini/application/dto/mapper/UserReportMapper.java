@@ -1,7 +1,7 @@
 package cn.eva.mini.application.dto.mapper;
 
-import cn.eva.mini.application.dto.UserReportDraft;
-import cn.eva.mini.application.dto.UserReportView;
+import cn.eva.mini.application.dto.user.UserReportDraft;
+import cn.eva.mini.application.dto.user.UserReportView;
 import cn.eva.mini.domain.entity.UserReport;
 import com.google.common.collect.Lists;
 

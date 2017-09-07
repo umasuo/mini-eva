@@ -1,7 +1,7 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.ProductTypeView;
-import cn.eva.mini.application.dto.ProductView;
+import cn.eva.mini.application.dto.product.ProductTypeView;
+import cn.eva.mini.application.dto.product.ProductView;
 import cn.eva.mini.infra.util.RedisUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -26,7 +26,7 @@ public class ProductCacheApplication {
   /**
    * Logger.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(CacheApplication.class);
+  private static final Logger LOG = LoggerFactory.getLogger(DataCacheApplication.class);
 
   /**
    * The redis template.

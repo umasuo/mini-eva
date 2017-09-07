@@ -27,4 +27,7 @@ dependencies {
     compile(group: "com.github.java-json-tools", name: "json-schema-validator", version: "2.2.8");
     // EMQTT client
     compile('org.fusesource.mqtt-client:mqtt-client:1.14')
+
+    // For sms service
+    compile('com.yunpian.sdk:yunpian-java-sdk:1.2.3')
 }

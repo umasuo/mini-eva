@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 8000
 
 logging:
   level:
@@ -33,3 +33,14 @@ spring:
           auth: true
           starttls:
             enable: true
+
+# For send  sms code
+sms:
+  yunpian:
+    key: id
+
+security:
+  user:
+    name: admin
+    password: secret
+    roles: SUPERUSER

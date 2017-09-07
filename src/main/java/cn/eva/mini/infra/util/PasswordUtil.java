@@ -1,6 +1,5 @@
 package cn.eva.mini.infra.util;
 
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**

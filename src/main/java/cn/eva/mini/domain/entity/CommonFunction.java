@@ -28,8 +28,7 @@ import javax.persistence.Version;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @TypeDef(name = "dataType", typeClass = JSONBUserType.class, parameters = {
-    @Parameter(name = JSONBUserType.CLASS,
-        value = "cn.eva.mini.application.dto.FunctionDataType")})
+    @Parameter(name = JSONBUserType.CLASS, value = "cn.eva.mini.application.dto.FunctionDataType")})
 public class CommonFunction {
 
   /**

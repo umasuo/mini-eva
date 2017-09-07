@@ -58,7 +58,7 @@ public class DeviceDataController {
   /**
    * Client or device upload list of data.
    */
-  @PostMapping(value = Router.DATA_CENTER_ROOT)
+  @PostMapping(value = Router.DATA_ROOT)
   public void createListDeviceData(@RequestBody @Valid List<DeviceDataDraft>
                                        dataDrafts,
                                    @RequestHeader String developerId,
@@ -83,7 +83,7 @@ public class DeviceDataController {
    * @param end         结束时间
    * @return 数据列表
    */
-  @GetMapping(Router.DATA_CENTER_ROOT)
+  @GetMapping(Router.DATA_ROOT)
   public List<DeviceDataView> getDeviceData(@RequestHeader String developerId,
                                             @RequestHeader String userId,
                                             @RequestParam String dataId,

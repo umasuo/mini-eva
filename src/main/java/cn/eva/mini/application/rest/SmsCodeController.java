@@ -32,7 +32,7 @@ public class SmsCodeController {
    *
    * @param phoneNumber the phone number
    */
-  @PostMapping(Router.VALIDATION_CODE)
+  @PostMapping(Router.SMS_CODE)
   public void getValidationCode(@RequestParam(Router.PHONE_NUMBER) String phoneNumber) {
     LOGGER.info("Enter. phoneNumber: {}.", phoneNumber);
 

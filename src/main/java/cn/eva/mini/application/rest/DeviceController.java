@@ -43,7 +43,7 @@ public class DeviceController {
   /**
    * 激活设备。
    */
-  @PostMapping(Router.DEVICE_CENTER_ROOT)
+  @PostMapping(Router.DEVICE_ROOT)
   public DeviceActivateResult activate(@RequestHeader String userId,
                                        @RequestBody @Valid DeviceDraft draft) {
     LOGGER.info("Enter. deviceDraft: {}.", draft);
@@ -57,7 +57,7 @@ public class DeviceController {
   /**
    * 解除用户与设备的绑定关系。
    */
-  @DeleteMapping(Router.DEVICE_CENTER_WITH_ID)
+  @DeleteMapping(Router.DEVICE_WITH_ID)
   public void unbind(@RequestHeader String userId,
                      @PathVariable("id") String deviceId) {
     LOGGER.info("Enter. userId: {}, deviceId: {}.", userId, deviceId);
@@ -75,7 +75,7 @@ public class DeviceController {
    * @param developerId the developer id
    * @return DeviceView device
    */
-  @GetMapping(Router.DEVICE_CENTER_WITH_ID)
+  @GetMapping(Router.DEVICE_WITH_ID)
   public DeviceView getDevice(@PathVariable String id,
                               @RequestHeader(required = false) String userId,
                               @RequestHeader String developerId) {
@@ -94,7 +94,7 @@ public class DeviceController {
    * @param developerId String in header
    * @return list of device view
    */
-  @GetMapping(value = Router.DEVICE_CENTER_ROOT, headers = {"userId", "developerId"})
+  @GetMapping(value = Router.DEVICE_ROOT, headers = {"userId", "developerId"})
   public List<DeviceView> getAllDeviceByUser(@RequestHeader String userId,
                                              @RequestHeader String developerId) {
     LOGGER.info("Enter. userId: {}, developerId: {}.", userId, developerId);
@@ -113,7 +113,7 @@ public class DeviceController {
    * @param developerId        the developer id
    * @return the device by definition
    */
-  @GetMapping(value = Router.DEVICE_CENTER_ROOT, params = {"userId", "deviceDefinitionId"})
+  @GetMapping(value = Router.DEVICE_ROOT, params = {"userId", "deviceDefinitionId"})
   public DeviceView getDeviceByDefinition(@RequestParam String userId,
                                           @RequestParam String deviceDefinitionId, @RequestHeader
                                             String developerId) {

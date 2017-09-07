@@ -51,7 +51,7 @@ public class GroupController {
                           @RequestHeader String userId,
                           @RequestHeader String developerId) {
     LOGGER.info("Enter. groupDraft: {}, userId: {}, developerId: {}.", groupDraft, userId,
-        developerId);
+      developerId);
 
     GroupView result = groupApplication.create(groupDraft, userId, developerId);
 
@@ -66,7 +66,7 @@ public class GroupController {
    * @param version the version
    */
   @DeleteMapping(Router.GROUP_WITH_ID)
-  public void delete(@PathVariable(Router.GROUP_ID) String groupId,
+  public void delete(@PathVariable(Router.ID) String groupId,
                      @RequestParam("version") Integer version,
                      @RequestHeader String developerId) {
     LOGGER.info("Enter. groupId: {}, version: {}, developerId: {}.", groupId, version, developerId);
@@ -85,7 +85,7 @@ public class GroupController {
    * @return the group view
    */
   @GetMapping(Router.GROUP_WITH_ID)
-  public GroupView findOne(@PathVariable(Router.GROUP_ID) String groupId) {
+  public GroupView findOne(@PathVariable(Router.ID) String groupId) {
     LOGGER.info("Enter. groupId: {}.", groupId);
 
     GroupView result = groupApplication.findOne(groupId);
@@ -102,7 +102,7 @@ public class GroupController {
    * @return the list
    */
   @GetMapping(Router.GROUP)
-  public List<GroupView> findAll(@RequestParam(Router.DEVELOPER_ID) String developerId) {
+  public List<GroupView> findAll(@RequestParam String developerId) {
     LOGGER.info("Enter. developerId: {}.", developerId);
 
     List<GroupView> result = groupApplication.findAll(developerId);

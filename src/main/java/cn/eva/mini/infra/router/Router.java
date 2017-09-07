@@ -4,124 +4,81 @@ package cn.eva.mini.infra.router;
  * API router.
  */
 public class Router {
+
+  public static final String API_VERSION = "/api/v1";
+
+  public static final String ID = "id";
+
+  /*********************************DATA***********************************************/
   /**
    * data center root.
    */
-  public static final String DATA_CENTER_ROOT = "/v1/data";
+  public static final String DATA_ROOT = API_VERSION + "/data";
 
-
-  /**********************************Data definition**************************************/
+  /**
+   * data with id.
+   */
+  public static final String DATA_WITH_ID = DATA_ROOT + "/{" + ID + "}";
 
   /**
    * data definition root.
    */
-  public static final String DATA_DEFINITION_ROOT = "/data-definitions";
+  public static final String DATA_DEFINITION_ROOT = DATA_ROOT + "/definitions";
 
   /**
    * definition with id.
    */
-  public static final String DATA_DEFINITION_WITH_ID = DATA_DEFINITION_ROOT + "/{id}";
-
-  /**
-   * Copy root.
-   */
-  public static final String DATA_COPY = DATA_DEFINITION_ROOT + "/copy";
-
-  /**
-   * Platform data definition root.
-   */
-  public static final String PLATFORM_DATA_ROOT = DATA_DEFINITION_ROOT + "/platform";
-
-  /**
-   * The constant PLATFORM_DATA_WITH_ID.
-   */
-  public static final String PLATFORM_DATA_WITH_ID = PLATFORM_DATA_ROOT + "/{id}";
-
-  /**
-   * Developer data definition root.
-   */
-  public static final String DEVELOPER_DATA_ROOT = DATA_DEFINITION_ROOT + "/developer";
-
-  /**
-   * Developer data definition with id.
-   */
-  public static final String DEVELOPER_DATA_WITH_ID = DEVELOPER_DATA_ROOT + "/{id}";
-
+  public static final String DATA_DEFINITION_WITH_ID = DATA_DEFINITION_ROOT + "/{" + ID + "}";
 
   /****************************************DEVICE CENTER***********************************************/
 
   /**
-   * Version.
-   */
-  public static final String VERSION = "/v1";
-
-  /**
    * device root.
    */
-  public static final String DEVICE_CENTER_ROOT = VERSION + "/devices";
-
-  /**
-   * The constant REPORT_ROOT.
-   */
-  public static final String REPORT_ROOT = DEVICE_CENTER_ROOT + "/reports";
+  public static final String DEVICE_ROOT = API_VERSION + "/devices";
 
   /**
    * device with id.
    */
-  public static final String DEVICE_CENTER_WITH_ID = DEVICE_CENTER_ROOT + "/{id}";
+  public static final String DEVICE_WITH_ID = DEVICE_ROOT + "/{" + ID + "}";
 
   /**
    * Device token root.
    */
-  public static final String DEVICE_TOKEN = DEVICE_CENTER_ROOT + "/tokens";
+  public static final String DEVICE_TOKEN = DEVICE_ROOT + "/tokens";
 
   /**
    * Union root.
    */
-  public static final String UNION_ROOT = DEVICE_CENTER_ROOT + "/unions";
-
-  /**
-   * Device message root.
-   */
-  public static final String DEVICE_MESSAGE = DEVICE_CENTER_WITH_ID + "/messages";
-
-  /**
-   * Device Data.
-   */
-  public static final String DEVICE_DATA = DEVICE_CENTER_ROOT + "/data";
-
-  /**
-   * Union register.
-   */
-  public static final String UNION_ROOT_REGISTER = UNION_ROOT + "/register";
+  public static final String UNION_ROOT = DEVICE_ROOT + "/unions";
 
   /**
    * Device count.
    */
-  public static final String DEVICE_COUNT = "/v1/admin/devices/count";
+  public static final String DEVICE_COUNT = DEVICE_ROOT + "/count";
 
 
   /******************FEEDBACK********************/
   /**
    * report root.
    */
-  public static final String FEEDBACK_ROOT = "/v1/feedbacks";
+  public static final String FEEDBACK_ROOT = API_VERSION + "/feedback";
 
   /**
    * The constant FEEDBACK_WITH_ID.
    */
-  public static final String FEEDBACK_WITH_ID = FEEDBACK_ROOT + "/{id}";
+  public static final String FEEDBACK_WITH_ID = FEEDBACK_ROOT + "/{" + ID + "}";
 
   /*****************************PRODUCT*************************************/
   /**
    * The constant PRODUCT_ROOT.
    */
-  public static final String PRODUCT_ROOT = VERSION + "/products";
+  public static final String PRODUCT_ROOT = API_VERSION + "/products";
 
   /**
    * The constant PRODUCT_WITH_ID.
    */
-  public static final String PRODUCT_WITH_ID = PRODUCT_ROOT + "/{id}";
+  public static final String PRODUCT_WITH_ID = PRODUCT_ROOT + "/{" + ID + "}";
 
   /**
    * The constant PRODUCT_STATUS.
@@ -134,24 +91,14 @@ public class Router {
   public static final String PRODUCT_TYPE_ROOT = PRODUCT_ROOT + "/types";
 
   /**
-   * The constant PRODUCT_REQUEST.
-   */
-  public static final String PRODUCT_REQUEST = PRODUCT_ROOT + "/request";
-
-  /**
-   * The constant PRODUCT_REQUEST_WITH_ID.
-   */
-  public static final String PRODUCT_REQUEST_WITH_ID = PRODUCT_REQUEST + "/{}";
-
-  /**
    * The constant ADMIN_PRODUCT_TYPE_ROOT.
    */
-  public static final String ADMIN_PRODUCT_TYPE_ROOT = VERSION + "/admin/products/types";
+  public static final String ADMIN_PRODUCT_TYPE_ROOT = PRODUCT_ROOT + "/types";
 
   /**
    * The constant ADMIN_PRODUCT_TYPE_WITH_ID.
    */
-  public static final String ADMIN_PRODUCT_TYPE_WITH_ID = ADMIN_PRODUCT_TYPE_ROOT + "/{id}";
+  public static final String ADMIN_PRODUCT_TYPE_WITH_ID = ADMIN_PRODUCT_TYPE_ROOT + "/{" + ID + "}";
 
   /**
    * The constant ADMIN_PRODUCT_COUNT.
@@ -160,25 +107,25 @@ public class Router {
 
 
   /******************************************USER*************************************************/
-   /**
+  /**
    * user root.
    */
-  public static final String USER_ROOT = VERSION + "/users";
+  public static final String USER_ROOT = API_VERSION + "/users";
 
   /**
    * user root.
    */
-  public static final String USER_WITH_ID = VERSION + "/users/{id}";
+  public static final String USER_WITH_ID = USER_ROOT + "/{" + ID + "}";
 
   /**
    * login.
    */
-  public static final String USER_SIGN_IN = USER_ROOT + "/signin";
+  public static final String USER_QUICK_LOGIN = USER_ROOT + "/quickLgin";
 
   /**
    * login with phone and password.
    */
-  public static final String USER_SIGN_IN_PWD = USER_ROOT + "/login";
+  public static final String USER_LOGIN = USER_ROOT + "/login";
 
   /**
    * register.
@@ -191,24 +138,19 @@ public class Router {
   public static final String USER_RESET_PASSWORD = USER_ROOT + "/resetPassword";
 
   /**
-   * login.
+   * login status.
    */
-  public static final String USER_SIGN_IN_STATUS = USER_ROOT + "/{id}/status";
+  public static final String USER_STATUS = USER_ROOT + "/{" + ID + "}/status";
 
   /**
    * logout.
    */
-  public static final String USER_SIGN_OUT = USER_ROOT + "/{id}/signout";
+  public static final String USER_LOGOUT = USER_ROOT + "/{" + ID + "}/logout";
 
   /**
-   * sign up.
+   * The constant SMS_CODE.
    */
-  public static final String USER_SIGN_UP = USER_ROOT + "/signup";
-
-  /**
-   * The constant VALIDATION_CODE.
-   */
-  public static final String VALIDATION_CODE = USER_ROOT + "/validationCodes";
+  public static final String SMS_CODE = USER_ROOT + "/smsCode";
 
   /**
    * The constant PHONE_NUMBER.
@@ -221,53 +163,31 @@ public class Router {
   public static final String GROUP = USER_ROOT + "/groups";
 
   /**
-   * The constant GROUP_ID.
-   */
-  public static final String GROUP_ID = "id";
-
-  /**
    * The constant GROUP_WITH_ID.
    */
-  public static final String GROUP_WITH_ID = GROUP + "/{" + GROUP_ID + "}";
-
-  /**
-   * The constant developer_id.
-   */
-  public static final String DEVELOPER_ID = "developerId";
-
-  /**
-   * The constant REPORT_ROOT.
-   */
-  public static final String USER_REPORT_ROOT = USER_ROOT + "/reports";
+  public static final String GROUP_WITH_ID = GROUP + "/{" + ID + "}";
 
   /**
    * User count api.
    */
-  public static final String USER_COUNT = "/v1/admin/users/count";
-
-
+  public static final String USER_COUNT = USER_ROOT + "/count";
 
 
   /***************************************DEVELOPER******************************************/
   /**
-   * authentication root.
+   * developer root.
    */
-  public static final String DEVELOPER_ROOT = "/v1/developers";
+  public static final String DEVELOPER_ROOT = API_VERSION + "/developers";
 
   /**
    * login.
    */
-  public static final String DEVELOPER_SIGN_IN = DEVELOPER_ROOT + "/signin";
+  public static final String DEVELOPER_LOGIN = DEVELOPER_ROOT + "/login";
 
   /**
    * sign up.
    */
-  public static final String DEVELOPER_SIGN_UP = DEVELOPER_ROOT + "/signup";
-
-  /**
-   * Id.
-   */
-  public static final String ID = "id";
+  public static final String DEVELOPER_REGISTER = DEVELOPER_ROOT + "/register";
 
   /**
    * Developer with id.
@@ -277,12 +197,12 @@ public class Router {
   /**
    * login.
    */
-  public static final String DEVELOPER_SIGN_IN_STATUS = DEVELOPER_WITH_ID + "/status";
+  public static final String DEVELOPER_STATUS = DEVELOPER_WITH_ID + "/status";
 
   /**
    * logout.
    */
-  public static final String DEVELOPER_SIGN_OUT = DEVELOPER_WITH_ID + "/signout";
+  public static final String DEVELOPER_LOGOUT = DEVELOPER_WITH_ID + "/logout";
 
   /**
    * verify developer after sign up.
@@ -297,10 +217,10 @@ public class Router {
   /**
    * Get all Developers.
    */
-  public static final String DEVELOPER_GET_ALL = "/v1/admin/developers";
+  public static final String DEVELOPER_GET_ALL = DEVELOPER_ROOT + "/all";
 
   /**
    * Count developers.
    */
-  public static final String DEVELOPER_COUNT_ALL = "/v1/admin/developers/count";
+  public static final String DEVELOPER_COUNT = DEVELOPER_ROOT + "/count";
 }

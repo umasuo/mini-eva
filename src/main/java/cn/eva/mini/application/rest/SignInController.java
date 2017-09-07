@@ -37,7 +37,7 @@ public class SignInController {
    * @param signIn the sign in
    * @return sign in result
    */
-  @PostMapping(value = Router.USER_SIGN_IN)
+  @PostMapping(value = Router.USER_QUICK_LOGIN)
   public UserSignInResult quickSignIn(@RequestBody @Valid UserQuickSignIn signIn) {
     LOGGER.info("Enter. quickSignIn: {}", signIn);
 
@@ -54,7 +54,7 @@ public class SignInController {
    * @param signIn the sign in
    * @return sign in result
    */
-  @PostMapping(value = Router.USER_SIGN_IN_PWD)
+  @PostMapping(value = Router.USER_LOGIN)
   public UserSignInResult signin(@RequestBody @Valid UserSignIn signIn) {
     LOGGER.info("Enter. quickSignIn: {}", signIn);
 

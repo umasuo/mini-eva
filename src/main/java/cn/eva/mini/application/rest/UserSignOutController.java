@@ -33,7 +33,7 @@ public class UserSignOutController {
    * @param userId
    * @param developerId
    */
-  @DeleteMapping(value = Router.USER_SIGN_OUT)
+  @DeleteMapping(value = Router.USER_LOGOUT)
   public void quickSignIn(@PathVariable String userId, @RequestHeader String developerId) {
     LOGGER.info("Enter. userId: {}, developerId: {}.", userId, developerId);
 

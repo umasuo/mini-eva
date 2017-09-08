@@ -1,9 +1,9 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.user.UserQuickSignIn;
-import cn.eva.mini.application.dto.user.UserSignInResult;
+import cn.eva.mini.application.dto.user.UserLoginResult;
+import cn.eva.mini.application.dto.user.UserQuickLogin;
 import cn.eva.mini.application.dto.user.UserSession;
-import cn.eva.mini.application.dto.user.UserSignIn;
+import cn.eva.mini.application.dto.user.UserLogin;
 import cn.eva.mini.application.dto.user.UserView;
 import cn.eva.mini.application.dto.mapper.SignInMapper;
 import cn.eva.mini.application.dto.mapper.UserMapper;
@@ -64,10 +64,10 @@ public class SignInApplication {
    * @param signIn the sign in
    * @return the sign in result
    */
-  public UserSignInResult quickSignIn(UserQuickSignIn signIn) {
-    LOGGER.debug("Enter. signIn: {}", signIn);
+  public UserLoginResult quickLogin(UserQuickLogin signIn) {
+    LOGGER.debug("Enter. login: {}", signIn);
 
-    UserSignInResult result;
+    UserLoginResult result;
 
     smsApplication.validateCode(signIn.getPhone(), signIn.getValidationCode());
 
@@ -77,9 +77,9 @@ public class SignInApplication {
       user = createUser(signIn);
     }
 
-    result = signIn(user);
+    result = login(user);
 
-    LOGGER.debug("Exit. UserSignInResult: {}.", result);
+    LOGGER.debug("Exit. UserLoginResult: {}.", result);
     return result;
   }
 
@@ -89,8 +89,8 @@ public class SignInApplication {
    * @param signIn
    * @return
    */
-  public UserSignInResult signIn(UserSignIn signIn) {
-    LOGGER.debug("Enter. signIn: {}.", signIn);
+  public UserLoginResult login(UserLogin signIn) {
+    LOGGER.debug("Enter. login: {}.", signIn);
 
     User user = userService.getUserByPhone(signIn.getPhone());
     if (user == null) {
@@ -101,7 +101,7 @@ public class SignInApplication {
       throw new PasswordErrorException("phone number or password not correct!");
     }
 
-    UserSignInResult result = signIn(user);
+    UserLoginResult result = login(user);
 
     LOGGER.debug("Exit. result: {}.", result);
     return result;
@@ -111,16 +111,16 @@ public class SignInApplication {
    * 登录接口.
    *
    * @param user the user entity.
-   * @return UserSignInResult
+   * @return UserLoginResult
    */
-  public UserSignInResult signIn(User user) {
+  public UserLoginResult login(User user) {
     LOGGER.debug("Enter. User: {}.", user);
 
     UserView userView = UserMapper.toView(user);
 
     String token = UUID.randomUUID().toString();
 
-    UserSignInResult signInResult = new UserSignInResult(userView, token);
+    UserLoginResult signInResult = new UserLoginResult(userView, token);
 
     cacheSignInStatus(userView, token);
 
@@ -135,7 +135,7 @@ public class SignInApplication {
    * @param signIn the signUpDeveloperUser info.
    * @return PlatformUser
    */
-  private User createUser(UserQuickSignIn signIn) {
+  private User createUser(UserQuickLogin signIn) {
     LOGGER.debug("Enter. signUpDeveloperUser: {}.", signIn);
 
     User user = SignInMapper.toModel(signIn);

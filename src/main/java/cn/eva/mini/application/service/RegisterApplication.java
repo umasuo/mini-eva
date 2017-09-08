@@ -1,6 +1,6 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.user.UserSignInResult;
+import cn.eva.mini.application.dto.user.UserLoginResult;
 import cn.eva.mini.application.dto.user.UserRegisterInfo;
 import cn.eva.mini.application.dto.mapper.UserMapper;
 import cn.eva.mini.domain.entity.User;
@@ -48,7 +48,7 @@ public class RegisterApplication {
    * @param register the sign in
    * @return the sign in result
    */
-  public UserSignInResult register(UserRegisterInfo register) {
+  public UserLoginResult register(UserRegisterInfo register) {
     LOGGER.debug("Enter. register: {}", register);
 
 
@@ -61,9 +61,9 @@ public class RegisterApplication {
 
     user = userService.createUser(UserMapper.toModel(register));
 
-    UserSignInResult result = signInApplication.signIn(user);
+    UserLoginResult result = signInApplication.login(user);
 
-    LOGGER.debug("Exit. UserSignInResult: {}.", result);
+    LOGGER.debug("Exit. UserLoginResult: {}.", result);
     return result;
   }
 

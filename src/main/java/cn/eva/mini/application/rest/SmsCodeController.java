@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The type sms code controller.
+ * Sms code API for get SMS code.
  */
 @RestController
 public class SmsCodeController {
@@ -33,13 +33,13 @@ public class SmsCodeController {
    * @param phoneNumber the phone number
    */
   @PostMapping(Router.SMS_CODE)
-  public void getValidationCode(@RequestParam(Router.PHONE_NUMBER) String phoneNumber) {
+  public void getSmsCode(@RequestParam(Router.PHONE_NUMBER) String phoneNumber) {
     LOGGER.info("Enter. phoneNumber: {}.", phoneNumber);
 
     try {
       smsService.sendValidationCode(phoneNumber);
     } catch (YunpianException ex) {
-      LOGGER.warn("Fail to send validation code.", ex);
+      LOGGER.warn("Fail to send sms code.", ex);
     }
 
     LOGGER.info("Exit");

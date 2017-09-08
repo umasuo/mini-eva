@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * The type Sign in result.
  */
-public class UserSignInResult implements Serializable {
+public class UserLoginResult implements Serializable {
 
   /**
    * The serialVersionUID.
@@ -30,7 +30,7 @@ public class UserSignInResult implements Serializable {
    * @param userView the user view
    * @param token    the token
    */
-  public UserSignInResult(UserView userView, String token) {
+  public UserLoginResult(UserView userView, String token) {
     this.userView = userView;
     this.token = token;
   }

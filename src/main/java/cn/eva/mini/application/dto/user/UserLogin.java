@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
  */
 @Data
 @ToString
-public class UserSignIn implements Serializable {
+public class UserLogin implements Serializable {
 
   /**
    * The serialVersionUID.

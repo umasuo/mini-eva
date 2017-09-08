@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ToString
-public class UserQuickSignIn implements Serializable {
+public class UserQuickLogin implements Serializable {
 
   /**
    * The serialVersionUID.

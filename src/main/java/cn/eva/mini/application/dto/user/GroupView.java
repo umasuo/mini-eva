@@ -31,7 +31,7 @@ public class GroupView {
   private String ownerId;
 
   /**
-   * The id for managers.
+   * The user id for managers.
    */
   private List<String> managers;
 

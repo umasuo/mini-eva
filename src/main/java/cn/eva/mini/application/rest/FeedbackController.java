@@ -3,7 +3,7 @@ package cn.eva.mini.application.rest;
 import cn.eva.mini.application.dto.feedback.ContentDraft;
 import cn.eva.mini.application.dto.feedback.FeedbackDraft;
 import cn.eva.mini.application.dto.feedback.FeedbackView;
-import cn.eva.mini.application.dto.mapper.FeedbackMapper;
+import cn.eva.mini.application.dto.feedback.mapper.FeedbackMapper;
 import cn.eva.mini.application.service.FeedbackApplication;
 import cn.eva.mini.domain.entity.Feedback;
 import cn.eva.mini.domain.service.FeedbackService;

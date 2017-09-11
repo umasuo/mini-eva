@@ -2,7 +2,7 @@ package cn.eva.mini.application.service;
 
 import cn.eva.mini.application.dto.product.ProductDataView;
 import cn.eva.mini.application.dto.product.ProductView;
-import cn.eva.mini.application.dto.mapper.ProductMapper;
+import cn.eva.mini.application.dto.product.mapper.ProductMapper;
 import cn.eva.mini.domain.entity.Product;
 import cn.eva.mini.domain.service.ProductService;
 import cn.eva.mini.infra.util.JsonUtils;
@@ -80,11 +80,11 @@ public class ProductQueryApplication {
       result = fetchProducts(developerId);
     }
 
-    result.stream().forEach(
-        productView -> productView.getDataDefinitions().stream().forEach(
-            data -> data.setDataSchema(JsonUtils.deserialize(data.getSchema(), JsonNode.class))
-        )
-    );
+//    result.stream().forEach(
+//        productView -> productView.getDataDefinitions().stream().forEach(
+//            data -> data.setDataSchema(JsonUtils.deserialize(data.getSchema(), JsonNode.class))
+//        )
+//    );
 
     LOGGER.trace("products: {}.", result);
     LOGGER.debug("Exit. product Size: {}.", result.size());

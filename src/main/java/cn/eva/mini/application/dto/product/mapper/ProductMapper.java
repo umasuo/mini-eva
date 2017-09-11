@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.product.mapper;
 
 
 import cn.eva.mini.application.dto.product.ProductDraft;
@@ -28,9 +28,6 @@ public final class ProductMapper {
     product.setName(draft.getName());
     product.setProductType(draft.getProductTypeId());
     product.setCommunicationType(draft.getType());
-    if (draft.getOpenable() != null) {
-      product.setOpenable(draft.getOpenable());
-    }
 
     product.setStatus(ProductStatus.DEVELOPING);
 
@@ -52,7 +49,6 @@ public final class ProductMapper {
     view.setStatus(product.getStatus());
     view.setName(product.getName());
     view.setType(product.getCommunicationType());
-    view.setOpenable(product.getOpenable());
 
     view.setModel(product.getModel());
     view.setFirmwareVersion(product.getFirmwareVersion());

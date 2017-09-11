@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.product.mapper;
 
 import cn.eva.mini.application.dto.product.ProductFunctionView;
 import cn.eva.mini.domain.entity.ProductFunction;

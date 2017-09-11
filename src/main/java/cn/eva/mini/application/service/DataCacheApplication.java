@@ -1,6 +1,6 @@
 package cn.eva.mini.application.service;
 
-import cn.eva.mini.application.dto.mapper.DataDefinitionMapper;
+import cn.eva.mini.application.dto.data.mapper.DataDefinitionMapper;
 import cn.eva.mini.domain.entity.DeviceDataDefinition;
 import cn.eva.mini.infra.util.RedisUtils;
 import org.slf4j.Logger;

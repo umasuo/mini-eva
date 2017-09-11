@@ -82,12 +82,6 @@ public class ProductView implements Serializable {
   private NetType type;
 
   /**
-   * Open status about this product.
-   * True means this product can be find by other developers and false means not.
-   */
-  private Boolean openable = false;
-
-  /**
    * 产品的固件版本信息。
    */
   private String firmwareVersion;

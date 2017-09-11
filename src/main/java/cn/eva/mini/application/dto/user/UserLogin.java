@@ -1,7 +1,6 @@
 package cn.eva.mini.application.dto.user;
 
 import lombok.Data;
-import lombok.ToString;
 import org.hibernate.validator.constraints.Email;
 
 import java.io.Serializable;
@@ -13,7 +12,6 @@ import javax.validation.constraints.Pattern;
  * User Sign in model.
  */
 @Data
-@ToString
 public class UserLogin implements Serializable {
 
   /**
@@ -60,4 +58,20 @@ public class UserLogin implements Serializable {
   @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{8,}$")
   @NotNull
   private String password;
+
+  /**
+   * To string method, don't print password.
+   *
+   * @return
+   */
+  @Override
+  public String toString() {
+    return "UserLogin{"
+      + "email='" + email + '\''
+      + ", phone='" + phone + '\''
+      + ", developerId='" + developerId + '\''
+      + ", deviceDefinitionId='" + deviceDefinitionId + '\''
+      + ", externalId='" + externalId + '\''
+      + '}';
+  }
 }

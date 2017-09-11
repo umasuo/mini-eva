@@ -5,8 +5,8 @@ import cn.eva.mini.application.dto.user.UserQuickLogin;
 import cn.eva.mini.application.dto.user.UserSession;
 import cn.eva.mini.application.dto.user.UserLogin;
 import cn.eva.mini.application.dto.user.UserView;
-import cn.eva.mini.application.dto.mapper.SignInMapper;
-import cn.eva.mini.application.dto.mapper.UserMapper;
+import cn.eva.mini.application.dto.user.mapper.UserSignInMapper;
+import cn.eva.mini.application.dto.user.mapper.UserMapper;
 import cn.eva.mini.domain.entity.User;
 import cn.eva.mini.domain.service.UserService;
 import cn.eva.mini.infra.exception.NotExistException;
@@ -138,7 +138,7 @@ public class SignInApplication {
   private User createUser(UserQuickLogin signIn) {
     LOGGER.debug("Enter. signUpDeveloperUser: {}.", signIn);
 
-    User user = SignInMapper.toModel(signIn);
+    User user = UserSignInMapper.toModel(signIn);
     User savedUser = userService.createUser(user);
 
     LOGGER.debug("Exit. User created: {}.", savedUser);

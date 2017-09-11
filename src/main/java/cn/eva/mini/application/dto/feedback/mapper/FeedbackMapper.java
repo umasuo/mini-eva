@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.feedback.mapper;
 
 import cn.eva.mini.application.dto.feedback.FeedbackDraft;
 import cn.eva.mini.application.dto.feedback.FeedbackView;

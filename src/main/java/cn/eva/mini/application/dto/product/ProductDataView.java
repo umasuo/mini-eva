@@ -1,12 +1,8 @@
 package cn.eva.mini.application.dto.product;
 
-import cn.eva.mini.infra.enums.Category;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Data;
 
 import java.io.Serializable;
-
-import javax.persistence.Transient;
 
 /**
  * 产品的具体数据定义。
@@ -40,12 +36,6 @@ public class ProductDataView implements Serializable {
   private String schema;
 
   /**
-   * The dataSchema.
-   */
-  @Transient
-  private transient JsonNode dataSchema;
-
-  /**
    * Name build this definition.
    */
   private String name;
@@ -54,15 +44,4 @@ public class ProductDataView implements Serializable {
    * Describe the usage build this definition.
    */
   private String description;
-
-  /**
-   * The Openable.
-   * True means other developers can find this data, false means not.
-   */
-  private Boolean openable;
-
-  /**
-   * 产品数据的类别。
-   */
-  private Category category;
 }

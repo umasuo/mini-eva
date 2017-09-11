@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.function;
+package cn.eva.mini.application.dto.product.function;
 
 import cn.eva.mini.infra.util.FunctionDataTypeUtils;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

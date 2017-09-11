@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.user.mapper;
 
 import cn.eva.mini.application.dto.user.GroupDraft;
 import cn.eva.mini.application.dto.user.GroupView;

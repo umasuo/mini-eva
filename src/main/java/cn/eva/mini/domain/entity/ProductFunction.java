@@ -1,6 +1,6 @@
 package cn.eva.mini.domain.entity;
 
-import cn.eva.mini.application.dto.function.FunctionDataType;
+import cn.eva.mini.application.dto.product.function.FunctionDataType;
 import cn.eva.mini.infra.db.postgres.dialect.JSONBUserType;
 import cn.eva.mini.infra.enums.TransferType;
 import lombok.Data;
@@ -30,7 +30,7 @@ import javax.persistence.Version;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @TypeDef(name = "dataType", typeClass = JSONBUserType.class, parameters = {
-  @Parameter(name = JSONBUserType.CLASS, value = "cn.eva.mini.application.dto.function.FunctionDataType")
+  @Parameter(name = JSONBUserType.CLASS, value = "cn.eva.mini.application.dto.product.function.FunctionDataType")
 })
 public class ProductFunction {
 

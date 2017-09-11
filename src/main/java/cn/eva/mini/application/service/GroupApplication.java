@@ -2,7 +2,7 @@ package cn.eva.mini.application.service;
 
 import cn.eva.mini.application.dto.user.GroupDraft;
 import cn.eva.mini.application.dto.user.GroupView;
-import cn.eva.mini.application.dto.mapper.GroupMapper;
+import cn.eva.mini.application.dto.user.mapper.GroupMapper;
 import cn.eva.mini.domain.entity.Group;
 import cn.eva.mini.domain.service.GroupService;
 import cn.eva.mini.infra.exception.ConflictException;

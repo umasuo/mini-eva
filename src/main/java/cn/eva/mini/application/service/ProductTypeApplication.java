@@ -2,7 +2,7 @@ package cn.eva.mini.application.service;
 
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
-import cn.eva.mini.application.dto.mapper.ProductTypeMapper;
+import cn.eva.mini.application.dto.product.mapper.ProductTypeMapper;
 import cn.eva.mini.domain.entity.ProductType;
 import cn.eva.mini.domain.service.ProductTypeService;
 import cn.eva.mini.infra.exception.NotExistException;
@@ -172,29 +172,4 @@ public class ProductTypeApplication {
     return result;
   }
 
-  /**
-   * Change string schema to JsonNode schema.
-   *
-   * @param cacheProductTypes list build ProductType
-   */
-  private void handleSchema(List<ProductTypeView> cacheProductTypes) {
-    if (!CollectionUtils.isEmpty(cacheProductTypes)) {
-      cacheProductTypes.stream().forEach(
-        productTypeView -> handleSchema(productTypeView)
-      );
-    }
-  }
-
-  /**
-   * Change string schema to JsonNode schema.
-   *
-   * @param productTypeView the ProductType
-   */
-  private void handleSchema(ProductTypeView productTypeView) {
-    if (!CollectionUtils.isEmpty(productTypeView.getData())) {
-      productTypeView.getData().stream().forEach(
-        data -> data.setDataSchema(JsonUtils.deserialize(data.getSchema(), JsonNode.class))
-      );
-    }
-  }
 }

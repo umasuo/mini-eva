@@ -2,7 +2,7 @@ package cn.eva.mini.application.service;
 
 import cn.eva.mini.application.dto.device.DeviceSession;
 import cn.eva.mini.application.dto.device.DeviceView;
-import cn.eva.mini.application.dto.mapper.DeviceMapper;
+import cn.eva.mini.application.dto.device.mapper.DeviceMapper;
 import cn.eva.mini.domain.entity.Device;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

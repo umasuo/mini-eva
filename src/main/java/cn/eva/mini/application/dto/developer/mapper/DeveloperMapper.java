@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.developer.mapper;
 
 import cn.eva.mini.application.dto.developer.DeveloperView;
 import cn.eva.mini.domain.entity.Developer;

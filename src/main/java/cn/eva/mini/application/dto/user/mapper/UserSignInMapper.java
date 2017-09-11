@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.user.mapper;
 
 
 import cn.eva.mini.application.dto.user.UserQuickLogin;
@@ -7,12 +7,12 @@ import cn.eva.mini.domain.entity.User;
 /**
  * Sign in mapper.
  */
-public final class SignInMapper {
+public final class UserSignInMapper {
 
   /**
    * Instantiates a new Sign in mapper.
    */
-  private SignInMapper() {
+  private UserSignInMapper() {
   }
 
   /**

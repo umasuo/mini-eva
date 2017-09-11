@@ -1,7 +1,6 @@
 package cn.eva.mini.application.dto.product;
 
-import cn.eva.mini.application.dto.function.FunctionDataType;
-import cn.eva.mini.infra.enums.Category;
+import cn.eva.mini.application.dto.product.function.FunctionDataType;
 import cn.eva.mini.infra.enums.TransferType;
 import lombok.Data;
 
@@ -48,8 +47,4 @@ public class ProductFunctionView implements Serializable {
    */
   private FunctionDataType dataType;
 
-  /**
-   * The category.
-   */
-  private Category category;
 }

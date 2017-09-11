@@ -36,12 +36,5 @@ public class ProductDraft {
   /**
    * Product net type, identify by how the product connect to the internet.
    */
-  @NotNull(message = "NetType can not be null")
   private NetType type;
-
-  /**
-   * Open status about this product.
-   * True means this product can be find by other developers and false means not.
-   */
-  private Boolean openable;
 }

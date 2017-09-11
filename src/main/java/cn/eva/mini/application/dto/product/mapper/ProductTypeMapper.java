@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.product.mapper;
 
 import cn.eva.mini.application.dto.product.ProductDataView;
 import cn.eva.mini.application.dto.product.ProductTypeDraft;

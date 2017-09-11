@@ -2,7 +2,7 @@ package cn.eva.mini.application.service;
 
 import cn.eva.mini.application.dto.user.UserLoginResult;
 import cn.eva.mini.application.dto.user.UserRegisterInfo;
-import cn.eva.mini.application.dto.mapper.UserMapper;
+import cn.eva.mini.application.dto.user.mapper.UserMapper;
 import cn.eva.mini.domain.entity.User;
 import cn.eva.mini.domain.service.UserService;
 import cn.eva.mini.infra.exception.AlreadyExistException;

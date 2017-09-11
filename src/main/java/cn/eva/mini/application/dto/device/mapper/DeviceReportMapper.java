@@ -1,4 +1,4 @@
-package cn.eva.mini.application.dto.mapper;
+package cn.eva.mini.application.dto.device.mapper;
 
 import cn.eva.mini.application.dto.report.DeviceReportDraft;
 import cn.eva.mini.application.dto.report.DeviceReportView;

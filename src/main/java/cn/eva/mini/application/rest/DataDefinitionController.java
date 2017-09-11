@@ -24,17 +24,16 @@ import java.util.Map;
 import javax.validation.Valid;
 
 /**
- * DeviceDataDefinitionController.
+ * DataDefinitionController.
  */
 @RestController
 @CrossOrigin
-public class DeviceDataDefinitionController {
+public class DataDefinitionController {
 
   /**
    * LOGGER.
    */
-  private final static Logger LOGGER = LoggerFactory.getLogger(DeviceDataDefinitionController
-      .class);
+  private final static Logger LOGGER = LoggerFactory.getLogger(DataDefinitionController.class);
 
   /**
    * Data definition service.

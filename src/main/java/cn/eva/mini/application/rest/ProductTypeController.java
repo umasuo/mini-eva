@@ -28,7 +28,7 @@ public class ProductTypeController {
   /**
    * Logger.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(ProductTypeController.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProductTypeController.class);
 
   /**
    * ProductType application.
@@ -45,11 +45,11 @@ public class ProductTypeController {
    */
   @PostMapping(Router.ADMIN_PRODUCT_TYPE_ROOT)
   public ProductTypeView create(@RequestBody ProductTypeDraft productTypeDraft) {
-    LOG.info("Enter. productTypeDraft: {}.", productTypeDraft);
+    LOGGER.info("Enter. productTypeDraft: {}.", productTypeDraft);
 
     ProductTypeView result = productTypeApplication.create(productTypeDraft);
 
-    LOG.info("Exit. new productType: {}.", result);
+    LOGGER.info("Exit. new productType: {}.", result);
     return result;
   }
 
@@ -61,11 +61,11 @@ public class ProductTypeController {
    */
   @DeleteMapping(Router.ADMIN_PRODUCT_TYPE_WITH_ID)
   public void delete(@PathVariable("id") String id, @RequestParam("version") Integer version) {
-    LOG.info("Enter. product type id: {}, version: {}.", id, version);
+    LOGGER.info("Enter. product type id: {}, version: {}.", id, version);
 
     productTypeApplication.delete(id, version);
 
-    LOG.info("Exit. delete done.");
+    LOGGER.info("Exit. delete done.");
   }
 
 
@@ -79,13 +79,13 @@ public class ProductTypeController {
 //  @PutMapping(Router.ADMIN_PRODUCT_TYPE_WITH_ID)
 //  public ProductTypeView update(@PathVariable("id") String id,
 //      @RequestBody @Valid UpdateRequest updateRequest) {
-//    LOG.info("Enter. product type id: {}, updateRequest: {}.", id, updateRequest);
+//    LOGGER.info("Enter. product type id: {}, updateRequest: {}.", id, updateRequest);
 //
 //    ProductTypeView result =
 //        productTypeApplication.update(id, updateRequest.getVersion(), updateRequest.getActions());
 //
-//    LOG.trace("Updated productType: {}.", result);
-//    LOG.info("Exit.");
+//    LOGGER.trace("Updated productType: {}.", result);
+//    LOGGER.info("Exit.");
 //
 //    return result;
 //  }
@@ -98,12 +98,12 @@ public class ProductTypeController {
    */
   @GetMapping(Router.ADMIN_PRODUCT_TYPE_WITH_ID)
   public ProductTypeView getOne(@PathVariable("id") String id) {
-    LOG.info("Enter. product type id: {}.", id);
+    LOGGER.info("Enter. product type id: {}.", id);
 
     ProductTypeView result = productTypeApplication.get(id);
 
-    LOG.trace("ProductType: {}.", result);
-    LOG.info("Exit.");
+    LOGGER.trace("ProductType: {}.", result);
+    LOGGER.info("Exit.");
 
     return result;
   }
@@ -115,11 +115,11 @@ public class ProductTypeController {
    */
   @GetMapping(value = {Router.PRODUCT_TYPE_ROOT, Router.ADMIN_PRODUCT_TYPE_ROOT})
   public List<ProductTypeView> getAll() {
-    LOG.info("Enter.");
+    LOGGER.info("Enter.");
 
     List<ProductTypeView> result = productTypeApplication.getAll();
 
-    LOG.info("Exit. productType size: {}.", result.size());
+    LOGGER.info("Exit. productType size: {}.", result.size());
 
     return result;
   }

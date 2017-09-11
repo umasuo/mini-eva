@@ -19,7 +19,7 @@ public class ProductTypeService {
   /**
    * Logger.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(ProductTypeService.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProductTypeService.class);
 
   /**
    * ProductTypeRepository.
@@ -34,11 +34,11 @@ public class ProductTypeService {
    * @return product type
    */
   public ProductType save(ProductType productType) {
-    LOG.debug("Enter. productType: {}", productType);
+    LOGGER.debug("Enter. productType: {}", productType);
 
     ProductType newProductType = repository.save(productType);
 
-    LOG.debug("Exit. new productType id: {}.", newProductType.getId());
+    LOGGER.debug("Exit. new productType id: {}.", newProductType.getId());
 
     return newProductType;
   }
@@ -49,11 +49,11 @@ public class ProductTypeService {
    * @param id the id
    */
   public void delete(String id) {
-    LOG.info("Enter. product type id: {}.", id);
+    LOGGER.info("Enter. product type id: {}.", id);
 
     repository.delete(id);
 
-    LOG.info("Exit.");
+    LOGGER.info("Exit.");
   }
 
   /**
@@ -62,11 +62,11 @@ public class ProductTypeService {
    * @return all
    */
   public List<ProductType> getAll() {
-    LOG.debug("Enter.");
+    LOGGER.debug("Enter.");
 
     List<ProductType> productTypes = repository.findAll();
 
-    LOG.debug("Exit. productType size: {}.", productTypes.size());
+    LOGGER.debug("Exit. productType size: {}.", productTypes.size());
 
     return productTypes;
   }
@@ -78,16 +78,16 @@ public class ProductTypeService {
    * @return by id
    */
   public ProductType getById(String id) {
-    LOG.debug("Enter. id: {}.", id);
+    LOGGER.debug("Enter. id: {}.", id);
 
     ProductType result = repository.findOne(id);
 
     if (result == null) {
-      LOG.debug("Can not find productType: {}.", id);
+      LOGGER.debug("Can not find productType: {}.", id);
       throw new NotExistException("ProductType is not exist");
     }
 
-    LOG.debug("Exit. productType: {}.", result);
+    LOGGER.debug("Exit. productType: {}.", result);
     return result;
   }
 
@@ -97,15 +97,15 @@ public class ProductTypeService {
    * @param id the id
    */
   public void exists(String id) {
-    LOG.debug("Enter. id: {}.", id);
+    LOGGER.debug("Enter. id: {}.", id);
 
     boolean exists = repository.exists(id);
 
     if (!exists) {
-      LOG.debug("Can not find productType: {}.", id);
+      LOGGER.debug("Can not find productType: {}.", id);
       throw new NotExistException("ProductType is not exist");
     }
 
-    LOG.debug("Exit. productType exist? {}.", exists);
+    LOGGER.debug("Exit. productType exist? {}.", exists);
   }
 }

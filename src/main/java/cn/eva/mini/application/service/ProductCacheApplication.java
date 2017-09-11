@@ -26,7 +26,7 @@ public class ProductCacheApplication {
   /**
    * Logger.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(DataCacheApplication.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DataCacheApplication.class);
 
   /**
    * The redis template.
@@ -40,7 +40,7 @@ public class ProductCacheApplication {
    * @return the all product type
    */
   public List<ProductTypeView> getAllProductType() {
-    LOG.debug("Enter.");
+    LOGGER.debug("Enter.");
     List<ProductTypeView> result = Lists.newArrayList();
 
     Map<String, ProductTypeView> cacheProductTypes =
@@ -50,8 +50,8 @@ public class ProductCacheApplication {
       result = cacheProductTypes.values().stream().collect(Collectors.toList());
     }
 
-    LOG.trace("ProductType: {}.", result);
-    LOG.debug("Exit. productType size: {}.", result.size());
+    LOGGER.trace("ProductType: {}.", result);
+    LOGGER.debug("Exit. productType size: {}.", result.size());
     return result;
   }
 
@@ -62,13 +62,13 @@ public class ProductCacheApplication {
    */
   @Async
   public void cacheProductType(List<ProductTypeView> productTypeViews) {
-    LOG.debug("Enter. productType size: {}.", productTypeViews.size());
+    LOGGER.debug("Enter. productType size: {}.", productTypeViews.size());
 
     Map<String, ProductTypeView> cacheProductTypes = Maps.newHashMap();
     productTypeViews.stream().forEach(view -> cacheProductTypes.put(view.getId(), view));
     redisTemplate.opsForHash().putAll(RedisUtils.PRODUCT_TYPE_KEY, cacheProductTypes);
 
-    LOG.debug("Exit. cache done.");
+    LOGGER.debug("Exit. cache done.");
   }
 
   /**
@@ -76,11 +76,11 @@ public class ProductCacheApplication {
    */
   @Async
   public void deleteProductTypes() {
-    LOG.debug("Enter.");
+    LOGGER.debug("Enter.");
 
     redisTemplate.delete(RedisUtils.PRODUCT_TYPE_KEY);
 
-    LOG.debug("Exit. delete done.");
+    LOGGER.debug("Exit. delete done.");
   }
 
   /**
@@ -90,7 +90,7 @@ public class ProductCacheApplication {
    * @return the products
    */
   public List<ProductView> getProducts(String developerId) {
-    LOG.debug("Enter. developerId: {}.", developerId);
+    LOGGER.debug("Enter. developerId: {}.", developerId);
 
     List<ProductView> result = Lists.newArrayList();
 
@@ -103,8 +103,8 @@ public class ProductCacheApplication {
       );
     }
 
-    LOG.trace("Products: {}.", result);
-    LOG.debug("Exit. products size: {}.", result.size());
+    LOGGER.trace("Products: {}.", result);
+    LOGGER.debug("Exit. products size: {}.", result.size());
     return result;
   }
 
@@ -116,7 +116,7 @@ public class ProductCacheApplication {
    */
   @Async
   public void cacheProducts(String developerId, List<ProductView> products) {
-    LOG.debug("Enter. products size: {}.", products.size());
+    LOGGER.debug("Enter. products size: {}.", products.size());
 
     Map<String, ProductView> cacheProducts = Maps.newHashMap();
     products.stream().forEach(view -> cacheProducts.put(view.getId(), view));
@@ -124,7 +124,7 @@ public class ProductCacheApplication {
     redisTemplate.opsForHash()
         .putAll(String.format(RedisUtils.PRODUCT_KEY_FORMAT, developerId), cacheProducts);
 
-    LOG.debug("Exit. cache done.");
+    LOGGER.debug("Exit. cache done.");
   }
 
   /**
@@ -135,13 +135,13 @@ public class ProductCacheApplication {
    * @return the product by id
    */
   public ProductView getProductById(String developerId, String productId) {
-    LOG.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
 
     String key = String.format(RedisUtils.PRODUCT_KEY_FORMAT, developerId);
 
     ProductView result = (ProductView) redisTemplate.opsForHash().get(key, productId);
 
-    LOG.debug("Exit. product: {}.", result);
+    LOGGER.debug("Exit. product: {}.", result);
     return result;
   }
 
@@ -152,10 +152,10 @@ public class ProductCacheApplication {
    */
   @Async
   public void deleteProducts(String developerId) {
-    LOG.debug("Enter. developerId: {}.", developerId);
+    LOGGER.debug("Enter. developerId: {}.", developerId);
 
     redisTemplate.delete(String.format(RedisUtils.PRODUCT_KEY_FORMAT, developerId));
 
-    LOG.debug("Exit. delete done.");
+    LOGGER.debug("Exit. delete done.");
   }
 }

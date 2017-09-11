@@ -21,7 +21,7 @@ public class ProductService {
   /**
    * Logger.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
 
   /**
    * ProductRepository.
@@ -36,11 +36,11 @@ public class ProductService {
    * @return product product
    */
   public Product save(Product product) {
-    LOG.debug("Enter. product: {}.", product);
+    LOGGER.debug("Enter. product: {}.", product);
 
     Product savedProduct = repository.save(product);
 
-    LOG.debug("Exit. saved product: {}.", savedProduct);
+    LOGGER.debug("Exit. saved product: {}.", savedProduct);
     return savedProduct;
   }
 
@@ -50,11 +50,11 @@ public class ProductService {
    * @param id the id
    */
   public void delete(String id) {
-    LOG.debug("Enter. id: {}.", id);
+    LOGGER.debug("Enter. id: {}.", id);
 
     repository.delete(id);
 
-    LOG.debug("Exit.");
+    LOGGER.debug("Exit.");
   }
 
   /**
@@ -64,11 +64,11 @@ public class ProductService {
    * @return by developer id
    */
   public List<Product> getByDeveloperId(String developerId) {
-    LOG.debug("Enter. developerId: {}.", developerId);
+    LOGGER.debug("Enter. developerId: {}.", developerId);
 
     List<Product> products = repository.findAllByDeveloperId(developerId);
 
-    LOG.debug("Exit. products size: {}.", products.size());
+    LOGGER.debug("Exit. products size: {}.", products.size());
 
     return products;
   }
@@ -80,14 +80,14 @@ public class ProductService {
    * @return product product
    */
   public Product get(String id) {
-    LOG.debug("Enter. id: {}.", id);
+    LOGGER.debug("Enter. id: {}.", id);
 
     Product product = repository.findOne(id);
     if (product == null) {
       throw new NotExistException("Product not exist, id: " + id);
     }
 
-    LOG.debug("Exit. product: {}.", product);
+    LOGGER.debug("Exit. product: {}.", product);
     return product;
   }
 
@@ -98,7 +98,7 @@ public class ProductService {
    * @return the all openable product
    */
   public List<Product> getAllOpenProduct(String developerId) {
-    LOG.debug("Enter. developerId: {}.", developerId);
+    LOGGER.debug("Enter. developerId: {}.", developerId);
 
     Product sample = new Product();
     sample.setDeveloperId(developerId);
@@ -108,7 +108,7 @@ public class ProductService {
 
     List<Product> products = repository.findAll(exam);
 
-    LOG.debug("Exit. products size: {}.", products.size());
+    LOGGER.debug("Exit. products size: {}.", products.size());
 
     return products;
   }
@@ -121,7 +121,7 @@ public class ProductService {
    * @return the boolean
    */
   public boolean isExistName(String developerId, String name) {
-    LOG.debug("Enter. developerId: {}, name: {}.", developerId, name);
+    LOGGER.debug("Enter. developerId: {}, name: {}.", developerId, name);
 
     Product sample = new Product();
     sample.setDeveloperId(developerId);
@@ -132,11 +132,11 @@ public class ProductService {
     boolean result = repository.exists(example);
 
     if (result) {
-      LOG.debug("Product name: {} has existed in developer: {}.", name, developerId);
+      LOGGER.debug("Product name: {} has existed in developer: {}.", name, developerId);
       throw new AlreadyExistException("Product name has existed");
     }
 
-    LOG.debug("Exit. name: {} exist: {}.", name, result);
+    LOGGER.debug("Exit. name: {} exist: {}.", name, result);
 
     return result;
   }
@@ -147,11 +147,11 @@ public class ProductService {
    * @return long
    */
   public Long countProducts() {
-    LOG.debug("Enter.");
+    LOGGER.debug("Enter.");
 
     Long count = repository.count();
 
-    LOG.debug("Exit. product countProducts: {}.", count);
+    LOGGER.debug("Exit. product countProducts: {}.", count);
 
     return count;
   }

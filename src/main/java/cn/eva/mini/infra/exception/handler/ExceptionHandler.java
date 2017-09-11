@@ -32,7 +32,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
   /**
    * logger.
    */
-  Logger LOG = LoggerFactory.getLogger(ExceptionHandler.class);
+  private static Logger LOGGER = LoggerFactory.getLogger(ExceptionHandler.class);
 
   /**
    * exception EXCEPTION_MAP.
@@ -122,7 +122,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
     boolean shouldLog = !OMITTED_EXCEPTIONS.contains(ex.getClass());
     if (shouldLog) {
       // only log those ones that are real failures
-      LOG.error("request {}, response {}, obj {}, status {}", request, response, obj, status, ex);
+      LOGGER.error("request {}, response {}, obj {}, status {}", request, response, obj, status, ex);
     }
   }
 
@@ -140,7 +140,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         response.getWriter().print(JsonUtils.serialize(body));
       }
     } catch (IOException e) {
-      LOG.error("failed to write response JSON", e);
+      LOGGER.error("failed to write response JSON", e);
       throw new IllegalStateException(e);
     }
   }

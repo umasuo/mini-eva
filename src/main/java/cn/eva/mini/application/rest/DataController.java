@@ -24,12 +24,12 @@ import javax.validation.Valid;
  */
 @RestController
 @CrossOrigin
-public class DeviceDataController {
+public class DataController {
 
   /**
    * LOGGER.
    */
-  private final static Logger LOGGER = LoggerFactory.getLogger(DeviceDataController.class);
+  private final static Logger LOGGER = LoggerFactory.getLogger(DataController.class);
 
   /**
    * Data create application.

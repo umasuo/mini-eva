@@ -21,7 +21,7 @@ public class ProductCommandApplication {
   /**
    * Logger.
    */
-  private final static Logger LOG = LoggerFactory.getLogger(ProductCommandApplication.class);
+  private final static Logger LOGGER = LoggerFactory.getLogger(ProductCommandApplication.class);
 
   /**
    * ProductService.
@@ -51,7 +51,7 @@ public class ProductCommandApplication {
    */
   @Transactional
   public ProductView create(ProductDraft draft, String developerId) {
-    LOG.debug("Enter. developerId: {}, draft: {}.", developerId, draft);
+    LOGGER.debug("Enter. developerId: {}, draft: {}.", developerId, draft);
 
     // 1. 检查名字是否重复
     productService.isExistName(developerId, draft.getName());
@@ -68,7 +68,7 @@ public class ProductCommandApplication {
 
     ProductView view = ProductMapper.toView(product);
 
-    LOG.debug("Exit. productView: {}.", view);
+    LOGGER.debug("Exit. productView: {}.", view);
     return view;
   }
 
@@ -80,7 +80,7 @@ public class ProductCommandApplication {
    * @param version the version
    */
   public void delete(String id, String developerId, Integer version) {
-    LOG.debug("Enter. id: {}, developerId: {}, version: {}.", id, developerId, version);
+    LOGGER.debug("Enter. id: {}, developerId: {}, version: {}.", id, developerId, version);
 
     Product product = productService.get(id);
 
@@ -92,7 +92,7 @@ public class ProductCommandApplication {
 
 //    restClient.deleteAllDataDefinition(developerId, product.getId());
 
-    LOG.debug("Exit.");
+    LOGGER.debug("Exit.");
   }
 
   /**
@@ -106,7 +106,7 @@ public class ProductCommandApplication {
    */
 //  public ProductView update(String id, String developerId, Integer version, List<UpdateAction>
 //      actions) {
-//    LOG.debug("Enter: id: {}, version: {}, actions: {}.", id, version, actions);
+//    LOGGER.debug("Enter: id: {}, version: {}, actions: {}.", id, version, actions);
 //
 //    Product valueInDb = productService.get(id);
 //
@@ -128,7 +128,7 @@ public class ProductCommandApplication {
 //        data -> data.setDataSchema(JsonUtils.deserialize(data.getSchema(), JsonNode.class))
 //    );
 //
-//    LOG.debug("Exit: updated product: {}", updatedProduct);
+//    LOGGER.debug("Exit: updated product: {}", updatedProduct);
 //    return updatedProduct;
 //  }
 

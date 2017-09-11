@@ -51,7 +51,6 @@ public final class DeveloperMapper {
       view.setLastModifiedAt(developer.getLastModifiedAt());
       view.setPhone(developer.getPhone());
       view.setStatus(developer.getStatus());
-      view.setOpenable(developer.getOpenable());
     }
     return view;
   }

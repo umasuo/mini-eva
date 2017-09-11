@@ -3,7 +3,6 @@ package cn.eva.mini.domain.service;
 import cn.eva.mini.domain.entity.Developer;
 import cn.eva.mini.infra.enums.AccountStatus;
 import cn.eva.mini.infra.exception.AlreadyExistException;
-import cn.eva.mini.infra.exception.ConflictException;
 import cn.eva.mini.infra.exception.NotExistException;
 import cn.eva.mini.infra.repository.DeveloperRepository;
 import cn.eva.mini.infra.util.PasswordUtil;
@@ -52,6 +51,7 @@ public class DeveloperService {
    */
   public Developer create(String email, String password) {
     LOGGER.debug("CreateDeveloper: email:{}", email);
+
     Developer developer = this.repository.findOneByEmail(email);
     if (developer != null) {
       throw new AlreadyExistException("Developer already existing.");
@@ -59,7 +59,6 @@ public class DeveloperService {
     developer = new Developer();
     developer.setEmail(email);
     developer.setStatus(AccountStatus.UNVERIFIED);
-    developer.setOpenable(false);//默认不公开任何数据
 
     String encryptedPwd = PasswordUtil.hashPassword(password);
     developer.setPassword(encryptedPwd);
@@ -123,16 +122,4 @@ public class DeveloperService {
     return developers;
   }
 
-  /**
-   * check the version.
-   *
-   * @param inputVersion Integer
-   * @param existVersion Integer
-   */
-  private void checkVersion(Integer inputVersion, Integer existVersion) {
-    if (!inputVersion.equals(existVersion)) {
-      LOGGER.debug("Developer version is not correct.");
-      throw new ConflictException("Developer version is not correct.");
-    }
-  }
 }

@@ -78,12 +78,6 @@ public class Developer {
   private AccountStatus status;
 
   /**
-   * Openable means other developer can find this developer or not.
-   * If true, this developer can be read by
-   */
-  private Boolean openable = false;
-
-  /**
    * To string method.
    *
    * @return
@@ -97,7 +91,6 @@ public class Developer {
       + ", version=" + version
       + ", email='" + email + '\''
       + ", phone='" + phone + '\''
-      + ", openable='" + openable + '\''
       + '}';
   }
 }

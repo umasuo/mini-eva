@@ -28,7 +28,6 @@ public final class UserMapper {
       view = new UserView();
       view.setUserId(user.getId());
       view.setDeveloperId(user.getDeveloperId());
-      view.setDeviceDefinitionId(user.getDeviceDefinitionId());
       view.setEmail(user.getEmail());
       view.setPhone(user.getPhone());
       view.setExternalId(user.getExternalId());

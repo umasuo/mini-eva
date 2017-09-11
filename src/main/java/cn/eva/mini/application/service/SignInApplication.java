@@ -71,7 +71,7 @@ public class SignInApplication {
 
     smsApplication.validateCode(signIn.getPhone(), signIn.getValidationCode());
 
-    User user = userService.getUserByPhone(signIn.getPhone());
+    User user = userService.getByPhone(signIn.getPhone());
 
     if (user == null) {
       user = createUser(signIn);
@@ -92,7 +92,7 @@ public class SignInApplication {
   public UserLoginResult login(UserLogin signIn) {
     LOGGER.debug("Enter. login: {}.", signIn);
 
-    User user = userService.getUserByPhone(signIn.getPhone());
+    User user = userService.getByPhone(signIn.getPhone());
     if (user == null) {
       throw new NotExistException("User not exit for phone: " + signIn.getPhone());
     }
@@ -139,7 +139,7 @@ public class SignInApplication {
     LOGGER.debug("Enter. signUpDeveloperUser: {}.", signIn);
 
     User user = UserSignInMapper.toModel(signIn);
-    User savedUser = userService.createUser(user);
+    User savedUser = userService.create(user);
 
     LOGGER.debug("Exit. User created: {}.", savedUser);
     return savedUser;

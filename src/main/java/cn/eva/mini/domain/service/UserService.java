@@ -24,10 +24,10 @@ public class UserService {
   private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
   /**
-   * user info repository.
+   * user info userRepository.
    */
   @Autowired
-  private transient UserRepository repository;
+  private transient UserRepository userRepository;
 
   /**
    * create user info.
@@ -35,11 +35,11 @@ public class UserService {
    * @param user the user
    * @return the developer user
    */
-  public User createUser(User user) {
+  public User create(User user) {
     LOGGER.debug("Enter. userInfo: {}", user);
 
     Example<User> example = Example.of(user);
-    User userInDb = repository.findOne(example);
+    User userInDb = userRepository.findOne(example);
     if (userInDb != null) {
       throw new AlreadyExistException("The user already exit.");
     }
@@ -48,10 +48,25 @@ public class UserService {
       String hashedPassword = PasswordUtil.hashPassword(user.getPassword());
       user.setPassword(hashedPassword);
     }
-    userInDb = repository.save(user);
+    userInDb = userRepository.save(user);
     //TODO maybe we should set an numerical id?
     LOGGER.debug("Exit. userInDb: {}", userInDb);
     return userInDb;
+  }
+
+  /**
+   * Save user.
+   *
+   * @param user
+   * @return
+   */
+  public User save(User user) {
+    LOGGER.debug("Enter.");
+
+    User userSaved = userRepository.save(user);
+
+    LOGGER.debug("Exit.");
+    return userSaved;
   }
 
   /**
@@ -60,11 +75,11 @@ public class UserService {
    * @param userId the user id
    * @return the user by id
    */
-  public User getUserById(String userId) {
+  public User getById(String userId) {
     LOGGER.debug("Enter. userId: {}.", userId);
     Assert.notNull(userId, "User id can not be null");
 
-    User user = repository.findOne(userId);
+    User user = userRepository.findOne(userId);
     if (user == null) {
       LOGGER.debug("Can not find user: {}.", userId);
       throw new NotExistException("User not exist");
@@ -80,11 +95,11 @@ public class UserService {
    * @param phone the user id
    * @return the user by id
    */
-  public User getUserByPhone(String phone) {
+  public User getByPhone(String phone) {
     LOGGER.debug("Enter. phone: {}.", phone);
     Assert.notNull(phone, "Phone can not be null");
 
-    User user = repository.findOneByPhone(phone);
+    User user = userRepository.findOneByPhone(phone);
     if (user == null) {
       LOGGER.debug("Can not find user: {}.", phone);
       throw new NotExistException("User not exist");
@@ -93,18 +108,5 @@ public class UserService {
     LOGGER.debug("Exit.");
     return user;
   }
-  /**
-   * Save user.
-   *
-   * @param user
-   * @return
-   */
-  public User save(User user) {
-    LOGGER.debug("Enter.");
 
-    User dUser = repository.save(user);
-
-    LOGGER.debug("Exit.");
-    return dUser;
-  }
 }

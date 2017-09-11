@@ -54,12 +54,12 @@ public class RegisterApplication {
 
     smsApplication.validateCode(register.getPhone(), register.getSmsCode());
 
-    User user = userService.getUserByPhone(register.getPhone());
+    User user = userService.getByPhone(register.getPhone());
     if (user != null) {
       throw new AlreadyExistException("User already exist.");
     }
 
-    user = userService.createUser(UserMapper.toModel(register));
+    user = userService.create(UserMapper.toModel(register));
 
     UserLoginResult result = signInApplication.login(user);
 

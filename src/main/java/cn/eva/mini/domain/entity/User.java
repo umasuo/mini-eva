@@ -57,13 +57,6 @@ public class User {
   private Integer version;
 
   /**
-   * pUid that saved in {@code PlatformUser}
-   * 这个等于是用户的union ID.
-   */
-  @Column(unique = true, nullable = false)
-  private String pUid;
-
-  /**
    * user's email, this should be unique.
    */
   @Column(unique = true, nullable = true)
@@ -89,12 +82,6 @@ public class User {
   @Column(nullable = false)
   private String developerId;
 
-
-  /**
-   * Which device this user from.
-   */
-  private String deviceDefinitionId;
-
   /**
    * user's password.
    */
@@ -118,10 +105,8 @@ public class User {
       + ", createdAt=" + createdAt
       + ", lastModifiedAt=" + lastModifiedAt
       + ", version=" + version
-      + ", pUid='" + pUid + '\''
       + ", externalId='" + externalId + '\''
       + ", developerId='" + developerId + '\''
-      + ", deviceDefinitionId='" + deviceDefinitionId + '\''
       + ", userDetail=" + userDetail
       + '}';
   }

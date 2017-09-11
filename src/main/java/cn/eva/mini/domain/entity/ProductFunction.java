@@ -12,8 +12,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -32,14 +30,8 @@ import javax.persistence.Version;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @TypeDef(name = "dataType", typeClass = JSONBUserType.class, parameters = {
-    @Parameter(name = JSONBUserType.CLASS,
-        value = "cn.eva.mini.application.dto.function.FunctionDataType")})
-public class ProductFunction implements Serializable {
-
-  /**
-   * The serialVersionUID.
-   */
-  private static final long serialVersionUID = -1741012173485432837L;
+  @Parameter(name = JSONBUserType.CLASS, value = "cn.eva.mini.application.dto.function.FunctionDataType")})
+public class ProductFunction {
 
   /**
    * The id.

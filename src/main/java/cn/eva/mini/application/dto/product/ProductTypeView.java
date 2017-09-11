@@ -34,12 +34,12 @@ public class ProductTypeView implements Serializable {
   /**
    * The functions.
    */
-  private List<CommonFunctionView> functions;
+  private List<ProductFunctionView> functions;
 
   /**
    * The data.
    */
-  private List<CommonDataView> data;
+  private List<ProductDataView> data;
 
   /**
    * The version.

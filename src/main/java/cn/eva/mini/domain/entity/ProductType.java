@@ -76,7 +76,7 @@ public class ProductType {
    * 该类设备预先定义好的设备功能.
    */
   @OneToMany(cascade = CascadeType.ALL)
-  private List<CommonFunction> functions;
+  private List<ProductFunction> functions;
 
   /**
    * 该累设备预先定义好的数据功能.

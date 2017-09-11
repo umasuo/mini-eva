@@ -30,7 +30,8 @@ import javax.persistence.Version;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @TypeDef(name = "dataType", typeClass = JSONBUserType.class, parameters = {
-  @Parameter(name = JSONBUserType.CLASS, value = "cn.eva.mini.application.dto.function.FunctionDataType")})
+  @Parameter(name = JSONBUserType.CLASS, value = "cn.eva.mini.application.dto.function.FunctionDataType")
+})
 public class ProductFunction {
 
   /**

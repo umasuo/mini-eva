@@ -1,7 +1,6 @@
 package cn.eva.mini.application.dto.mapper;
 
 import cn.eva.mini.application.dto.product.ProductFunctionView;
-import cn.eva.mini.domain.entity.CommonFunction;
 import cn.eva.mini.domain.entity.ProductFunction;
 import com.google.common.collect.Lists;
 
@@ -53,37 +52,5 @@ public final class ProductFunctionMapper {
     model.setTransferType(entity.getTransferType());
 
     return model;
-  }
-
-  /**
-   * 拷贝一份新的CommonFunction列表。
-   *
-   * @param functions 原始的CommonFunction列表
-   * @return 新拷贝的CommonFunction列表 list
-   */
-  public static List<ProductFunction> copy(List<CommonFunction> functions) {
-    List<ProductFunction> productFunctions = Lists.newArrayList();
-
-    functions.stream().forEach(function -> productFunctions.add(copy(function)));
-
-    return productFunctions;
-  }
-
-  /**
-   * 拷贝一份新的CommonFunction实体。
-   *
-   * @param function CommonFunction实体
-   * @return 新拷贝的CommonFunction实体 product function
-   */
-  public static ProductFunction copy(CommonFunction function) {
-    ProductFunction productFunction = new ProductFunction();
-
-    productFunction.setFunctionId(function.getFunctionId());
-    productFunction.setName(function.getName());
-    productFunction.setDescription(function.getDescription());
-    productFunction.setTransferType(function.getTransferType());
-    productFunction.setDataType(function.getDataType());
-
-    return productFunction;
   }
 }

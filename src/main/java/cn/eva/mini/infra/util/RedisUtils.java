@@ -53,4 +53,15 @@ public final class RedisUtils {
    */
   public static final String USER_SESSION_KEY = "session";
 
+  /**
+   * Developer key.
+   * "developer:developerId"
+   */
+  public static final String DEVELOPER_KEY_FORMAT = "developer:%s";
+
+  /**
+   * developer session key.
+   */
+  public static final String DEVELOPER_SESSION_KEY = "session";
+
 }

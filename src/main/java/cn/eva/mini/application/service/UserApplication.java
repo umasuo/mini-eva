@@ -132,6 +132,7 @@ public class UserApplication {
   /**
    * User logout application.
    * Clear cache, delete mqtt user.
+   *
    * @param userId
    * @param developerId
    */

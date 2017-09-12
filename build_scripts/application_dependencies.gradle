@@ -30,4 +30,8 @@ dependencies {
 
     // For sms service
     compile('com.yunpian.sdk:yunpian-java-sdk:1.2.3')
+
+    // Aliyun email sdk
+    compile("com.aliyun:aliyun-java-sdk-core:3.0.0")
+    compile("com.aliyun:aliyun-java-sdk-dm:3.1.0")
 }

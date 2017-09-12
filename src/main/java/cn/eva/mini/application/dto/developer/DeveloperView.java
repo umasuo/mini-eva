@@ -49,9 +49,4 @@ public class DeveloperView implements Serializable {
    * developer status: unverified, verified, disabled.
    */
   private AccountStatus status;
-
-  /**
-   * The Openable.
-   */
-  private Boolean openable;
 }

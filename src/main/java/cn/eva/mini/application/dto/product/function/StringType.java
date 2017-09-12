@@ -1,6 +1,5 @@
 package cn.eva.mini.application.dto.product.function;
 
-import cn.eva.mini.infra.util.FunctionDataTypeUtils;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -26,7 +25,7 @@ public class StringType implements FunctionDataType, Serializable {
    * Instantiates a new String type.
    */
   public StringType() {
-    this.type = FunctionDataTypeUtils.STRING_TYPE;
+    this.type = FunctionDataTypeValues.STRING_TYPE;
   }
 
   /**

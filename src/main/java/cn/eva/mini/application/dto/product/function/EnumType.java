@@ -1,6 +1,5 @@
 package cn.eva.mini.application.dto.product.function;
 
-import cn.eva.mini.infra.util.FunctionDataTypeUtils;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -31,7 +30,7 @@ public class EnumType implements FunctionDataType, Serializable {
    * Instantiates a new Enum type.
    */
   public EnumType() {
-    this.type = FunctionDataTypeUtils.ENUM_TYPE;
+    this.type = FunctionDataTypeValues.ENUM_TYPE;
   }
 
   /**

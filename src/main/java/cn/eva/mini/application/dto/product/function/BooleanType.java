@@ -1,6 +1,5 @@
 package cn.eva.mini.application.dto.product.function;
 
-import cn.eva.mini.infra.util.FunctionDataTypeUtils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.ToString;
 
@@ -26,7 +25,7 @@ public final class BooleanType implements FunctionDataType, Serializable {
    * Private constructor.
    */
   private BooleanType() {
-    this.type = FunctionDataTypeUtils.BOOLEAN_TYPE;
+    this.type = FunctionDataTypeValues.BOOLEAN_TYPE;
   }
 
   /**
@@ -102,7 +101,7 @@ public final class BooleanType implements FunctionDataType, Serializable {
      * Instantiates a new Value type.
      */
     public ValueType() {
-      this.type = FunctionDataTypeUtils.VALUE_TYPE;
+      this.type = FunctionDataTypeValues.VALUE_TYPE;
     }
 
     /**

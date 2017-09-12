@@ -1,9 +1,9 @@
-package cn.eva.mini.infra.util;
+package cn.eva.mini.application.dto.product.function;
 
 /**
- * 用于定义FunctionDataType。
+ * 用于定义FunctionDataType的值.
  */
-public final class FunctionDataTypeUtils {
+public final class FunctionDataTypeValues {
   /**
    * 布尔型。
    */

@@ -49,11 +49,11 @@ public class ProductTypeService {
    * @param id the id
    */
   public void delete(String id) {
-    LOGGER.info("Enter. product type id: {}.", id);
+    LOGGER.debug("Enter. product type id: {}.", id);
 
     repository.delete(id);
 
-    LOGGER.info("Exit.");
+    LOGGER.debug("Exit.");
   }
 
   /**

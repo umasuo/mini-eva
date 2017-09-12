@@ -20,13 +20,17 @@ import javax.servlet.ServletResponse;
 /**
  * 权限验证第一步，这里只验证用户是否已经登陆，并获取其具体权限信息，将开发者ID，权限通过header传入具体service.
  */
-@Component
+//@Component
 public class AuthenticationPreFilter implements Filter {
 
   /**
    * Logger.
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationPreFilter.class);
+
+
+
+
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {

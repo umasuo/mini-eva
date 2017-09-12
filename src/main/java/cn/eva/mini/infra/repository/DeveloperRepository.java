@@ -4,8 +4,6 @@ import cn.eva.mini.domain.entity.Developer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * Developer repository.
  */
@@ -20,11 +18,4 @@ public interface DeveloperRepository extends JpaRepository<Developer, String> {
    */
   Developer findOneByEmail(String email);
 
-  /**
-   * Find by openable.
-   *
-   * @param openable the openable
-   * @return the list
-   */
-  List<Developer> findByOpenable(Boolean openable);
 }

@@ -27,8 +27,8 @@ public class SignOutApplication {
   /**
    * configs.
    */
-  @Autowired
-  private transient MessageApplication messageApplication;
+//  @Autowired
+//  private transient MessageApplication messageApplication;
 
   /**
    * 用户退出登录.

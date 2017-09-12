@@ -17,7 +17,7 @@ import java.nio.charset.Charset;
 /**
  * MessageApplication.
  */
-@Service
+//@Service
 public class MessageApplication implements CommandLineRunner {
   /**
    * Logger.

@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Message application.
  */
-@Service
+//@Service
 public class DeviceMessageApplication implements CommandLineRunner {
 
   /**

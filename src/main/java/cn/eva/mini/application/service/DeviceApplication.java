@@ -38,8 +38,8 @@ public class DeviceApplication {
   /**
    * Message app.
    */
-  @Autowired
-  private transient DeviceMessageApplication messageApplication;
+//  @Autowired
+//  private transient DeviceMessageApplication messageApplication;
 
   /**
    * Session app.
@@ -82,7 +82,7 @@ public class DeviceApplication {
     DeviceActivateResult result = DeviceActivateResult.build(device);
 
     //添加MQTT的用户名和密码
-    messageApplication.addMqttUser(result.getDeviceId(), result.getPublicKey());
+//    messageApplication.addMqttUser(result.getDeviceId(), result.getPublicKey());
     // todo 发布消息通知客户端设备已经激活
 //    messageApplication.publish(result.getDeviceId(), userId);
     //更新设备的session

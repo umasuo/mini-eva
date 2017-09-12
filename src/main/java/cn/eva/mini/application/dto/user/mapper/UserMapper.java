@@ -1,5 +1,6 @@
 package cn.eva.mini.application.dto.user.mapper;
 
+import cn.eva.mini.application.dto.user.UserQuickLogin;
 import cn.eva.mini.application.dto.user.UserRegisterInfo;
 import cn.eva.mini.application.dto.user.UserView;
 import cn.eva.mini.domain.entity.User;
@@ -54,6 +55,22 @@ public final class UserMapper {
     user.setPhone(register.getPhone());
     user.setPassword(PasswordUtil.hashPassword(register.getPassword()));
 
+    return user;
+  }
+
+  /**
+   * To platform user platform user.
+   *
+   * @param signIn the sign in
+   * @return the platform user
+   */
+  public static User toModel(UserQuickLogin signIn) {
+    User user = null;
+    if (signIn != null) {
+      user = new User();
+      user.setPhone(signIn.getPhone());
+      user.setDeveloperId(signIn.getDeveloperId());
+    }
     return user;
   }
 }

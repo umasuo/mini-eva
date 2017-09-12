@@ -35,5 +35,5 @@ public class UserQuickLogin implements Serializable {
    * The validation code.
    */
   @NotNull
-  private String validationCode;
+  private String smsCode;
 }

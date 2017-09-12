@@ -4,9 +4,7 @@ import cn.eva.mini.application.dto.user.UserLogin;
 import cn.eva.mini.application.dto.user.UserLoginResult;
 import cn.eva.mini.application.dto.user.UserQuickLogin;
 import cn.eva.mini.application.dto.user.UserRegisterInfo;
-import cn.eva.mini.application.service.RegisterApplication;
-import cn.eva.mini.application.service.SignInApplication;
-import cn.eva.mini.application.service.SignOutApplication;
+import cn.eva.mini.application.service.UserApplication;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,19 +33,8 @@ public class UserController {
    * sign up service
    */
   @Autowired
-  private transient SignInApplication signInService;
+  private transient UserApplication userApplication;
 
-  /**
-   * sign up service
-   */
-  @Autowired
-  private transient SignOutApplication signOutService;
-
-  /**
-   * sign up service
-   */
-  @Autowired
-  private transient RegisterApplication registerApplication;
 
   /**
    * User quick login.
@@ -60,7 +47,7 @@ public class UserController {
   public UserLoginResult quickLogin(@RequestBody @Valid UserQuickLogin login) {
     LOGGER.info("Enter. login: {}", login);
 
-    UserLoginResult loginResult = signInService.quickLogin(login);
+    UserLoginResult loginResult = userApplication.quickLogin(login);
 
     LOGGER.info("Exit. loginResult: {}", loginResult);
     return loginResult;
@@ -77,7 +64,7 @@ public class UserController {
   public UserLoginResult login(@RequestBody @Valid UserLogin signIn) {
     LOGGER.info("Enter. quickLogin: {}", signIn);
 
-    UserLoginResult loginResult = signInService.login(signIn);
+    UserLoginResult loginResult = userApplication.login(signIn);
 
     LOGGER.info("Exit. loginResult: {}", loginResult);
     return loginResult;
@@ -93,7 +80,7 @@ public class UserController {
   public void logout(@PathVariable String userId, @RequestHeader String developerId) {
     LOGGER.info("Enter. userId: {}, developerId: {}.", userId, developerId);
 
-    signOutService.signOut(userId, developerId);
+    userApplication.logout(userId, developerId);
 
     LOGGER.info("Exit.");
   }
@@ -108,7 +95,7 @@ public class UserController {
   public UserLoginResult register(@RequestBody @Valid UserRegisterInfo register) {
     LOGGER.info("Enter. register: {}", register);
 
-    UserLoginResult signInResult = registerApplication.register(register);
+    UserLoginResult signInResult = userApplication.register(register);
 
     LOGGER.info("Exit. signInResult: {}", signInResult);
     return signInResult;

@@ -44,6 +44,7 @@ public final class RedisUtils {
 
   /**
    * User key.
+   * "user:developerId:userId"
    */
   public static final String USER_KEY_FORMAT = "user:%s:%s";
 
@@ -51,4 +52,5 @@ public final class RedisUtils {
    * User session key.
    */
   public static final String USER_SESSION_KEY = "session";
+
 }

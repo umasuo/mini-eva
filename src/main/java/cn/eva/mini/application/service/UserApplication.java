@@ -2,13 +2,14 @@ package cn.eva.mini.application.service;
 
 import cn.eva.mini.application.dto.user.UserLoginResult;
 import cn.eva.mini.application.dto.user.UserQuickLogin;
+import cn.eva.mini.application.dto.user.UserRegisterInfo;
 import cn.eva.mini.application.dto.user.UserSession;
 import cn.eva.mini.application.dto.user.UserLogin;
 import cn.eva.mini.application.dto.user.UserView;
-import cn.eva.mini.application.dto.user.mapper.UserSignInMapper;
 import cn.eva.mini.application.dto.user.mapper.UserMapper;
 import cn.eva.mini.domain.entity.User;
 import cn.eva.mini.domain.service.UserService;
+import cn.eva.mini.infra.exception.AlreadyExistException;
 import cn.eva.mini.infra.exception.NotExistException;
 import cn.eva.mini.infra.exception.PasswordErrorException;
 import cn.eva.mini.infra.util.PasswordUtil;
@@ -26,12 +27,12 @@ import java.util.concurrent.TimeUnit;
  * The type Sign in service.
  */
 @Service
-public class SignInApplication {
+public class UserApplication {
 
   /**
    * Logger.
    */
-  private final static Logger LOGGER = LoggerFactory.getLogger(SignInApplication.class);
+  private final static Logger LOGGER = LoggerFactory.getLogger(UserApplication.class);
 
   /**
    * redis ops.
@@ -69,12 +70,12 @@ public class SignInApplication {
 
     UserLoginResult result;
 
-    smsApplication.validateCode(signIn.getPhone(), signIn.getValidationCode());
+    smsApplication.validateCode(signIn.getPhone(), signIn.getSmsCode());
 
     User user = userService.getByPhone(signIn.getPhone());
 
     if (user == null) {
-      user = createUser(signIn);
+      user = userService.create(UserMapper.toModel(signIn));
     }
 
     result = login(user);
@@ -120,35 +121,60 @@ public class SignInApplication {
 
     String token = UUID.randomUUID().toString();
 
-    UserLoginResult signInResult = new UserLoginResult(userView, token);
+    UserLoginResult loginResult = new UserLoginResult(userView, token);
 
-    cacheSignInStatus(userView, token);
+    cacheLoginStatus(userView, token);
 
-    LOGGER.debug("Exit. signInResult: {}.", signInResult);
-    return signInResult;
+    LOGGER.debug("Exit. loginResult: {}.", loginResult);
+    return loginResult;
   }
 
+  /**
+   * User logout application.
+   * Clear cache, delete mqtt user.
+   * @param userId
+   * @param developerId
+   */
+  public void logout(String userId, String developerId) {
+    LOGGER.debug("Enter. userId: {}, developerId: {}.", userId, developerId);
+
+    String userKey = String.format(RedisUtils.USER_KEY_FORMAT, developerId, userId);
+    redisTemplate.delete(userKey);
+
+//    messageApplication.deleteMqttUser(userId);
+
+    LOGGER.debug("Exit.");
+  }
 
   /**
-   * Create a new PlatformUser entity.
+   * register.
+   * TODO 事务性!
    *
-   * @param signIn the signUpDeveloperUser info.
-   * @return PlatformUser
+   * @param register the sign in
+   * @return the sign in result
    */
-  private User createUser(UserQuickLogin signIn) {
-    LOGGER.debug("Enter. signUpDeveloperUser: {}.", signIn);
+  public UserLoginResult register(UserRegisterInfo register) {
+    LOGGER.debug("Enter. register: {}", register);
 
-    User user = UserSignInMapper.toModel(signIn);
-    User savedUser = userService.create(user);
+    smsApplication.validateCode(register.getPhone(), register.getSmsCode());
 
-    LOGGER.debug("Exit. User created: {}.", savedUser);
-    return savedUser;
+    User user = userService.getByPhone(register.getPhone());
+    if (user != null) {
+      throw new AlreadyExistException("User already exist.");
+    }
+
+    user = userService.create(UserMapper.toModel(register));
+
+    UserLoginResult result = login(user);
+
+    LOGGER.debug("Exit. UserLoginResult: {}.", result);
+    return result;
   }
 
   /**
    * cache the user's sign in status and info.
    */
-  private void cacheSignInStatus(UserView userView, String token) {
+  private void cacheLoginStatus(UserView userView, String token) {
     LOGGER.debug("Enter. userView: {}, token: {}.", userView, token);
 
     String userKey = String.format(RedisUtils.USER_KEY_FORMAT, userView.getDeveloperId(), userView.getUserId());
@@ -157,8 +183,8 @@ public class SignInApplication {
 
     //cache the result
     redisTemplate.boundHashOps(userKey).put(RedisUtils.USER_SESSION_KEY, session);
-    redisTemplate.expire(userKey, 30, TimeUnit.DAYS);//7天后过期
-//    messageApplication.addMqttUser(userView.getUserId(), token);
+    redisTemplate.expire(userKey, UserSession.EXPIRE_IN, TimeUnit.DAYS);
+    //todo    messageApplication.addMqttUser(userView.getUserId(), token);
     LOGGER.debug("Exit.");
   }
 

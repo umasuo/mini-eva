@@ -93,6 +93,23 @@ public class DeveloperApplication {
     return result;
   }
 
+  /**
+   * Sign out. When sign out, clear the cache.
+   *
+   * @param token token.
+   */
+  public void logout(String id, String token) {
+    LOGGER.debug("Enter. id: {}, token: {}", id, token);
+    assert id != null;
+    assert token != null;
+
+    String key = String.format(RedisUtils.DEVELOPER_KEY_FORMAT, id);
+    DeveloperSession session = (DeveloperSession) redisTemplate.opsForHash().get(key, RedisUtils.DEVELOPER_SESSION_KEY);
+    if (session != null && token.equals(session.getToken())) {
+      redisTemplate.delete(key);
+    }
+    LOGGER.debug("Exit.");
+  }
 
   /**
    * Get all developers.

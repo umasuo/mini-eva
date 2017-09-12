@@ -64,4 +64,15 @@ public final class RedisUtils {
    */
   public static final String DEVELOPER_SESSION_KEY = "session";
 
+  /**
+   * Verify key format.
+   * key value is: developer:{developerId}:verify.
+   */
+  public static final String DEVELOPER_EMAIL_VERIFY_KEY_FORMAT = "developer:%s:verify";
+
+  /**
+   * Reset key format.
+   * key value is: developer:{developerId}:reset.
+   */
+  public static final String DEVELOPER_EMAIL_RESET_KEY_FORMAT = "developer:%s:reset";
 }

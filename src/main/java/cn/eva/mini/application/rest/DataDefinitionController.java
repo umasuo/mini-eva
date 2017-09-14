@@ -2,7 +2,7 @@ package cn.eva.mini.application.rest;
 
 import cn.eva.mini.application.dto.data.DataDefinitionDraft;
 import cn.eva.mini.application.dto.data.DataDefinitionView;
-import cn.eva.mini.application.service.DataDefinitionApplication;
+import cn.eva.mini.application.service.data.DataDefinitionApplication;
 import cn.eva.mini.domain.service.DataDefinitionService;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;

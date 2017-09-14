@@ -1,6 +1,7 @@
-package cn.eva.mini.application.service;
+package cn.eva.mini.application.service.device;
 
 import cn.eva.mini.application.dto.device.DeviceMessage;
+import cn.eva.mini.application.service.MessageApplication;
 import cn.eva.mini.infra.config.AppConfig;
 import cn.eva.mini.infra.exception.SubDeviceTopicException;
 import cn.eva.mini.infra.util.DevicePasswordUtils;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;

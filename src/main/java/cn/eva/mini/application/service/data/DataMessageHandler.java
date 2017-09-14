@@ -1,4 +1,4 @@
-package cn.eva.mini.application.service;
+package cn.eva.mini.application.service.data;
 
 import org.springframework.stereotype.Service;
 

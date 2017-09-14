@@ -1,10 +1,10 @@
 package cn.eva.mini.application.service;
 
+import cn.eva.mini.application.dto.user.UserLogin;
 import cn.eva.mini.application.dto.user.UserLoginResult;
 import cn.eva.mini.application.dto.user.UserQuickLogin;
 import cn.eva.mini.application.dto.user.UserRegisterInfo;
 import cn.eva.mini.application.dto.user.UserSession;
-import cn.eva.mini.application.dto.user.UserLogin;
 import cn.eva.mini.application.dto.user.UserView;
 import cn.eva.mini.application.dto.user.mapper.UserMapper;
 import cn.eva.mini.domain.entity.User;
@@ -62,20 +62,20 @@ public class UserApplication {
    * sign in.
    * TODO 事务性!
    *
-   * @param signIn the sign in
+   * @param quickLogin the sign in
    * @return the sign in result
    */
-  public UserLoginResult quickLogin(UserQuickLogin signIn) {
-    LOGGER.debug("Enter. login: {}", signIn);
+  public UserLoginResult quickLogin(UserQuickLogin quickLogin) {
+    LOGGER.debug("Enter. login: {}", quickLogin);
 
     UserLoginResult result;
 
-    smsApplication.validateCode(signIn.getPhone(), signIn.getSmsCode());
+    smsApplication.validateCode(quickLogin.getPhone(), quickLogin.getSmsCode());
 
-    User user = userService.getByPhone(signIn.getPhone());
+    User user = userService.getByPhone(quickLogin.getPhone());
 
     if (user == null) {
-      user = userService.create(UserMapper.toModel(signIn));
+      user = userService.create(UserMapper.toModel(quickLogin));
     }
 
     result = login(user);
@@ -87,18 +87,18 @@ public class UserApplication {
   /**
    * 手机密码登录.
    *
-   * @param signIn
+   * @param login
    * @return
    */
-  public UserLoginResult login(UserLogin signIn) {
-    LOGGER.debug("Enter. login: {}.", signIn);
+  public UserLoginResult login(UserLogin login) {
+    LOGGER.debug("Enter. login: {}.", login);
 
-    User user = userService.getByPhone(signIn.getPhone());
+    User user = userService.getByPhone(login.getPhone());
     if (user == null) {
-      throw new NotExistException("User not exit for phone: " + signIn.getPhone());
+      throw new NotExistException("User not exit for phone: " + login.getPhone());
     }
 
-    if (!PasswordUtil.checkPassword(signIn.getPassword(), user.getPassword())) {
+    if (!PasswordUtil.checkPassword(login.getPassword(), user.getPassword())) {
       throw new PasswordErrorException("phone number or password not correct!");
     }
 
@@ -114,7 +114,7 @@ public class UserApplication {
    * @param user the user entity.
    * @return UserLoginResult
    */
-  public UserLoginResult login(User user) {
+  private UserLoginResult login(User user) {
     LOGGER.debug("Enter. User: {}.", user);
 
     UserView userView = UserMapper.toView(user);

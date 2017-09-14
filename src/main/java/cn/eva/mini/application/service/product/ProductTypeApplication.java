@@ -1,4 +1,4 @@
-package cn.eva.mini.application.service;
+package cn.eva.mini.application.service.product;
 
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
@@ -6,16 +6,21 @@ import cn.eva.mini.application.dto.product.mapper.ProductTypeMapper;
 import cn.eva.mini.domain.entity.ProductType;
 import cn.eva.mini.domain.service.ProductTypeService;
 import cn.eva.mini.infra.exception.NotExistException;
-import cn.eva.mini.infra.util.JsonUtils;
+import cn.eva.mini.infra.util.RedisUtils;
 import cn.eva.mini.infra.util.VersionValidator;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * ProductType application.
@@ -35,10 +40,10 @@ public class ProductTypeApplication {
   private transient ProductTypeService productTypeService;
 
   /**
-   * DataCacheApplication.
+   * The redis template.
    */
   @Autowired
-  private transient ProductCacheApplication cacheApplication;
+  private transient RedisTemplate redisTemplate;
 
   /**
    * Create product type view.
@@ -55,7 +60,7 @@ public class ProductTypeApplication {
 
     ProductTypeView result = ProductTypeMapper.toView(newProductType);
 
-    cacheApplication.deleteProductTypes();
+    deleteProductTypes();
 
     LOGGER.debug("Exit. new productType id: {}.", result.getId());
     return result;
@@ -171,5 +176,56 @@ public class ProductTypeApplication {
     LOGGER.debug("Exit. productType: {}.", result);
     return result;
   }
+
+
+  /**
+   * Gets all ProductType.
+   *
+   * @return the all product type
+   */
+  public List<ProductTypeView> getAllProductType() {
+    LOGGER.debug("Enter.");
+    List<ProductTypeView> result = Lists.newArrayList();
+
+    Map<String, ProductTypeView> cacheProductTypes =
+      redisTemplate.opsForHash().entries(RedisUtils.PRODUCT_TYPE_KEY);
+
+    if (!CollectionUtils.isEmpty(cacheProductTypes)) {
+      result = cacheProductTypes.values().stream().collect(Collectors.toList());
+    }
+
+    LOGGER.trace("ProductType: {}.", result);
+    LOGGER.debug("Exit. productType size: {}.", result.size());
+    return result;
+  }
+
+  /**
+   * Cache ProductType.
+   *
+   * @param productTypeViews the product type views
+   */
+  @Async
+  public void cacheProductType(List<ProductTypeView> productTypeViews) {
+    LOGGER.debug("Enter. productType size: {}.", productTypeViews.size());
+
+    Map<String, ProductTypeView> cacheProductTypes = Maps.newHashMap();
+    productTypeViews.stream().forEach(view -> cacheProductTypes.put(view.getId(), view));
+    redisTemplate.opsForHash().putAll(RedisUtils.PRODUCT_TYPE_KEY, cacheProductTypes);
+
+    LOGGER.debug("Exit. cache done.");
+  }
+
+  /**
+   * Delete ProductType from cache.
+   */
+  @Async
+  public void deleteProductTypes() {
+    LOGGER.debug("Enter.");
+
+    redisTemplate.delete(RedisUtils.PRODUCT_TYPE_KEY);
+
+    LOGGER.debug("Exit. delete done.");
+  }
+
 
 }

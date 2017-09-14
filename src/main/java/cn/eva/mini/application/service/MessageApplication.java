@@ -1,5 +1,6 @@
 package cn.eva.mini.application.service;
 
+import cn.eva.mini.application.service.data.DataMessageHandler;
 import cn.eva.mini.infra.config.AppConfig;
 import org.fusesource.mqtt.client.BlockingConnection;
 import org.fusesource.mqtt.client.MQTT;
@@ -10,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
 
 import java.nio.charset.Charset;
 

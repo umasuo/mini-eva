@@ -1,4 +1,4 @@
-package cn.eva.mini.application.service;
+package cn.eva.mini.application.service.device;
 
 import cn.eva.mini.application.dto.device.DeviceMessage;
 import cn.eva.mini.application.dto.device.DeviceSession;

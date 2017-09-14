@@ -1,4 +1,4 @@
-package cn.eva.mini.application.service;
+package cn.eva.mini.application.service.data;
 
 import cn.eva.mini.application.dto.data.mapper.DataDefinitionMapper;
 import cn.eva.mini.domain.entity.DeviceDataDefinition;

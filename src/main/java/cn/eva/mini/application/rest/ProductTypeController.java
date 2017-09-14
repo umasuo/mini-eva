@@ -2,7 +2,7 @@ package cn.eva.mini.application.rest;
 
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
-import cn.eva.mini.application.service.ProductTypeApplication;
+import cn.eva.mini.application.service.product.ProductTypeApplication;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

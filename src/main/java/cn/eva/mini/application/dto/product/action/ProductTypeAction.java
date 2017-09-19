@@ -1,5 +1,6 @@
 package cn.eva.mini.application.dto.product.action;
 
+import cn.eva.mini.infra.updater.UpdateAction;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
     @JsonSubTypes.Type(value = AddProductTypeFunction.class, name = ProductActionNames.ADD_PRODUCT_TYPE_FUNCTION),
     @JsonSubTypes.Type(value = AddProductTypeData.class, name = ProductActionNames.ADD_PRODUCT_TYPE_DATA),
 })
-public interface ProductTypeAction extends Serializable {
+public interface ProductTypeAction extends Serializable , UpdateAction {
 
   /**
    * get action name.

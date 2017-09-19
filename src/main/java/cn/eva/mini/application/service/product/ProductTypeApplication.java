@@ -2,10 +2,12 @@ package cn.eva.mini.application.service.product;
 
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
+import cn.eva.mini.application.dto.product.action.ProductTypeAction;
 import cn.eva.mini.application.dto.product.mapper.ProductTypeMapper;
 import cn.eva.mini.domain.entity.ProductType;
 import cn.eva.mini.domain.service.ProductTypeService;
 import cn.eva.mini.infra.exception.NotExistException;
+import cn.eva.mini.infra.updater.UpdaterService;
 import cn.eva.mini.infra.util.RedisUtils;
 import cn.eva.mini.infra.util.VersionValidator;
 import com.google.common.collect.Lists;
@@ -44,6 +46,12 @@ public class ProductTypeApplication {
    */
   @Autowired
   private transient RedisTemplate redisTemplate;
+
+  /**
+   * UpdaterService.
+   */
+  @Autowired
+  private transient UpdaterService updaterService;
 
   /**
    * Create product type view.
@@ -97,31 +105,31 @@ public class ProductTypeApplication {
    * @param actions the actions
    * @return the product type view
    */
-//  public ProductTypeView update(String id, Integer version, List<UpdateAction> actions) {
-//    LOGGER.debug("Enter: id: {}, version: {}, actions: {}.", id, version, actions);
-//
-//    ProductType valueInDb = productTypeService.getById(id);
-//
-//    VersionValidator.validate(version, valueInDb.getVersion());
-//
-//    actions.stream().forEach(action -> updaterService.handle(valueInDb, action));
-//
-//    ProductType product = productTypeService.save(valueInDb);
-//
-//    cacheApplication.deleteProductTypes();
-//
-//    Map<String, List<CommonDataView>> dataDefinitionViews =
-//        restClient.getProductTypeData();
+  public ProductTypeView update(String id, Integer version, List<ProductTypeAction> actions) {
+    LOGGER.debug("Enter: id: {}, version: {}, actions: {}.", id, version, actions);
+
+    ProductType valueInDb = productTypeService.getById(id);
+
+    VersionValidator.validate(version, valueInDb.getVersion());
+
+    actions.stream().forEach(action -> updaterService.handle(valueInDb, action));
+
+    ProductType product = productTypeService.save(valueInDb);
+
+    deleteProductTypes();
+
+//    Map<String, List<CommonDataView>> dataDefinitionViews = restClient.getProductTypeData();
 //
 //    ProductTypeView updatedProduct = ProductTypeMapper.toView(product, dataDefinitionViews);
 //
 //    handleSchema(updatedProduct);
-//
+
 //    LOGGER.trace("updated productType: {}", updatedProduct);
 //    LOGGER.debug("Exit.");
 //
 //    return updatedProduct;
-//  }
+    return null;
+  }
 
   /**
    * 查询所有的产品类型。

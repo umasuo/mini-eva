@@ -1,8 +1,7 @@
 package cn.eva.mini.application.service.product;
 
-import cn.eva.mini.application.dto.product.ProductDataView;
+import cn.eva.mini.application.dto.data.DeviceDataView;
 import cn.eva.mini.application.dto.product.ProductDraft;
-import cn.eva.mini.application.dto.product.ProductTypeView;
 import cn.eva.mini.application.dto.product.ProductView;
 import cn.eva.mini.application.dto.product.mapper.ProductMapper;
 import cn.eva.mini.domain.entity.Product;
@@ -155,7 +154,6 @@ public class ProductApplication {
 //  }
 
 
-
   /**
    * Get all product by developer id.
    *
@@ -275,10 +273,10 @@ public class ProductApplication {
    * @param productId   the product id
    * @return the data definitions
    */
-  public List<ProductDataView> getDataDefinitions(String developerId, String productId) {
+  public List<DeviceDataView> getDataDefinitions(String developerId, String productId) {
     LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
 
-    List<ProductDataView> dataViews = Lists.newArrayList();
+    List<DeviceDataView> dataViews = Lists.newArrayList();
     ProductView product = get(productId, developerId);
 
     if (product != null && product.getDataDefinitions() != null) {
@@ -305,7 +303,7 @@ public class ProductApplication {
 
     List<String> productIds = products.stream().map(Product::getId).collect(Collectors.toList());
 
-    Map<String, List<ProductDataView>> productDataViews = null;
+    Map<String, List<DeviceDataView>> productDataViews = null;
 //    Map<String, List<ProductDataView>> productDataViews = restClient.getProductData(developerId, productIds);
 
     mergeProductData(result, productDataViews);
@@ -325,7 +323,7 @@ public class ProductApplication {
    * @param productDataViews list build ProductData
    */
   private void mergeProductData(List<ProductView> productViews,
-                                Map<String, List<ProductDataView>> productDataViews) {
+                                Map<String, List<DeviceDataView>> productDataViews) {
     LOGGER.debug("Enter.");
 
     productViews.stream().forEach(

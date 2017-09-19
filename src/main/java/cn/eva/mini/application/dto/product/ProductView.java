@@ -1,5 +1,6 @@
 package cn.eva.mini.application.dto.product;
 
+import cn.eva.mini.application.dto.data.DeviceDataView;
 import cn.eva.mini.infra.enums.NetType;
 import cn.eva.mini.infra.enums.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -69,7 +70,7 @@ public class ProductView implements Serializable {
   /**
    * 数据定义，需要提前定义好不同的数据类型.
    */
-  private List<ProductDataView> dataDefinitions;
+  private List<DeviceDataView> dataDefinitions;
 
   /**
    * 功能定义。

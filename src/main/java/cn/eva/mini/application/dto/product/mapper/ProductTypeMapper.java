@@ -1,6 +1,6 @@
 package cn.eva.mini.application.dto.product.mapper;
 
-import cn.eva.mini.application.dto.product.ProductDataView;
+import cn.eva.mini.application.dto.data.DeviceDataView;
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
 import cn.eva.mini.domain.entity.ProductType;
@@ -28,7 +28,7 @@ public final class ProductTypeMapper {
    * @param commonDataViews CommonDataView list
    * @return list build ProductTypeView
    */
-  public static List<ProductTypeView> toView(List<ProductType> entities, Map<String, List<ProductDataView>> commonDataViews) {
+  public static List<ProductTypeView> toView(List<ProductType> entities, Map<String, List<DeviceDataView>> commonDataViews) {
     List<ProductTypeView> views = Lists.newArrayList();
 
     entities.stream().forEach(
@@ -45,10 +45,10 @@ public final class ProductTypeMapper {
    * @param productDataViews CommonDataView list
    * @return ProductTypeView product type view
    */
-  public static ProductTypeView toView(ProductType entity, Map<String, List<ProductDataView>> productDataViews) {
+  public static ProductTypeView toView(ProductType entity, Map<String, List<DeviceDataView>> productDataViews) {
     ProductTypeView view = toView(entity);
 
-    List<ProductDataView> dataViews = Lists.newArrayList();
+    List<DeviceDataView> dataViews = Lists.newArrayList();
     if (!CollectionUtils.isEmpty(productDataViews) && productDataViews.containsKey(entity.getId())) {
       dataViews = productDataViews.get(entity.getId());
     }

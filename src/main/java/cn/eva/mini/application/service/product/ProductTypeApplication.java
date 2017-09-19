@@ -60,6 +60,7 @@ public class ProductTypeApplication {
 
     ProductTypeView result = ProductTypeMapper.toView(newProductType);
 
+    // Reset the product cache
     deleteProductTypes();
 
     LOGGER.debug("Exit. new productType id: {}.", result.getId());
@@ -81,9 +82,9 @@ public class ProductTypeApplication {
 
     productTypeService.delete(id);
 
-//    restClient.deleteProductTypeData(id);
+    // TODO: 17/9/19 delete product type's data
 
-//    cacheApplication.deleteProductTypes();
+    deleteProductTypes();
 
     LOGGER.debug("Exit.");
   }

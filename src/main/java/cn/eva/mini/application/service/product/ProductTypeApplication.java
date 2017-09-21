@@ -1,9 +1,11 @@
 package cn.eva.mini.application.service.product;
 
+import cn.eva.mini.application.dto.data.DataDefinitionView;
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
 import cn.eva.mini.application.dto.product.action.ProductTypeAction;
 import cn.eva.mini.application.dto.product.mapper.ProductTypeMapper;
+import cn.eva.mini.application.service.data.DataDefinitionApplication;
 import cn.eva.mini.domain.entity.ProductType;
 import cn.eva.mini.domain.service.ProductTypeService;
 import cn.eva.mini.infra.exception.NotExistException;
@@ -46,6 +48,12 @@ public class ProductTypeApplication {
    */
   @Autowired
   private transient RedisTemplate redisTemplate;
+
+  /**
+   * Data definition application, for get latest data definition.
+   */
+  @Autowired
+  private transient DataDefinitionApplication definitionApplication;
 
   /**
    * UpdaterService.
@@ -100,7 +108,7 @@ public class ProductTypeApplication {
   /**
    * Update product type view.
    *
-   * @param id the id
+   * @param id      the id
    * @param version the version
    * @param actions the actions
    * @return the product type view
@@ -118,17 +126,14 @@ public class ProductTypeApplication {
 
     deleteProductTypes();
 
-//    Map<String, List<CommonDataView>> dataDefinitionViews = restClient.getProductTypeData();
-//
-//    ProductTypeView updatedProduct = ProductTypeMapper.toView(product, dataDefinitionViews);
-//
-//    handleSchema(updatedProduct);
+    List<DataDefinitionView> dataDefinitionViews = definitionApplication.getByProductTypeId(id);
 
-//    LOGGER.trace("updated productType: {}", updatedProduct);
-//    LOGGER.debug("Exit.");
+    ProductTypeView updatedProduct = ProductTypeMapper.toView(product, dataDefinitionViews);
+
+    LOGGER.trace("updated productType: {}", updatedProduct);
+    LOGGER.debug("Exit.");
 //
-//    return updatedProduct;
-    return null;
+    return updatedProduct;
   }
 
   /**

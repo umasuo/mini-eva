@@ -1,6 +1,6 @@
 package cn.eva.mini.application.dto.product.mapper;
 
-import cn.eva.mini.application.dto.data.DeviceDataView;
+import cn.eva.mini.application.dto.data.DataDefinitionView;
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
 import cn.eva.mini.domain.entity.ProductType;
@@ -25,14 +25,14 @@ public final class ProductTypeMapper {
    * 把ProductType列表转换为ProductTypeView列表，并且加上对应的CommonDataView。
    *
    * @param entities        ProductType list
-   * @param commonDataViews CommonDataView list
+   * @param dataDefinitions CommonDataView list
    * @return list build ProductTypeView
    */
-  public static List<ProductTypeView> toView(List<ProductType> entities, Map<String, List<DeviceDataView>> commonDataViews) {
+  public static List<ProductTypeView> toView(List<ProductType> entities, Map<String, List<DataDefinitionView>> dataDefinitions) {
     List<ProductTypeView> views = Lists.newArrayList();
 
     entities.stream().forEach(
-      entity -> views.add(toView(entity, commonDataViews))
+      entity -> views.add(toView(entity, dataDefinitions))
     );
 
     return views;
@@ -41,14 +41,14 @@ public final class ProductTypeMapper {
   /**
    * 把ProductType转换为ProductTypeView，并且加上对应的CommonDataView。
    *
-   * @param entity          ProductType
+   * @param entity           ProductType
    * @param productDataViews CommonDataView list
    * @return ProductTypeView product type view
    */
-  public static ProductTypeView toView(ProductType entity, Map<String, List<DeviceDataView>> productDataViews) {
+  public static ProductTypeView toView(ProductType entity, Map<String, List<DataDefinitionView>> productDataViews) {
     ProductTypeView view = toView(entity);
 
-    List<DeviceDataView> dataViews = Lists.newArrayList();
+    List<DataDefinitionView> dataViews = Lists.newArrayList();
     if (!CollectionUtils.isEmpty(productDataViews) && productDataViews.containsKey(entity.getId())) {
       dataViews = productDataViews.get(entity.getId());
     }
@@ -73,6 +73,25 @@ public final class ProductTypeMapper {
     view.setGroupName(entity.getGroupName());
     view.setFunctions(ProductFunctionMapper.toModel(entity.getFunctions()));
     view.setData(Lists.newArrayList());
+    view.setVersion(entity.getVersion());
+
+    return view;
+  }
+
+  /**
+   * Convert ProductType into ProductTypeView.
+   *
+   * @param entity the entity
+   * @return the product type view
+   */
+  public static ProductTypeView toView(ProductType entity, List<DataDefinitionView> productDataViews) {
+    ProductTypeView view = new ProductTypeView();
+
+    view.setId(entity.getId());
+    view.setName(entity.getName());
+    view.setGroupName(entity.getGroupName());
+    view.setFunctions(ProductFunctionMapper.toModel(entity.getFunctions()));
+    view.setData(productDataViews);
     view.setVersion(entity.getVersion());
 
     return view;

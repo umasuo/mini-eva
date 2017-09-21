@@ -17,8 +17,9 @@ public final class RedisUtils {
 
   /**
    * Device definition key.
+   * data:definition:{productTypeId}
    */
-  public static final String DEVICE_DEFINITION_FORMAT = "data:definition:%s:%s";
+  public static final String DATA_DEFINITION_FORMAT = "data:definition:%s";
 
 
   /**

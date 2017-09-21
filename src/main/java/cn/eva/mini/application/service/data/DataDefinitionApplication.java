@@ -51,22 +51,21 @@ public class DataDefinitionApplication {
    * Create DeviceDataDefinition.
    *
    * @param draft       the draft
-   * @param developerId the developer id
    * @return the data definition view
    */
-  public DataDefinitionView create(DataDefinitionDraft draft, String developerId) {
-    LOGGER.debug("Enter. draft: {}, developerId: {}.", draft, developerId);
+  public DataDefinitionView create(DataDefinitionDraft draft) {
+    LOGGER.debug("Enter. draft: {}.", draft);
 
     SchemaValidator.validate(draft.getDataSchema());
 
-    definitionService.isExistName(developerId, draft.getProductId(), draft.getName());
+    definitionService.isExistName(draft.getProductTypeId(), draft.getName());
 
-    definitionService.isExistDataId(developerId, draft.getProductId(), draft.getDataId());
+    definitionService.isExistDataId(draft.getProductTypeId(), draft.getDataId());
 
     DeviceDataDefinition definition =
-      definitionService.save(DataDefinitionMapper.toModel(draft, developerId));
+      definitionService.save(DataDefinitionMapper.toModel(draft));
 
-    cacheApplication.deleteProductDataDefinition(developerId, draft.getProductId());
+    cacheApplication.deleteDataDefinition( draft.getProductTypeId());
 
     DataDefinitionView view = DataDefinitionMapper.toView(definition);
 
@@ -99,7 +98,7 @@ public class DataDefinitionApplication {
 //
 //    DeviceDataDefinition updatedDefinition = definitionService.save(definition);
 //
-//    cacheApplication.deleteProductDataDefinition(developerId, definition.getProductId());
+//    cacheApplication.deleteDataDefinition(developerId, definition.getProductTypeId());
 //
 //    DataDefinitionView result = DataDefinitionMapper.toView(updatedDefinition);
 //
@@ -112,15 +111,15 @@ public class DataDefinitionApplication {
   /**
    * Delete.
    *
-   * @param developerId the developer id
    * @param productId   the product id
    */
-  public void delete(String developerId, String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+  public void delete(String productId) {
+    LOGGER.debug("Enter. productTypeId: {}.", productId);
 
-    definitionService.deleteByProduct(developerId, productId);
+    definitionService.deleteByProductType(productId);
+    // TODO: 17/9/21 check if this product type has products
 
-    cacheApplication.deleteProductDataDefinition(developerId, productId);
+    cacheApplication.deleteDataDefinition(productId);
 
     LOGGER.debug("Exit.");
   }
@@ -128,20 +127,17 @@ public class DataDefinitionApplication {
   /**
    * 获取productId对应的所有dataDefinition.
    *
-   * @param developerId the developer id
-   * @param productId   the product id
+   * @param productTypeId the product id
    * @return dataDefinition list
    */
-  public List<DataDefinitionView> getByProductId(String developerId, String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+  public List<DataDefinitionView> getByProductTypeId( String productTypeId) {
+    LOGGER.debug("Enter. productTypeId: {}.", productTypeId);
 
-    List<DeviceDataDefinition> dataDefinitions =
-      cacheApplication.getProductDataDefinition(developerId, productId);
+    List<DeviceDataDefinition> dataDefinitions = cacheApplication.getProductDataDefinition(productTypeId);
 
     if (CollectionUtils.isEmpty(dataDefinitions)) {
-      dataDefinitions = definitionService.getByProductId(developerId, productId);
-
-      cacheApplication.cacheProductDataDefinition(developerId, productId, dataDefinitions);
+      dataDefinitions = definitionService.getByProductTypeId(productTypeId);
+      cacheApplication.cacheProductDataDefinition(productTypeId, dataDefinitions);
     }
 
     List<DataDefinitionView> result = DataDefinitionMapper.toView(dataDefinitions);
@@ -154,20 +150,18 @@ public class DataDefinitionApplication {
   /**
    * Gets by product ids.
    *
-   * @param developerId the developer id
-   * @param productIds  the product ids
+   * @param productTypeIds  the product ids
    * @return the by product ids
    */
-  public Map<String, List<DataDefinitionView>> getByProductIds(String developerId,
-                                                               List<String> productIds) {
-    LOGGER.debug("Enter. developerId: {}, productIds: {}.", developerId, productIds);
+  public Map<String, List<DataDefinitionView>> getByProductTypeIds(List<String> productTypeIds) {
+    LOGGER.debug("Enter. productIds: {}.", productTypeIds);
 
     // TODO: 17/7/12 简单粗暴的实现方式，待优化成批量处理
     Map<String, List<DataDefinitionView>> result = Maps.newHashMap();
 
-    Consumer<String> consumer = id -> result.put(id, getByProductId(developerId, id));
+    Consumer<String> consumer = id -> result.put(id, getByProductTypeId(id));
 
-    productIds.stream().forEach(consumer);
+    productTypeIds.stream().forEach(consumer);
 
     return result;
   }
@@ -175,24 +169,23 @@ public class DataDefinitionApplication {
   /**
    * Get data definition view.
    *
-   * @param developerId the developer id
-   * @param productId   the product id
+   * @param productTypeId   the product id
    * @param id          the id
    * @return the data definition view
    */
-  public DataDefinitionView get(String developerId, String productId, String id) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}, id: {}.", developerId, productId, id);
+  public DataDefinitionView get(String productTypeId, String id) {
+    LOGGER.debug("Enter. developerId: {}, productTypeId: {}, id: {}.", productTypeId, id);
 
     DeviceDataDefinition dataDefinition =
-      cacheApplication.getProductDataDefinition(developerId, productId, id);
+      cacheApplication.getProductDataDefinition(productTypeId, id);
 
     if (dataDefinition == null) {
       LOGGER.debug("Cache fail, query dataDefinition from database and cache.");
 
       List<DeviceDataDefinition> dataDefinitions =
-        definitionService.getByProductId(developerId, productId);
+        definitionService.getByProductTypeId(productTypeId);
 
-      cacheApplication.cacheProductDataDefinition(developerId, productId, dataDefinitions);
+      cacheApplication.cacheProductDataDefinition(productTypeId, dataDefinitions);
 
       dataDefinition =
         dataDefinitions.stream().filter(data -> id.equals(data.getId())).findAny().orElse(null);
@@ -209,4 +202,5 @@ public class DataDefinitionApplication {
 
     return result;
   }
+
 }

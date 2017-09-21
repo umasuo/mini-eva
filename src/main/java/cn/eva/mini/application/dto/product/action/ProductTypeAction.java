@@ -12,16 +12,9 @@ import java.io.Serializable;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "action")
 @JsonSubTypes({
-    //update action for product.
     @JsonSubTypes.Type(value = AddProductTypeFunction.class, name = ProductActionNames.ADD_PRODUCT_TYPE_FUNCTION),
     @JsonSubTypes.Type(value = AddProductTypeData.class, name = ProductActionNames.ADD_PRODUCT_TYPE_DATA),
 })
 public interface ProductTypeAction extends Serializable , UpdateAction {
 
-  /**
-   * get action name.
-   *
-   * @return name in string.
-   */
-  String getActionName();
 }

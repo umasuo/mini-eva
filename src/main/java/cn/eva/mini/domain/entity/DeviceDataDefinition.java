@@ -6,8 +6,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -17,18 +15,13 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * DeviceDataDefinition.
+ * Device data definition for each product type.
  */
 @Data
 @Entity
 @Table(name = "device_data_definition")
 @EntityListeners(AuditingEntityListener.class)
-public class DeviceDataDefinition implements Serializable {
-
-  /**
-   * The serialVersionUID.
-   */
-  private static final long serialVersionUID = 6809407785157874299L;
+public class DeviceDataDefinition {
 
   /**
    * Id.
@@ -60,14 +53,9 @@ public class DeviceDataDefinition implements Serializable {
   private Integer version;
 
   /**
-   * which developer this data definition belong to.
-   */
-  private String developerId;
-
-  /**
    * product Id.
    */
-  private String productId;
+  private String productTypeId;
 
   /**
    * data id defined by the developer. 开发者ID＋ dataId全局唯一.

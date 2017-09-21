@@ -30,41 +30,36 @@ public class DataCacheApplication {
   private transient RedisTemplate redisTemplate;
 
   /**
-   * 根据developerId和productId获取对应的DeviceDataDefinition列表。
+   * 根据productId获取对应的DeviceDataDefinition列表。
    *
-   * @param developerId the developerId
-   * @param productId the productId
+   * @param ProductTypeId the product type id
    * @return DeviceDataDefinition list
    */
-  public List<DeviceDataDefinition> getProductDataDefinition(String developerId, String productId) {
+  public List<DeviceDataDefinition> getProductDataDefinition(String ProductTypeId) {
 
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+    LOGGER.debug("Enter. developerId: {}, productTypeId: {}.", ProductTypeId);
 
-    String key = String.format(RedisUtils.DEVICE_DEFINITION_FORMAT, developerId, productId);
+    String key = String.format(RedisUtils.DATA_DEFINITION_FORMAT, ProductTypeId);
 
-    List<DeviceDataDefinition> result = (List<DeviceDataDefinition>)
-        redisTemplate.opsForHash().values(key);
+    List<DeviceDataDefinition> result = (List<DeviceDataDefinition>) redisTemplate.opsForHash().values(key);
 
     LOGGER.debug("Exit. dataDefinition size: {}.", result.size());
     return result;
   }
 
   /**
-   * 根据developerId，productId，id获取对应的DeviceDataDefinition。
+   * 根据productId，dataDefinitionId获取对应的DeviceDataDefinition。
    *
-   * @param developerId the
-   * @param productId the product id
-   * @param id the id
+   * @param productTypeId the product id
+   * @param id            the id
    * @return product data definition
    */
-  public DeviceDataDefinition getProductDataDefinition(String developerId, String productId,
-      String id) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}, id: {}.", developerId, productId, id);
+  public DeviceDataDefinition getProductDataDefinition(String productTypeId, String id) {
+    LOGGER.debug("Enter. productTypeId: {}, id: {}.", productTypeId, id);
 
-    String key = String.format(RedisUtils.DEVICE_DEFINITION_FORMAT, developerId, productId);
+    String key = String.format(RedisUtils.DATA_DEFINITION_FORMAT, productTypeId);
 
-    DeviceDataDefinition dataDefinition =
-        (DeviceDataDefinition) redisTemplate.opsForHash().get(key, id);
+    DeviceDataDefinition dataDefinition = (DeviceDataDefinition) redisTemplate.opsForHash().get(key, id);
 
     LOGGER.debug("Exit. dataDefinition: {}.", dataDefinition);
 
@@ -75,16 +70,14 @@ public class DataCacheApplication {
   /**
    * 缓存某一个产品的数据定义.
    *
-   * @param developerId the developer id
-   * @param productId the product id
+   * @param productTypeId   the product id
    * @param dataDefinitions the data definitions
    */
-  public void cacheProductDataDefinition(String developerId, String productId,
-      List<DeviceDataDefinition> dataDefinitions) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}, dataDefinition size: {}.",
-        developerId, productId, dataDefinitions.size());
+  public void cacheProductDataDefinition(String productTypeId,
+                                         List<DeviceDataDefinition> dataDefinitions) {
+    LOGGER.debug("Enter. productTypeId: {}, dataDefinition size: {}.", productTypeId, dataDefinitions.size());
 
-    String key = String.format(RedisUtils.DEVICE_DEFINITION_FORMAT, developerId, productId);
+    String key = String.format(RedisUtils.DATA_DEFINITION_FORMAT, productTypeId);
 
     Map<String, DeviceDataDefinition> entityMap = DataDefinitionMapper.toModelMap(dataDefinitions);
 
@@ -96,17 +89,17 @@ public class DataCacheApplication {
   /**
    * 删除某一个产品的数据定义.
    *
-   * @param developerId the developer id
-   * @param productId the product id
+   * @param productTypeId the product id
    */
-  public void deleteProductDataDefinition(String developerId, String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}, dataDefinition size: {}.",
-        developerId, productId);
+  public void deleteDataDefinition(String productTypeId) {
+    LOGGER.debug("Enter. productTypeId: {}, dataDefinition size: {}.", productTypeId);
 
-    String key = String.format(RedisUtils.DEVICE_DEFINITION_FORMAT, developerId, productId);
+    String key = String.format(RedisUtils.DATA_DEFINITION_FORMAT, productTypeId);
 
     redisTemplate.delete(key);
 
     LOGGER.debug("Exit.");
   }
+
+
 }

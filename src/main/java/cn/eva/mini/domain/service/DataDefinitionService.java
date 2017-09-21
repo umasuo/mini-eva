@@ -33,24 +33,20 @@ public class DataDefinitionService {
   /**
    * 判断dataId是否已经在developer＋product下存在。
    *
-   * @param developerId the developer id
-   * @param productId   the product id
+   * @param productTypeId   the product id
    * @param dataId      the data id
    */
-  public void isExistDataId(String developerId, String productId, String dataId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}, dataId: {}.",
-      developerId, productId, dataId);
+  public void isExistDataId( String productTypeId, String dataId) {
+    LOGGER.debug("Enter. productTypeId: {}, dataId: {}.", productTypeId, dataId);
 
     DeviceDataDefinition ex = new DeviceDataDefinition();
     ex.setDataId(dataId);
-    ex.setDeveloperId(developerId);
-    ex.setProductId(productId);
+    ex.setProductTypeId(productTypeId);
     Example<DeviceDataDefinition> example = Example.of(ex);
 
     boolean exists = this.repository.exists(example);
     if (exists) {
-      LOGGER.debug("DataId: {} has existed for product: {}, developer: {}.",
-        dataId, productId, developerId);
+      LOGGER.debug("DataId: {} has existed for product: {}.", dataId, productTypeId);
       throw new AlreadyExistException("Data Definition already exist for dataId: " + dataId);
     }
 
@@ -60,16 +56,15 @@ public class DataDefinitionService {
   /**
    * Is exist name in developer.
    *
-   * @param developerId the developer id
-   * @param productId   the developer id
+   * @param productTypeId   the developer id
    * @param name        the name
    * @return the boolean
    */
-  public void isExistName(String developerId, String productId, String name) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}, name: {}.", developerId, productId, name);
+  public void isExistName(String productTypeId, String name) {
+    LOGGER.debug("Enter. productTypeId: {}, name: {}.", productTypeId, name);
 
     DeviceDataDefinition sample = new DeviceDataDefinition();
-    sample.setProductId(productId);
+    sample.setProductTypeId(productTypeId);
     sample.setName(name);
 
     Example<DeviceDataDefinition> example = Example.of(sample);
@@ -77,8 +72,7 @@ public class DataDefinitionService {
     boolean exists = repository.exists(example);
 
     if (exists) {
-      LOGGER.debug("Name: {} has existed in product: {}, developer: {}.",
-        name, productId, developerId);
+      LOGGER.debug("Name: {} has existed in product: {}.", name, productTypeId);
       throw new AlreadyExistException("Name has existed");
     }
 
@@ -137,13 +131,12 @@ public class DataDefinitionService {
   /**
    * Delete by product.
    *
-   * @param developerId the developer id
-   * @param productId   the product id
+   * @param productTypeId   the product id
    */
-  public void deleteByProduct(String developerId, String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+  public void deleteByProductType(String productTypeId) {
+    LOGGER.debug("Enter. productTypeId: {}.", productTypeId);
 
-    List<DeviceDataDefinition> dataDefinitions = getByProductId(developerId, productId);
+    List<DeviceDataDefinition> dataDefinitions = getByProductTypeId(productTypeId);
 
     repository.delete(dataDefinitions);
 
@@ -174,16 +167,14 @@ public class DataDefinitionService {
   /**
    * Gets by product id.
    *
-   * @param developerId the developer id
-   * @param productId   the product id
+   * @param productTypeId   the product id
    * @return the by product id
    */
-  public List<DeviceDataDefinition> getByProductId(String developerId, String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+  public List<DeviceDataDefinition> getByProductTypeId( String productTypeId) {
+    LOGGER.debug("Enter. productTypeId: {}.", productTypeId);
 
     DeviceDataDefinition sample = new DeviceDataDefinition();
-    sample.setDeveloperId(developerId);
-    sample.setProductId(productId);
+    sample.setProductTypeId(productTypeId);
 
     Example<DeviceDataDefinition> example = Example.of(sample);
 
@@ -192,5 +183,20 @@ public class DataDefinitionService {
     LOGGER.debug("Exit. dataDefinition size: {}.", result.size());
 
     return result;
+  }
+
+  /**
+   * Get all platform data definition.
+   *
+   * @return all
+   */
+  public List<DeviceDataDefinition> getAll() {
+    LOGGER.debug("Enter.");
+
+    List<DeviceDataDefinition> dataDefinitions = repository.findAll();
+
+    LOGGER.debug("Exit. DeviceDataDefinition size: {}.", dataDefinitions.size());
+
+    return dataDefinitions;
   }
 }

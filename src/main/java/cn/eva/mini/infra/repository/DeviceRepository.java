@@ -19,7 +19,7 @@ public interface DeviceRepository extends JpaRepository<Device, String> {
    *
    * @return
    */
-  @Query("select new map(d.developerId as developerId, d.productId as productId, count(d) as totalCount) from Device d group by d.developerId, d.productId")
+  @Query("select new map(d.developerId as developerId, d.productTypeId as productTypeId, count(d) as totalCount) from Device d group by d.developerId, d.productTypeId")
   List<HashMap> getReport();
 
   /**
@@ -28,7 +28,7 @@ public interface DeviceRepository extends JpaRepository<Device, String> {
    * @param developerId
    * @return
    */
-  @Query("select new map(d.developerId as developerId, d.productId as productId, count(d) as totalCount) from Device d group by d.developerId, d.productId having d.developerId = ?1")
+  @Query("select new map(d.developerId as developerId, d.productTypeId as productTypeId, count(d) as totalCount) from Device d group by d.developerId, d.productTypeId having d.developerId = ?1")
   List<HashMap> getReport(String developerId);
 
   /**
@@ -38,8 +38,8 @@ public interface DeviceRepository extends JpaRepository<Device, String> {
    * @param endTime
    * @return
    */
-  @Query("select new map(d.developerId as developerId, d.productId as productId, count(d) as registerCount) from Device d where d.createdAt >= ?1 and d.createdAt < ?2 group by d.developerId, d" +
-    ".productId")
+  @Query("select new map(d.developerId as developerId, d.productTypeId as productTypeId, count(d) as registerCount) from Device d where d.createdAt >= ?1 and d.createdAt < ?2 group by d.developerId, d" +
+    ".productTypeId")
   List<HashMap> getIncreaseReport(long startTime, long endTime);
 
   /**
@@ -49,7 +49,7 @@ public interface DeviceRepository extends JpaRepository<Device, String> {
    * @param startTime
    * @return
    */
-  @Query("select new map(d.developerId as developerId, d.productId as productId, count(d) as registerCount) from Device d where d.createdAt >= ?2 group by d.developerId, d.productId having d" +
+  @Query("select new map(d.developerId as developerId, d.productTypeId as productTypeId, count(d) as registerCount) from Device d where d.createdAt >= ?2 group by d.developerId, d.productTypeId having d" +
     ".developerId = ?1")
   List<HashMap> getDeveloperRegisterReport(String developerId, long startTime);
 }

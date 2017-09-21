@@ -27,7 +27,7 @@ public class DataDefinitionDraft {
    * 产品ID.
    */
   @NotNull
-  private String productId;
+  private String productTypeId;
   /**
    * 数据定义介绍，主要用于介绍此数据格点的用途，目的等。
    */

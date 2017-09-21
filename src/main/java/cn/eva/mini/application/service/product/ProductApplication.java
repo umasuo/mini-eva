@@ -267,14 +267,14 @@ public class ProductApplication {
   }
 
   /**
-   * Gets data definitions by productId.
+   * Gets data definitions by productTypeId.
    *
    * @param developerId the developer id
    * @param productId   the product id
    * @return the data definitions
    */
   public List<DeviceDataView> getDataDefinitions(String developerId, String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+    LOGGER.debug("Enter. developerId: {}, productTypeId: {}.", developerId, productId);
 
     List<DeviceDataView> dataViews = Lists.newArrayList();
     ProductView product = get(productId, developerId);

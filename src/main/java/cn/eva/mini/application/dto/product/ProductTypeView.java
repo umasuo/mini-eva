@@ -1,5 +1,6 @@
 package cn.eva.mini.application.dto.product;
 
+import cn.eva.mini.application.dto.data.DataDefinitionView;
 import cn.eva.mini.application.dto.data.DeviceDataView;
 import lombok.Data;
 
@@ -38,9 +39,9 @@ public class ProductTypeView implements Serializable {
   private List<ProductFunctionView> functions;
 
   /**
-   * The data.
+   * The data definition of this kind of product type.
    */
-  private List<DeviceDataView> data;
+  private List<DataDefinitionView> data;
 
   /**
    * The version.

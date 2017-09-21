@@ -50,7 +50,7 @@ public final class DeviceReportUtils {
   private static void handleRegisterReport(List<DeviceReportView> result, Map map) {
 //    Consumer<DeviceReportView> consumer = deviceReportView -> {
 //      if (deviceReportView.getDeveloperId().equals(map.get("developerId").toString()) &&
-//        deviceReportView.getDeviceDefinitionId().equals(map.get("productId").toString())) {
+//        deviceReportView.getDeviceDefinitionId().equals(map.get("productTypeId").toString())) {
 //        deviceReportView.setRegisterNumber(Integer.valueOf(map.get("registerCount").toString()));
 //      }
 //    };
@@ -68,7 +68,7 @@ public final class DeviceReportUtils {
     DeviceReportView reportView = new DeviceReportView();
 
 //    reportView.setDeveloperId(map.get("developerId").toString());
-//    reportView.setDeviceDefinitionId(map.get("productId").toString());
+//    reportView.setDeviceDefinitionId(map.get("productTypeId").toString());
 //    reportView.setTotalNumber((Long) map.get("totalCount"));
 //
 //    // TODO: 17/6/16

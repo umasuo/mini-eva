@@ -60,7 +60,7 @@ public class DataDefinitionController {
                                    @RequestHeader String developerId) {
     LOGGER.info("Enter. definitionDraft: {}, developerId: {}.", definitionDraft, developerId);
 
-    DataDefinitionView view = definitionApplication.create(definitionDraft, developerId);
+    DataDefinitionView view = definitionApplication.create(definitionDraft);
 
     LOGGER.info("Exit. dataDefinition: {}", view);
     return view;
@@ -96,14 +96,14 @@ public class DataDefinitionController {
    *
    * @param id
    * @param developerId
-   * @param productId
+   * @param productTypeId
    */
 //  @DeleteMapping(value = Router.DATA_DEFINITION_WITH_ID)
 //  public void delete(@PathVariable String id,
-//                     @RequestHeader String developerId, @RequestParam String productId) {
-//    LOGGER.info("Enter. id: {}, developerId: {}, productId: {}.", id, developerId, productId);
+//                     @RequestHeader String developerId, @RequestParam String productTypeId) {
+//    LOGGER.info("Enter. id: {}, developerId: {}, productTypeId: {}.", id, developerId, productTypeId);
 //
-//    definitionApplication.delete(developerId, productId, id);
+//    definitionApplication.delete(developerId, productTypeId, id);
 //
 //    LOGGER.info("Exit.");
 //  }
@@ -116,9 +116,9 @@ public class DataDefinitionController {
    */
   @DeleteMapping(value = Router.DATA_DEFINITION_ROOT)
   public void delete(@RequestHeader String developerId, @RequestParam String productId) {
-    LOGGER.debug("Enter. developerId: {}, productId: {}.", developerId, productId);
+    LOGGER.debug("Enter. developerId: {}, productTypeId: {}.", developerId, productId);
 
-    definitionApplication.delete(developerId, productId);
+    definitionApplication.delete(productId);
 
     LOGGER.info("Exit.");
   }
@@ -130,12 +130,12 @@ public class DataDefinitionController {
    * @param productId
    * @return
    */
-  @GetMapping(value = Router.DATA_DEFINITION_ROOT, params = {"productId"})
+  @GetMapping(value = Router.DATA_DEFINITION_ROOT, params = {"productTypeId"})
   public List<DataDefinitionView> getByProductId(@RequestHeader String developerId,
                                                  @RequestParam String productId) {
-    LOGGER.info("Enter. developerId: {}, productId: {}.", developerId, productId);
+    LOGGER.info("Enter. developerId: {}, productTypeId: {}.", developerId, productId);
 
-    List<DataDefinitionView> result = definitionApplication.getByProductId(developerId, productId);
+    List<DataDefinitionView> result = definitionApplication.getByProductTypeId(productId);
 
     LOGGER.info("Exit. dataDefinition size: {}.", result.size());
 
@@ -151,12 +151,10 @@ public class DataDefinitionController {
    */
   @GetMapping(value = Router.DATA_DEFINITION_ROOT, params = {"productIds"})
   public Map<String, List<DataDefinitionView>> getByProductIdList(@RequestHeader String developerId,
-                                                                  @RequestParam List<String>
-                                                                      productIds) {
+                                                                  @RequestParam List<String> productIds) {
     LOGGER.info("Enter. developerId: {}, productIds: {}.", developerId, productIds);
 
-    Map<String, List<DataDefinitionView>> result =
-        definitionApplication.getByProductIds(developerId, productIds);
+    Map<String, List<DataDefinitionView>> result = definitionApplication.getByProductTypeIds(productIds);
 
     LOGGER.info("Exit.");
 
@@ -171,11 +169,12 @@ public class DataDefinitionController {
    * @return
    */
   @GetMapping(value = Router.DATA_DEFINITION_WITH_ID)
-  public DataDefinitionView get(@PathVariable("id") String id,
-                                @RequestHeader String developerId, @RequestParam String productId) {
-    LOGGER.info("Enter. developerId: {}, productId: {}, id: {}.", developerId, productId, id);
+  public DataDefinitionView get(@RequestHeader String developerId,
+                                @PathVariable("id") String id,
+                                @RequestParam String productId) {
+    LOGGER.info("Enter. developerId: {}, productTypeId: {}, id: {}.", developerId, productId, id);
 
-    DataDefinitionView result = definitionApplication.get(developerId, productId, id);
+    DataDefinitionView result = definitionApplication.get(productId, id);
 
     LOGGER.info("Exit. dataDefinition: {}.", result);
 

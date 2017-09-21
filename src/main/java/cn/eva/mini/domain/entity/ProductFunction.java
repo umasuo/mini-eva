@@ -23,7 +23,7 @@ import javax.persistence.Version;
 /**
  * Product function means the function that the product can support.
  * most build the function is sending command.
- * 调用功能的方式：productId + functionId.
+ * 调用功能的方式：productTypeId + functionId.
  */
 @Entity
 @Table(name = "product_function")

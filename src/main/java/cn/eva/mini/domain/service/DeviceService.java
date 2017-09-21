@@ -92,7 +92,7 @@ public class DeviceService {
    * @return list of device
    */
   public List<Device> getByDeviceDefineId(String deviceDefineId) {
-    LOGGER.debug("Enter. productId: {}.", deviceDefineId);
+    LOGGER.debug("Enter. productTypeId: {}.", deviceDefineId);
 
     Device device = new Device();
     device.setProductId(deviceDefineId);

@@ -51,7 +51,6 @@ public final class DataDefinitionMapper {
       view.setCreatedAt(model.getCreatedAt());
       view.setLastModifiedAt(model.getLastModifiedAt());
       view.setVersion(model.getVersion());
-      view.setDeveloperId(model.getDeveloperId());
       view.setDataId(model.getDataId());
       view.setName(model.getName());
       view.setDescription(model.getDescription());
@@ -64,12 +63,11 @@ public final class DataDefinitionMapper {
   /**
    * 根据draft 创建数据定义model.
    */
-  public static DeviceDataDefinition toModel(DataDefinitionDraft draft, String developerId) {
+  public static DeviceDataDefinition toModel(DataDefinitionDraft draft) {
 
     DeviceDataDefinition model = null;
     model = new DeviceDataDefinition();
-    model.setDeveloperId(developerId);
-    model.setProductId(draft.getProductId());
+    model.setProductTypeId(draft.getProductTypeId());
     model.setDataId(draft.getDataId());
     model.setName(draft.getName());
     model.setDescription(draft.getDescription());

@@ -137,38 +137,6 @@ public class ProductTypeApplication {
   }
 
   /**
-   * 查询所有的产品类型。
-   *
-   * @return list build ProductType
-   */
-  public List<ProductTypeView> getAll() {
-    LOGGER.debug("Enter.");
-
-    // get from redis
-//    List<ProductTypeView> cacheProductTypes = cacheApplication.getAllProductType();
-//
-//    if (cacheProductTypes.isEmpty()) {
-//      LOGGER.debug("Cache fail. Get from database.");
-//      List<ProductType> productTypes = productTypeService.getAll();
-//
-//      // 调用data-definition的api获取对应id的CommonDataView
-//      Map<String, List<CommonDataView>> dataDefinitionViews =
-//          restClient.getProductTypeData();
-//
-//      cacheProductTypes = ProductTypeMapper.toView(productTypes, dataDefinitionViews);
-//
-//      cacheApplication.cacheProductType(cacheProductTypes);
-//
-//    }
-//
-//    handleSchema(cacheProductTypes);
-//
-//    LOGGER.debug("Exit. productType size: {}.", cacheProductTypes.size());
-//    return cacheProductTypes;
-    return null;
-  }
-
-  /**
    * Get ProductType by it's id.
    *
    * @param id the id
@@ -197,12 +165,11 @@ public class ProductTypeApplication {
    *
    * @return the all product type
    */
-  public List<ProductTypeView> getAllProductType() {
+  public List<ProductTypeView> getAll() {
     LOGGER.debug("Enter.");
     List<ProductTypeView> result = Lists.newArrayList();
 
-    Map<String, ProductTypeView> cacheProductTypes =
-      redisTemplate.opsForHash().entries(RedisUtils.PRODUCT_TYPE_KEY);
+    Map<String, ProductTypeView> cacheProductTypes = redisTemplate.opsForHash().entries(RedisUtils.PRODUCT_TYPE_KEY);
 
     if (!CollectionUtils.isEmpty(cacheProductTypes)) {
       result = cacheProductTypes.values().stream().collect(Collectors.toList());
@@ -223,7 +190,9 @@ public class ProductTypeApplication {
     LOGGER.debug("Enter. productType size: {}.", productTypeViews.size());
 
     Map<String, ProductTypeView> cacheProductTypes = Maps.newHashMap();
-    productTypeViews.stream().forEach(view -> cacheProductTypes.put(view.getId(), view));
+    productTypeViews.stream().forEach(
+      view -> cacheProductTypes.put(view.getId(), view)
+    );
     redisTemplate.opsForHash().putAll(RedisUtils.PRODUCT_TYPE_KEY, cacheProductTypes);
 
     LOGGER.debug("Exit. cache done.");

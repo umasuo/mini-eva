@@ -92,7 +92,7 @@ public class ProductController {
    */
 //  @PutMapping(Router.PRODUCT_WITH_ID)
 //  public ProductView update(@PathVariable("id") String id, @RequestHeader String developerId,
-//                            @RequestBody @Valid UpdateRequest updateRequest) {
+//                            @RequestBody @Valid ProductTypeUpdateRequest updateRequest) {
 //    LOGGER.info("Enter. productTypeId: {}, updateRequest: {}, developerId: {}.",
 //        id, updateRequest, developerId);
 //

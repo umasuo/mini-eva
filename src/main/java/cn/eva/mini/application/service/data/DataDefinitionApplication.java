@@ -6,7 +6,10 @@ import cn.eva.mini.application.dto.data.mapper.DataDefinitionMapper;
 import cn.eva.mini.domain.entity.DeviceDataDefinition;
 import cn.eva.mini.domain.service.DataDefinitionService;
 import cn.eva.mini.infra.exception.NotExistException;
+import cn.eva.mini.infra.updater.UpdateAction;
+import cn.eva.mini.infra.updater.UpdaterService;
 import cn.eva.mini.infra.util.SchemaValidator;
+import cn.eva.mini.infra.util.VersionValidator;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,13 +47,13 @@ public class DataDefinitionApplication {
   /**
    * The UpdateService.
    */
-//  @Autowired
-//  private transient UpdaterService updaterService;
+  @Autowired
+  private transient UpdaterService updaterService;
 
   /**
    * Create DeviceDataDefinition.
    *
-   * @param draft       the draft
+   * @param draft the draft
    * @return the data definition view
    */
   public DataDefinitionView create(DataDefinitionDraft draft) {
@@ -62,10 +65,9 @@ public class DataDefinitionApplication {
 
     definitionService.isExistDataId(draft.getProductTypeId(), draft.getDataId());
 
-    DeviceDataDefinition definition =
-      definitionService.save(DataDefinitionMapper.toModel(draft));
+    DeviceDataDefinition definition = definitionService.save(DataDefinitionMapper.toModel(draft));
 
-    cacheApplication.deleteDataDefinition( draft.getProductTypeId());
+    cacheApplication.deleteDataDefinition(draft.getProductTypeId());
 
     DataDefinitionView view = DataDefinitionMapper.toView(definition);
 
@@ -83,35 +85,33 @@ public class DataDefinitionApplication {
    * @param actions     the actions
    * @return updated DataDefinitionView
    */
-//  public DataDefinitionView update(String id, String developerId, Integer version,
-//                                   List<UpdateAction> actions) {
-//    LOGGER.debug("Enter. id: {}, version: {}, developerId:{}, actions: {}.",
-//        id, version, developerId, actions);
-//
-//    DeviceDataDefinition definition = definitionService.getById(id);
-//
-//    DefinitionValidator.validateDeveloper(developerId, definition.getDeveloperId(), id);
-//
-////    VersionValidator.validate(version, definition.getVersion());
-//
-//    actions.stream().forEach(action -> updaterService.handle(definition, action));
-//
-//    DeviceDataDefinition updatedDefinition = definitionService.save(definition);
-//
-//    cacheApplication.deleteDataDefinition(developerId, definition.getProductTypeId());
-//
-//    DataDefinitionView result = DataDefinitionMapper.toView(updatedDefinition);
-//
-//    LOGGER.trace("Updated DeviceDataDefinition: {}.", result);
-//    LOGGER.debug("Exit.");
-//
-//    return result;
-//  }
+  public DataDefinitionView update(String id, String developerId, Integer version,
+                                   List<UpdateAction> actions) {
+    LOGGER.debug("Enter. id: {}, version: {}, developerId:{}, actions: {}.",
+        id, version, developerId, actions);
+
+    DeviceDataDefinition definition = definitionService.getById(id);
+
+    VersionValidator.validate(version, definition.getVersion());
+
+    actions.stream().forEach(action -> updaterService.handle(definition, action));
+
+    DeviceDataDefinition updatedDefinition = definitionService.save(definition);
+
+    cacheApplication.deleteDataDefinition(definition.getProductTypeId());
+
+    DataDefinitionView result = DataDefinitionMapper.toView(updatedDefinition);
+
+    LOGGER.trace("Updated DeviceDataDefinition: {}.", result);
+    LOGGER.debug("Exit.");
+
+    return result;
+  }
 
   /**
    * Delete.
    *
-   * @param productId   the product id
+   * @param productId the product id
    */
   public void delete(String productId) {
     LOGGER.debug("Enter. productTypeId: {}.", productId);
@@ -130,7 +130,7 @@ public class DataDefinitionApplication {
    * @param productTypeId the product id
    * @return dataDefinition list
    */
-  public List<DataDefinitionView> getByProductTypeId( String productTypeId) {
+  public List<DataDefinitionView> getByProductTypeId(String productTypeId) {
     LOGGER.debug("Enter. productTypeId: {}.", productTypeId);
 
     List<DeviceDataDefinition> dataDefinitions = cacheApplication.getProductDataDefinition(productTypeId);
@@ -150,7 +150,7 @@ public class DataDefinitionApplication {
   /**
    * Gets by product ids.
    *
-   * @param productTypeIds  the product ids
+   * @param productTypeIds the product ids
    * @return the by product ids
    */
   public Map<String, List<DataDefinitionView>> getByProductTypeIds(List<String> productTypeIds) {
@@ -169,8 +169,8 @@ public class DataDefinitionApplication {
   /**
    * Get data definition view.
    *
-   * @param productTypeId   the product id
-   * @param id          the id
+   * @param productTypeId the product id
+   * @param id            the id
    * @return the data definition view
    */
   public DataDefinitionView get(String productTypeId, String id) {

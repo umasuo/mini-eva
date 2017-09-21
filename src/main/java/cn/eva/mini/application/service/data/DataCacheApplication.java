@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class DataCacheApplication {
 
     List<DeviceDataDefinition> result = (List<DeviceDataDefinition>) redisTemplate.opsForHash().values(key);
 
-    LOGGER.debug("Exit. dataDefinition size: {}.", result.size());
+    LOGGER.debug("Exit. dataDefinition size: {}.", CollectionUtils.isEmpty(result) ? 0 : result.size());
     return result;
   }
 
@@ -73,8 +74,7 @@ public class DataCacheApplication {
    * @param productTypeId   the product id
    * @param dataDefinitions the data definitions
    */
-  public void cacheProductDataDefinition(String productTypeId,
-                                         List<DeviceDataDefinition> dataDefinitions) {
+  public void cacheProductDataDefinition(String productTypeId, List<DeviceDataDefinition> dataDefinitions) {
     LOGGER.debug("Enter. productTypeId: {}, dataDefinition size: {}.", productTypeId, dataDefinitions.size());
 
     String key = String.format(RedisUtils.DATA_DEFINITION_FORMAT, productTypeId);

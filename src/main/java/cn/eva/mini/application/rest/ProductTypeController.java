@@ -2,6 +2,7 @@ package cn.eva.mini.application.rest;
 
 import cn.eva.mini.application.dto.product.ProductTypeDraft;
 import cn.eva.mini.application.dto.product.ProductTypeView;
+import cn.eva.mini.application.dto.product.action.ProductTypeUpdateRequest;
 import cn.eva.mini.application.service.product.ProductTypeApplication;
 import cn.eva.mini.infra.router.Router;
 import org.slf4j.Logger;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+import javax.validation.Valid;
 
 /**
  * Controller class for ProductType.
@@ -56,7 +60,7 @@ public class ProductTypeController {
   /**
    * Delete ProductType by it's id.
    *
-   * @param id the id
+   * @param id      the id
    * @param version the version
    */
   @DeleteMapping(Router.ADMIN_PRODUCT_TYPE_WITH_ID)
@@ -72,23 +76,22 @@ public class ProductTypeController {
   /**
    * Update ProductType.
    *
-   * @param id the id
+   * @param id            the product type id
    * @param updateRequest the update request
    * @return the product type view
    */
-//  @PutMapping(Router.ADMIN_PRODUCT_TYPE_WITH_ID)
-//  public ProductTypeView update(@PathVariable("id") String id,
-//      @RequestBody @Valid UpdateRequest updateRequest) {
-//    LOGGER.info("Enter. product type id: {}, updateRequest: {}.", id, updateRequest);
-//
-//    ProductTypeView result =
-//        productTypeApplication.update(id, updateRequest.getVersion(), updateRequest.getActions());
-//
-//    LOGGER.trace("Updated productType: {}.", result);
-//    LOGGER.info("Exit.");
-//
-//    return result;
-//  }
+  @PutMapping(Router.ADMIN_PRODUCT_TYPE_WITH_ID)
+  public ProductTypeView update(@PathVariable("id") String id,
+                                @RequestBody @Valid ProductTypeUpdateRequest updateRequest) {
+    LOGGER.info("Enter. product type id: {}, updateRequest: {}.", id, updateRequest);
+
+    ProductTypeView result = productTypeApplication.update(id, updateRequest.getVersion(), updateRequest.getActions());
+
+    LOGGER.trace("Updated productType: {}.", result);
+    LOGGER.info("Exit.");
+
+    return result;
+  }
 
   /**
    * Gets one ProductType by id.

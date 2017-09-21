@@ -71,13 +71,13 @@ public class DataDefinitionController {
    *
    * @param id            the DeviceDataDefinition id
    * @param developerId   the Developer id
-   * @param updateRequest the UpdateRequest
+   * @param updateRequest the ProductTypeUpdateRequest
    * @return updated DeviceDataDefinition
    */
 //  @PutMapping(value = Router.DATA_DEFINITION_WITH_ID)
 //  public DataDefinitionView update(@PathVariable String id,
 //                                   @RequestHeader String developerId,
-//                                   @RequestBody @Valid UpdateRequest updateRequest) {
+//                                   @RequestBody @Valid ProductTypeUpdateRequest updateRequest) {
 //    LOGGER.info("Enter. dataDefinitionId: {}, updateRequest: {}, developerId: {}.",
 //        id, updateRequest, developerId);
 //
